@@ -1,0 +1,18 @@
+Ran the third health check cycle. Summary for Paty:
+
+**Healthy / no action needed**
+- Disk space: 252GB free of 460GB (~55%) — unchanged from prior runs.
+- `/private/tmp` and per-user temp: both trivial (4.5M / 5.6M).
+- No leftover `Install macOS *.app`, no local Time Machine snapshots.
+- No installer files (.dmg/.pkg) older than 30 days in Downloads.
+
+**Flagged for awareness (not urgent)**
+- `~/Library/Caches` = 11GB, steady for 3 runs straight — no sudden growth, just informational.
+- `googlechrome.dmg` in Downloads is from today, Chrome's already installed — safe to delete later once it's actually stale, not now.
+- `~/Downloads` is 24GB total, but that's mostly your video/photo/PDF working files (Thrive shoots, M Program docs, family photos) — not installer clutter, so outside this routine's cleanup scope.
+
+**Still unresolved (3rd run in a row)**
+- `~/.Trash` size still can't be read — "Operation not permitted" persists even though you said you granted Full Disk Access. Worth double-checking which app is actually toggled on in System Settings → Privacy & Security → Full Disk Access, and that it's been restarted since.
+
+Good news this run: unlike last time, Downloads/Applications listing wasn't session-blocked, so step 3 ran cleanly this cycle. Full findings logged in `mac_health_check.md`.
+--- run finished Tue Sep  1 12:46:13 PDT 2026 ---
