@@ -1203,6 +1203,24 @@ function goPage(id) {
   window.scrollTo(0, 0);
   return false;
 }
+
+(function () {
+  var slug = window.location.pathname.replace(/^\/|\/$/g, '');
+  var routes = {
+    '': 'home',
+    'm-program': 'mprogram',
+    'thrive': 'thrive',
+    'retreats': 'retreats',
+    'shop': 'shop',
+    'blog': 'blog',
+    'about': 'about',
+    'privacy': 'privacy'
+  };
+  var page = routes[slug];
+  if (page && page !== 'home') {
+    goPage(page);
+  }
+})();
 </script>
 
 </body></html>
