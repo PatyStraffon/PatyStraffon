@@ -429,24 +429,24 @@ a, .eyebrow, .tag { color: var(--accent-text); }
         <div class="eyebrow">From the Blog</div>
         <h2 style="font-size:30px;margin-top:8px;color:var(--ink);">Notes on the 5 Levers</h2>
       </div>
-      <a href="#" style="font-size:13px;letter-spacing:.05em;text-transform:uppercase;font-weight:600;">Read the Blog &rarr;</a>
+      <a href="#" onclick="return goPage('blog')" style="font-size:13px;letter-spacing:.05em;text-transform:uppercase;font-weight:600;">Read the Blog &rarr;</a>
     </div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;">
-      <div>
+      <a href="#" onclick="return goPage('post-circadian-rhythm')" style="text-decoration:none;color:inherit;display:block;">
         <div class="ph" style="height:180px;margin-bottom:16px;">[ ARTICLE IMAGE ]</div>
         <div class="eyebrow" style="color:var(--accent2);">Sleep</div>
         <h3 style="font-size:19px;margin-top:8px;color:var(--ink);">Rebuilding Your Circadian Rhythm After 40</h3>
-      </div>
-      <div>
+      </a>
+      <a href="#" onclick="return goPage('post-protein-timing')" style="text-decoration:none;color:inherit;display:block;">
         <div class="ph" style="height:180px;margin-bottom:16px;">[ ARTICLE IMAGE ]</div>
         <div class="eyebrow" style="color:var(--accent2);">Protein</div>
         <h3 style="font-size:19px;margin-top:8px;color:var(--ink);">Why Protein Timing Matters More Now</h3>
-      </div>
-      <div>
+      </a>
+      <a href="#" onclick="return goPage('post-bone-density')" style="text-decoration:none;color:inherit;display:block;">
         <div class="ph" style="height:180px;margin-bottom:16px;">[ ARTICLE IMAGE ]</div>
         <div class="eyebrow" style="color:var(--accent2);">Exercise</div>
         <h3 style="font-size:19px;margin-top:8px;color:var(--ink);">Strength Training and Bone Density</h3>
-      </div>
+      </a>
     </div>
   </div>
 
@@ -945,20 +945,20 @@ a, .eyebrow, .tag { color: var(--accent-text); }
     <div style="flex:1 1 0;display:flex;flex-direction:column;gap:14px;">
       <div class="tag">Movement</div>
       <h2 style="font-size:32px;color:var(--ink);">Why Your 40s Are the Best Time to Start Strength Training</h2>
-      <p style="font-size:14px;color:var(--ink-soft);">[ ARTICLE EXCERPT &mdash; PLACEHOLDER ]</p>
-      <a href="#" style="font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;">Read More &rarr;</a>
+      <p style="font-size:14px;color:var(--ink-soft);">Strength training in your 40s isn&rsquo;t about chasing the body you had at 25 &mdash; it&rsquo;s the single highest-leverage thing you can do for the decades ahead, from bone density to metabolism to how you move at 70.</p>
+      <a href="#" onclick="return goPage('post-strength-training-40s')" style="font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;">Read More &rarr;</a>
     </div>
   </div>
 
   <!-- GRID -->
   <div style="padding:0 56px 96px;max-width:1440px;">
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;">
-      <div><div class="ph" style="height:180px;margin-bottom:14px;">[ ARTICLE IMAGE ]</div><div class="tag">Sleep</div><h3 style="font-size:18px;margin-top:8px;color:var(--ink);">Rebuilding Your Circadian Rhythm After 40</h3></div>
-      <div><div class="ph" style="height:180px;margin-bottom:14px;">[ ARTICLE IMAGE ]</div><div class="tag">Nutrition</div><h3 style="font-size:18px;margin-top:8px;color:var(--ink);">Why Protein Timing Matters More Now</h3></div>
-      <div><div class="ph" style="height:180px;margin-bottom:14px;">[ ARTICLE IMAGE ]</div><div class="tag">Recovery</div><h3 style="font-size:18px;margin-top:8px;color:var(--ink);">The Cortisol&ndash;Sleep Connection, Explained</h3></div>
-      <div><div class="ph" style="height:180px;margin-bottom:14px;">[ ARTICLE IMAGE ]</div><div class="tag">Mindset</div><h3 style="font-size:18px;margin-top:8px;color:var(--ink);">Consistency Over Perfection</h3></div>
-      <div><div class="ph" style="height:180px;margin-bottom:14px;">[ ARTICLE IMAGE ]</div><div class="tag">Nutrition</div><h3 style="font-size:18px;margin-top:8px;color:var(--ink);">Strategic Carbs: Fueling Without Fear</h3></div>
-      <div><div class="ph" style="height:180px;margin-bottom:14px;">[ ARTICLE IMAGE ]</div><div class="tag">Movement</div><h3 style="font-size:18px;margin-top:8px;color:var(--ink);">What Bone Density Loss Actually Looks Like</h3></div>
+      <a href="#" onclick="return goPage('post-circadian-rhythm')" style="text-decoration:none;color:inherit;display:block;"><div class="ph" style="height:180px;margin-bottom:14px;">[ ARTICLE IMAGE ]</div><div class="tag">Sleep</div><h3 style="font-size:18px;margin-top:8px;color:var(--ink);">Rebuilding Your Circadian Rhythm After 40</h3></a>
+      <a href="#" onclick="return goPage('post-protein-timing')" style="text-decoration:none;color:inherit;display:block;"><div class="ph" style="height:180px;margin-bottom:14px;">[ ARTICLE IMAGE ]</div><div class="tag">Nutrition</div><h3 style="font-size:18px;margin-top:8px;color:var(--ink);">Why Protein Timing Matters More Now</h3></a>
+      <a href="#" onclick="return goPage('post-cortisol-sleep')" style="text-decoration:none;color:inherit;display:block;"><div class="ph" style="height:180px;margin-bottom:14px;">[ ARTICLE IMAGE ]</div><div class="tag">Recovery</div><h3 style="font-size:18px;margin-top:8px;color:var(--ink);">The Cortisol&ndash;Sleep Connection, Explained</h3></a>
+      <a href="#" onclick="return goPage('post-consistency')" style="text-decoration:none;color:inherit;display:block;"><div class="ph" style="height:180px;margin-bottom:14px;">[ ARTICLE IMAGE ]</div><div class="tag">Mindset</div><h3 style="font-size:18px;margin-top:8px;color:var(--ink);">Consistency Over Perfection</h3></a>
+      <a href="#" onclick="return goPage('post-strategic-carbs')" style="text-decoration:none;color:inherit;display:block;"><div class="ph" style="height:180px;margin-bottom:14px;">[ ARTICLE IMAGE ]</div><div class="tag">Nutrition</div><h3 style="font-size:18px;margin-top:8px;color:var(--ink);">Strategic Carbs: Fueling Without Fear</h3></a>
+      <a href="#" onclick="return goPage('post-bone-density')" style="text-decoration:none;color:inherit;display:block;"><div class="ph" style="height:180px;margin-bottom:14px;">[ ARTICLE IMAGE ]</div><div class="tag">Movement</div><h3 style="font-size:18px;margin-top:8px;color:var(--ink);">What Bone Density Loss Actually Looks Like</h3></a>
     </div>
   </div>
 
@@ -996,6 +996,451 @@ a, .eyebrow, .tag { color: var(--accent-text); }
     <div style="margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.15);font-size:12px;opacity:.55;display:flex;gap:20px;flex-wrap:wrap;align-items:center;"><span>&copy; 2026 Paty Straffon. All rights reserved.</span><a href="#" onclick="return goPage('privacy')" style="opacity:1;">Privacy Policy</a></div>
   </footer>
 
+</div>
+</section>
+<section id="page-post-circadian-rhythm" class="page" data-page="post-circadian-rhythm" style="display:none;">
+<div style="max-width:1440px;margin:0 auto;background:var(--bg);">
+<div style="max-width:720px;margin:0 auto;padding:80px 56px 40px;">
+    <a href="#" onclick="return goPage('blog')" style="font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;">&larr; Back to Blog</a>
+    <div class="tag" style="margin-top:24px;">Sleep</div>
+    <h1 style="font-size:38px;margin-top:12px;color:var(--ink);">Rebuilding Your Circadian Rhythm After 40</h1>
+    <p style="font-size:13px;color:var(--ink-soft);margin-top:12px;">By Paty Straffon</p>
+    <div class="ph" style="height:320px;margin-top:28px;">[ ARTICLE IMAGE ]</div>
+
+    <div class="legal" style="margin-top:36px;font-size:15.5px;color:var(--ink-soft);">
+      <p>If you used to fall asleep the moment your head hit the pillow and now find yourself wide awake at 3am, you're not imagining it, and you're not broken. Sleep is the first lever in The 5 Levers for a reason: it's the foundation everything else &mdash; energy, appetite, mood, recovery from training &mdash; is built on. And in perimenopause, it's usually the first thing to shift.</p>
+
+      <h2>Why sleep changes now</h2>
+      <p>Estrogen and progesterone both play a role in regulating sleep architecture, body temperature, and the stress hormones that either help you wind down or keep you wired. As those hormones fluctuate, so does your ability to fall asleep, stay asleep, and reach the deep, restorative stages of sleep that repair muscle and regulate blood sugar overnight. Night sweats and a lighter, more fragmented sleep aren't a personal failure &mdash; they're a physiological shift, and they respond to a physiological approach.</p>
+
+      <h2>What actually helps</h2>
+      <p>Circadian rhythm &mdash; your internal 24-hour clock &mdash; runs on cues, and the two strongest are light and consistency. A few places to start:</p>
+      <ul>
+        <li><strong>Morning light, early.</strong> Ten minutes outside within an hour of waking helps anchor your clock and improves melatonin release that night.</li>
+        <li><strong>A consistent wake time,</strong> even on weekends. Your body clock responds far more to when you get up than to when you go to bed.</li>
+        <li><strong>A cooler room and a wind-down window.</strong> Body temperature needs to drop to initiate sleep, which is exactly what hot flashes and night sweats interrupt. A cool room, breathable layers, and dimming lights an hour before bed all work with your biology instead of against it.</li>
+        <li><strong>Protein and strategic carbs at dinner,</strong> rather than a very light or very late meal, to keep blood sugar steadier overnight and reduce the 3am wake-ups tied to a glucose dip.</li>
+      </ul>
+
+      <h2>Consistency over a perfect night</h2>
+      <p>You will still have rough nights. The goal isn't a flawless sleep score &mdash; it's a rhythm your body can rely on most of the time, so the occasional bad night doesn't derail the week. That's the same principle behind everything in The M Program: small, repeatable inputs that compound, rather than a strict protocol you either nail or abandon.</p>
+
+      <p>If sleep is the lever you're struggling with most, it's usually the one worth working on first &mdash; better sleep makes the other four levers, from training recovery to appetite regulation, noticeably easier.</p>
+    </div>
+
+    <div style="margin-top:48px;padding:28px;border-radius:14px;background:var(--bg-alt);display:flex;flex-direction:column;gap:12px;">
+      <h3 style="font-size:19px;color:var(--ink);">Want a personal sleep protocol built into your week?</h3>
+      <p style="font-size:14px;color:var(--ink-soft);">The M Program builds a sleep strategy alongside training, nutrition, and recovery &mdash; not as an afterthought.</p>
+      <div class="btn btn-primary" style="align-self:flex-start;cursor:pointer;" onclick="goPage('mprogram')">Learn About The M Program</div>
+    </div>
+  </div>
+
+  <footer>
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;">
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div class="logo" style="color:var(--bg);">Paty Straffon</div>
+        <p style="font-size:13px;opacity:.7;max-width:280px;">Certified Menopause Coach &amp; IIN Integrative Nutrition Health Coach.</p>
+      </div>
+      <div style="display:flex;gap:64px;font-size:13px;">
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="opacity:.55;letter-spacing:.08em;text-transform:uppercase;font-size:11px;margin-bottom:4px;">Explore</div>
+          <a href="#" onclick="return goPage('mprogram')">The M Program</a><a href="#" onclick="return goPage('thrive')">Thrive</a><a href="#" onclick="return goPage('retreats')">Retreats &amp; Events</a><a href="#" onclick="return goPage('shop')">Shop</a><a href="#" onclick="return goPage('blog')">Blog</a><a href="#" onclick="return goPage('about')">About</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="opacity:.55;letter-spacing:.08em;text-transform:uppercase;font-size:11px;margin-bottom:4px;">Connect</div>
+          <div style="display:flex;gap:14px;align-items:center;">
+            <a href="#" aria-label="Instagram" style="color:var(--bg);opacity:.8;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor" stroke="none"/></svg></a>
+            <a href="#" aria-label="YouTube" style="color:var(--bg);opacity:.8;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.3" y="5.5" width="19.4" height="13" rx="4"/><path d="M10.4 9.1v5.8l5.2-2.9z" fill="currentColor" stroke="none"/></svg></a>
+            <a href="#" aria-label="Facebook" style="color:var(--bg);opacity:.8;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.3"/><path d="M14 8.6h-1.4c-.85 0-1.4.55-1.4 1.5v2h2.8l-.35 2.4h-2.45V21"/></svg></a>
+          </div>
+          <a href="mailto:[ADD EMAIL]" style="font-size:12.5px;">[ Add Email ]</a>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.15);font-size:12px;opacity:.55;display:flex;gap:20px;flex-wrap:wrap;align-items:center;"><span>&copy; 2026 Paty Straffon. All rights reserved.</span><a href="#" onclick="return goPage('privacy')" style="opacity:1;">Privacy Policy</a></div>
+  </footer>
+</div>
+</section>
+<section id="page-post-protein-timing" class="page" data-page="post-protein-timing" style="display:none;">
+<div style="max-width:1440px;margin:0 auto;background:var(--bg);">
+<div style="max-width:720px;margin:0 auto;padding:80px 56px 40px;">
+    <a href="#" onclick="return goPage('blog')" style="font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;">&larr; Back to Blog</a>
+    <div class="tag" style="margin-top:24px;">Nutrition</div>
+    <h1 style="font-size:38px;margin-top:12px;color:var(--ink);">Why Protein Timing Matters More Now</h1>
+    <p style="font-size:13px;color:var(--ink-soft);margin-top:12px;">By Paty Straffon</p>
+    <div class="ph" style="height:320px;margin-top:28px;">[ ARTICLE IMAGE ]</div>
+
+    <div class="legal" style="margin-top:36px;font-size:15.5px;color:var(--ink-soft);">
+      <p>You may already know you should be eating more protein. What surprises most women in The M Program is how much timing changes the payoff &mdash; not just how much protein you eat across the day, but how it's spread out.</p>
+
+      <h2>The muscle-building window shifts</h2>
+      <p>As estrogen declines, the body becomes less efficient at using protein to build and maintain muscle &mdash; a phenomenon researchers call anabolic resistance. In practice, that means the amount of protein that used to be "enough" at 30 often isn't enough at 45 or 50 to protect the muscle mass you already have, let alone build more.</p>
+
+      <p>The fix isn't necessarily eating more protein overall &mdash; it's making sure each meal actually clears the threshold your body now needs to trigger muscle repair, typically in the range of 25&ndash;35 grams per meal for most women, rather than saving most of your protein for dinner.</p>
+
+      <h2>Spreading it out, not front- or back-loading</h2>
+      <p>Most of us default to a light breakfast, a rushed lunch, and a bigger dinner &mdash; which means one meal is doing most of the protein work. Three (or four) meals that each hit a real protein target do more for muscle, satiety, and blood sugar stability than one large protein-heavy dinner.</p>
+      <ul>
+        <li><strong>Breakfast:</strong> eggs, Greek yogurt, or a protein smoothie &mdash; not just toast or coffee.</li>
+        <li><strong>Post-strength-training:</strong> protein within a couple of hours supports the repair process that's already switched on.</li>
+        <li><strong>Evening:</strong> a source of protein at dinner, even if you already hit your number earlier &mdash; consistency across the day matters more than any single "best" meal.</li>
+      </ul>
+
+      <h2>It works with the other levers, not instead of them</h2>
+      <p>Protein timing is only one piece. It works alongside strength training (which creates the demand for muscle repair in the first place) and strategic carbs (which spare protein from being used for energy instead of rebuilding). That's exactly why The 5 Levers are built as a system rather than five separate to-do lists.</p>
+    </div>
+
+    <div style="margin-top:48px;padding:28px;border-radius:14px;background:var(--bg-alt);display:flex;flex-direction:column;gap:12px;">
+      <h3 style="font-size:19px;color:var(--ink);">Not sure what your protein targets should be?</h3>
+      <p style="font-size:14px;color:var(--ink-soft);">The M Program builds a personal nutrition strategy around your training and your real life, not a generic macro chart.</p>
+      <div class="btn btn-primary" style="align-self:flex-start;cursor:pointer;" onclick="goPage('mprogram')">Learn About The M Program</div>
+    </div>
+  </div>
+
+  <footer>
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;">
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div class="logo" style="color:var(--bg);">Paty Straffon</div>
+        <p style="font-size:13px;opacity:.7;max-width:280px;">Certified Menopause Coach &amp; IIN Integrative Nutrition Health Coach.</p>
+      </div>
+      <div style="display:flex;gap:64px;font-size:13px;">
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="opacity:.55;letter-spacing:.08em;text-transform:uppercase;font-size:11px;margin-bottom:4px;">Explore</div>
+          <a href="#" onclick="return goPage('mprogram')">The M Program</a><a href="#" onclick="return goPage('thrive')">Thrive</a><a href="#" onclick="return goPage('retreats')">Retreats &amp; Events</a><a href="#" onclick="return goPage('shop')">Shop</a><a href="#" onclick="return goPage('blog')">Blog</a><a href="#" onclick="return goPage('about')">About</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="opacity:.55;letter-spacing:.08em;text-transform:uppercase;font-size:11px;margin-bottom:4px;">Connect</div>
+          <div style="display:flex;gap:14px;align-items:center;">
+            <a href="#" aria-label="Instagram" style="color:var(--bg);opacity:.8;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor" stroke="none"/></svg></a>
+            <a href="#" aria-label="YouTube" style="color:var(--bg);opacity:.8;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.3" y="5.5" width="19.4" height="13" rx="4"/><path d="M10.4 9.1v5.8l5.2-2.9z" fill="currentColor" stroke="none"/></svg></a>
+            <a href="#" aria-label="Facebook" style="color:var(--bg);opacity:.8;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.3"/><path d="M14 8.6h-1.4c-.85 0-1.4.55-1.4 1.5v2h2.8l-.35 2.4h-2.45V21"/></svg></a>
+          </div>
+          <a href="mailto:[ADD EMAIL]" style="font-size:12.5px;">[ Add Email ]</a>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.15);font-size:12px;opacity:.55;display:flex;gap:20px;flex-wrap:wrap;align-items:center;"><span>&copy; 2026 Paty Straffon. All rights reserved.</span><a href="#" onclick="return goPage('privacy')" style="opacity:1;">Privacy Policy</a></div>
+  </footer>
+</div>
+</section>
+
+<section id="page-post-strength-training-40s" class="page" data-page="post-strength-training-40s" style="display:none;">
+<div style="max-width:1440px;margin:0 auto;background:var(--bg);">
+<div style="max-width:720px;margin:0 auto;padding:80px 56px 40px;">
+    <a href="#" onclick="return goPage('blog')" style="font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;">&larr; Back to Blog</a>
+    <div class="tag" style="margin-top:24px;">Movement</div>
+    <h1 style="font-size:38px;margin-top:12px;color:var(--ink);">Why Your 40s Are the Best Time to Start Strength Training</h1>
+    <p style="font-size:13px;color:var(--ink-soft);margin-top:12px;">By Paty Straffon</p>
+    <div class="ph" style="height:320px;margin-top:28px;">[ ARTICLE IMAGE ]</div>
+
+    <div class="legal" style="margin-top:36px;font-size:15.5px;color:var(--ink-soft);">
+      <p>If you've never lifted a weight in your life, your 40s are not too late to start &mdash; they may be the most important decade to start. Muscle mass and bone density both begin declining meaningfully in midlife, and strength training is one of the few interventions that directly slows, and in some cases reverses, both trends.</p>
+
+      <h2>What's actually happening in your 40s and 50s</h2>
+      <p>Starting in your 30s, adults lose roughly 3&ndash;8% of muscle mass per decade, and that rate accelerates through the menopause transition as declining estrogen affects both muscle protein synthesis and bone remodeling. Left unaddressed, this shows up later as reduced strength, slower metabolism, and higher fracture risk &mdash; not as an inevitability, but as a predictable consequence of a body that isn't being asked to do resistance work.</p>
+
+      <h2>Why strength training is the direct answer</h2>
+      <p>Muscle and bone both respond to mechanical load &mdash; they get stronger specifically because you've asked them to handle more than they're used to. That's true whether you're 25 or 65. Progressive strength training:</p>
+      <ul>
+        <li>Signals bone to maintain and build density, particularly at the hip and spine &mdash; the sites most at risk for fracture</li>
+        <li>Preserves and builds the muscle mass that drives your resting metabolic rate</li>
+        <li>Improves balance and coordination, which matters more for fall prevention every year</li>
+        <li>Supports insulin sensitivity, which tends to decline through the menopause transition</li>
+      </ul>
+
+      <h2>You don't need to already be "fit" to start</h2>
+      <p>The biggest barrier isn't physical, it's the idea that strength training is for people who are already strong. In practice, progressions start wherever you are &mdash; bodyweight and resistance bands are a completely legitimate starting point, and the adaptation curve for someone new to lifting is often faster than for someone who's been training for years. What matters is consistency and progressive overload: doing slightly more than your body is used to, on a schedule you can actually keep.</p>
+
+      <p>This is exactly the theme running through The M Program &mdash; every phase is built with bone health and long-term strength in mind, not just an 8-week transformation for its own sake.</p>
+    </div>
+
+    <div style="margin-top:48px;padding:28px;border-radius:14px;background:var(--bg-alt);display:flex;flex-direction:column;gap:12px;">
+      <h3 style="font-size:19px;color:var(--ink);">Ready to start strength training the right way?</h3>
+      <p style="font-size:14px;color:var(--ink-soft);">The M Program builds progressive strength training into a guided 8-week app experience &mdash; no guesswork, no exercise-by-exercise fumbling.</p>
+      <div class="btn btn-primary" style="align-self:flex-start;cursor:pointer;" onclick="goPage('mprogram')">Learn About The M Program</div>
+    </div>
+  </div>
+
+  <footer>
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;">
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div class="logo" style="color:var(--bg);">Paty Straffon</div>
+        <p style="font-size:13px;opacity:.7;max-width:280px;">Certified Menopause Coach &amp; IIN Integrative Nutrition Health Coach.</p>
+      </div>
+      <div style="display:flex;gap:64px;font-size:13px;">
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="opacity:.55;letter-spacing:.08em;text-transform:uppercase;font-size:11px;margin-bottom:4px;">Explore</div>
+          <a href="#" onclick="return goPage('mprogram')">The M Program</a><a href="#" onclick="return goPage('thrive')">Thrive</a><a href="#" onclick="return goPage('retreats')">Retreats &amp; Events</a><a href="#" onclick="return goPage('shop')">Shop</a><a href="#" onclick="return goPage('blog')">Blog</a><a href="#" onclick="return goPage('about')">About</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="opacity:.55;letter-spacing:.08em;text-transform:uppercase;font-size:11px;margin-bottom:4px;">Connect</div>
+          <div style="display:flex;gap:14px;align-items:center;">
+            <a href="#" aria-label="Instagram" style="color:var(--bg);opacity:.8;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor" stroke="none"/></svg></a>
+            <a href="#" aria-label="YouTube" style="color:var(--bg);opacity:.8;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.3" y="5.5" width="19.4" height="13" rx="4"/><path d="M10.4 9.1v5.8l5.2-2.9z" fill="currentColor" stroke="none"/></svg></a>
+            <a href="#" aria-label="Facebook" style="color:var(--bg);opacity:.8;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.3"/><path d="M14 8.6h-1.4c-.85 0-1.4.55-1.4 1.5v2h2.8l-.35 2.4h-2.45V21"/></svg></a>
+          </div>
+          <a href="mailto:[ADD EMAIL]" style="font-size:12.5px;">[ Add Email ]</a>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.15);font-size:12px;opacity:.55;display:flex;gap:20px;flex-wrap:wrap;align-items:center;"><span>&copy; 2026 Paty Straffon. All rights reserved.</span><a href="#" onclick="return goPage('privacy')" style="opacity:1;">Privacy Policy</a></div>
+  </footer>
+</div>
+</section>
+
+<section id="page-post-cortisol-sleep" class="page" data-page="post-cortisol-sleep" style="display:none;">
+<div style="max-width:1440px;margin:0 auto;background:var(--bg);">
+<div style="max-width:720px;margin:0 auto;padding:80px 56px 40px;">
+    <a href="#" onclick="return goPage('blog')" style="font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;">&larr; Back to Blog</a>
+    <div class="tag" style="margin-top:24px;">Recovery</div>
+    <h1 style="font-size:38px;margin-top:12px;color:var(--ink);">The Cortisol&ndash;Sleep Connection, Explained</h1>
+    <p style="font-size:13px;color:var(--ink-soft);margin-top:12px;">By Paty Straffon</p>
+    <div class="ph" style="height:320px;margin-top:28px;">[ ARTICLE IMAGE ]</div>
+
+    <div class="legal" style="margin-top:36px;font-size:15.5px;color:var(--ink-soft);">
+      <p>Cortisol gets blamed for a lot in midlife health conversations, not all of it accurate. But its relationship with sleep is one of the clearest and most important to understand, because a disrupted cortisol rhythm and disrupted sleep tend to reinforce each other in a loop that's hard to break without addressing both.</p>
+
+      <h2>Cortisol is supposed to have a rhythm</h2>
+      <p>In a healthy pattern, cortisol peaks shortly after waking &mdash; giving you the alertness to get up and start the day &mdash; and gradually declines through the day, reaching its lowest point around bedtime so melatonin and other sleep-promoting processes can take over. Chronic stress, poor sleep, and the hormonal shifts of perimenopause can all flatten or invert that curve, leaving cortisol elevated in the evening precisely when it should be dropping.</p>
+
+      <h2>Why that shows up as 3am wake-ups</h2>
+      <p>Elevated evening cortisol makes it harder to fall asleep and, for many women, causes a distinct pattern: falling asleep reasonably well but waking abruptly in the early hours, wired and unable to drift back off. That's not a coincidence &mdash; it's often a cortisol spike happening at a time it shouldn't, sometimes triggered by a dip in blood sugar overnight.</p>
+
+      <h2>Breaking the loop</h2>
+      <p>You can't will your cortisol curve back into shape, but you can influence the inputs that shape it:</p>
+      <ul>
+        <li><strong>Morning light and movement</strong> help reinforce the sharp morning cortisol peak your body needs, which makes the evening decline more likely to follow.</li>
+        <li><strong>Protecting an evening wind-down</strong> &mdash; dim lights, less screen time, a consistent bedtime &mdash; signals to your nervous system that it's safe to lower cortisol.</li>
+        <li><strong>A steady blood sugar going into bedtime,</strong> through protein and strategic carbs at dinner, reduces the odds of a middle-of-the-night glucose dip triggering a stress-hormone response.</li>
+        <li><strong>Recognizing that intense, poorly recovered training can itself raise cortisol</strong> &mdash; which is why Fueling &amp; Recovery is treated as its own lever, not an afterthought to Exercise.</li>
+      </ul>
+
+      <p>None of this is about eliminating stress or cortisol &mdash; you need both to function. It's about restoring the rhythm, so cortisol is high when it should be and low when it should be, and sleep can do the repair work it's meant to do.</p>
+    </div>
+
+    <div style="margin-top:48px;padding:28px;border-radius:14px;background:var(--bg-alt);display:flex;flex-direction:column;gap:12px;">
+      <h3 style="font-size:19px;color:var(--ink);">Struggling with 3am wake-ups?</h3>
+      <p style="font-size:14px;color:var(--ink-soft);">The M Program addresses sleep, stress, and recovery together &mdash; because in midlife, they're rarely separate problems.</p>
+      <div class="btn btn-primary" style="align-self:flex-start;cursor:pointer;" onclick="goPage('mprogram')">Learn About The M Program</div>
+    </div>
+  </div>
+
+  <footer>
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;">
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div class="logo" style="color:var(--bg);">Paty Straffon</div>
+        <p style="font-size:13px;opacity:.7;max-width:280px;">Certified Menopause Coach &amp; IIN Integrative Nutrition Health Coach.</p>
+      </div>
+      <div style="display:flex;gap:64px;font-size:13px;">
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="opacity:.55;letter-spacing:.08em;text-transform:uppercase;font-size:11px;margin-bottom:4px;">Explore</div>
+          <a href="#" onclick="return goPage('mprogram')">The M Program</a><a href="#" onclick="return goPage('thrive')">Thrive</a><a href="#" onclick="return goPage('retreats')">Retreats &amp; Events</a><a href="#" onclick="return goPage('shop')">Shop</a><a href="#" onclick="return goPage('blog')">Blog</a><a href="#" onclick="return goPage('about')">About</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="opacity:.55;letter-spacing:.08em;text-transform:uppercase;font-size:11px;margin-bottom:4px;">Connect</div>
+          <div style="display:flex;gap:14px;align-items:center;">
+            <a href="#" aria-label="Instagram" style="color:var(--bg);opacity:.8;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor" stroke="none"/></svg></a>
+            <a href="#" aria-label="YouTube" style="color:var(--bg);opacity:.8;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.3" y="5.5" width="19.4" height="13" rx="4"/><path d="M10.4 9.1v5.8l5.2-2.9z" fill="currentColor" stroke="none"/></svg></a>
+            <a href="#" aria-label="Facebook" style="color:var(--bg);opacity:.8;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.3"/><path d="M14 8.6h-1.4c-.85 0-1.4.55-1.4 1.5v2h2.8l-.35 2.4h-2.45V21"/></svg></a>
+          </div>
+          <a href="mailto:[ADD EMAIL]" style="font-size:12.5px;">[ Add Email ]</a>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.15);font-size:12px;opacity:.55;display:flex;gap:20px;flex-wrap:wrap;align-items:center;"><span>&copy; 2026 Paty Straffon. All rights reserved.</span><a href="#" onclick="return goPage('privacy')" style="opacity:1;">Privacy Policy</a></div>
+  </footer>
+</div>
+</section>
+
+<section id="page-post-consistency" class="page" data-page="post-consistency" style="display:none;">
+<div style="max-width:1440px;margin:0 auto;background:var(--bg);">
+<div style="max-width:720px;margin:0 auto;padding:80px 56px 40px;">
+    <a href="#" onclick="return goPage('blog')" style="font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;">&larr; Back to Blog</a>
+    <div class="tag" style="margin-top:24px;">Mindset</div>
+    <h1 style="font-size:38px;margin-top:12px;color:var(--ink);">Consistency Over Perfection</h1>
+    <p style="font-size:13px;color:var(--ink-soft);margin-top:12px;">By Paty Straffon</p>
+    <div class="ph" style="height:320px;margin-top:28px;">[ ARTICLE IMAGE ]</div>
+
+    <div class="legal" style="margin-top:36px;font-size:15.5px;color:var(--ink-soft);">
+      <p>Every woman who joins The M Program has, at some point, done an "all-or-nothing" health plan &mdash; the kind where one missed workout or one indulgent dinner feels like the whole week is ruined, so you stop trying until the next Monday. Consistency over perfection is the coaching philosophy that replaces that cycle, and it's not just a nice phrase &mdash; it's a specific approach to how change actually happens.</p>
+
+      <h2>Why the all-or-nothing model fails in midlife</h2>
+      <p>Perimenopause and menopause bring real variability &mdash; sleep that's good one week and terrible the next, energy that fluctuates with hormones you don't fully control, symptoms that show up without warning. A plan that only "works" when everything goes perfectly is a plan that's designed to fail during exactly the weeks you need it most.</p>
+
+      <h2>What consistency actually looks like</h2>
+      <p>It's not lowering the bar &mdash; it's changing what you're measuring. Instead of asking "did I do this perfectly," the question becomes "did I show up in some form, most days." That might mean:</p>
+      <ul>
+        <li>A 20-minute session instead of the full 45 minutes, rather than skipping the day entirely</li>
+        <li>Hitting your protein target even on a day when the rest of your eating wasn't ideal</li>
+        <li>Going to bed 30 minutes earlier on a hard week, even if your full sleep protocol slips</li>
+      </ul>
+      <p>Each of these keeps the habit alive. A skipped session breaks momentum; a shortened one doesn't.</p>
+
+      <h2>It's identity-based, not rule-based</h2>
+      <p>The deeper shift is from following a set of rules to becoming someone who trains, who prioritizes protein, who protects her sleep &mdash; because that identity carries you through the weeks a rulebook can't. Rules break when circumstances change. An identity adapts. That's the coaching approach behind every part of The M Program: building the version of you that keeps going, not a checklist you eventually abandon.</p>
+
+      <p>If you've fallen off a plan before, it likely wasn't a discipline problem &mdash; it was a design problem. A framework built for real, inconsistent life is one you can actually sustain.</p>
+    </div>
+
+    <div style="margin-top:48px;padding:28px;border-radius:14px;background:var(--bg-alt);display:flex;flex-direction:column;gap:12px;">
+      <h3 style="font-size:19px;color:var(--ink);">Ready for a framework that flexes with real life?</h3>
+      <p style="font-size:14px;color:var(--ink-soft);">The M Program is built on consistency over perfection &mdash; coaching that adapts to your week, not the other way around.</p>
+      <div class="btn btn-primary" style="align-self:flex-start;cursor:pointer;" onclick="goPage('mprogram')">Learn About The M Program</div>
+    </div>
+  </div>
+
+  <footer>
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;">
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div class="logo" style="color:var(--bg);">Paty Straffon</div>
+        <p style="font-size:13px;opacity:.7;max-width:280px;">Certified Menopause Coach &amp; IIN Integrative Nutrition Health Coach.</p>
+      </div>
+      <div style="display:flex;gap:64px;font-size:13px;">
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="opacity:.55;letter-spacing:.08em;text-transform:uppercase;font-size:11px;margin-bottom:4px;">Explore</div>
+          <a href="#" onclick="return goPage('mprogram')">The M Program</a><a href="#" onclick="return goPage('thrive')">Thrive</a><a href="#" onclick="return goPage('retreats')">Retreats &amp; Events</a><a href="#" onclick="return goPage('shop')">Shop</a><a href="#" onclick="return goPage('blog')">Blog</a><a href="#" onclick="return goPage('about')">About</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="opacity:.55;letter-spacing:.08em;text-transform:uppercase;font-size:11px;margin-bottom:4px;">Connect</div>
+          <div style="display:flex;gap:14px;align-items:center;">
+            <a href="#" aria-label="Instagram" style="color:var(--bg);opacity:.8;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor" stroke="none"/></svg></a>
+            <a href="#" aria-label="YouTube" style="color:var(--bg);opacity:.8;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.3" y="5.5" width="19.4" height="13" rx="4"/><path d="M10.4 9.1v5.8l5.2-2.9z" fill="currentColor" stroke="none"/></svg></a>
+            <a href="#" aria-label="Facebook" style="color:var(--bg);opacity:.8;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.3"/><path d="M14 8.6h-1.4c-.85 0-1.4.55-1.4 1.5v2h2.8l-.35 2.4h-2.45V21"/></svg></a>
+          </div>
+          <a href="mailto:[ADD EMAIL]" style="font-size:12.5px;">[ Add Email ]</a>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.15);font-size:12px;opacity:.55;display:flex;gap:20px;flex-wrap:wrap;align-items:center;"><span>&copy; 2026 Paty Straffon. All rights reserved.</span><a href="#" onclick="return goPage('privacy')" style="opacity:1;">Privacy Policy</a></div>
+  </footer>
+</div>
+</section>
+
+<section id="page-post-strategic-carbs" class="page" data-page="post-strategic-carbs" style="display:none;">
+<div style="max-width:1440px;margin:0 auto;background:var(--bg);">
+<div style="max-width:720px;margin:0 auto;padding:80px 56px 40px;">
+    <a href="#" onclick="return goPage('blog')" style="font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;">&larr; Back to Blog</a>
+    <div class="tag" style="margin-top:24px;">Nutrition</div>
+    <h1 style="font-size:38px;margin-top:12px;color:var(--ink);">Strategic Carbs: Fueling Without Fear</h1>
+    <p style="font-size:13px;color:var(--ink-soft);margin-top:12px;">By Paty Straffon</p>
+    <div class="ph" style="height:320px;margin-top:28px;">[ ARTICLE IMAGE ]</div>
+
+    <div class="legal" style="margin-top:36px;font-size:15.5px;color:var(--ink-soft);">
+      <p>Carbohydrates get an outsized share of the blame in midlife nutrition conversations, often leading women to cut them further than they should &mdash; right at the point when their bodies need them most for training, hormone support, and sleep. Strategic Carbs, the third of The 5 Levers, is about fueling deliberately, not fueling less.</p>
+
+      <h2>Why cutting carbs too hard backfires now</h2>
+      <p>Carbohydrates support thyroid function, help regulate cortisol, and directly fuel the higher-intensity strength training that protects muscle and bone through midlife. Chronically low carbohydrate intake, especially alongside training and stress, can push cortisol higher and make sleep and energy worse, not better &mdash; the opposite of what most women are trying to achieve when they cut carbs.</p>
+
+      <h2>What "strategic" means in practice</h2>
+      <p>It's not about eating more carbs across the board &mdash; it's about placing them where they do the most good:</p>
+      <ul>
+        <li><strong>Around training,</strong> when your muscles are primed to use that glucose for fuel and recovery rather than storing it</li>
+        <li><strong>Paired with protein and fiber,</strong> to slow the blood sugar response and avoid the energy crash that follows a carb-only snack</li>
+        <li><strong>Favoring whole, minimally processed sources</strong> &mdash; oats, fruit, potatoes, legumes, whole grains &mdash; that bring fiber and micronutrients along with the energy</li>
+        <li><strong>Adjusted to your day,</strong> with more on higher-activity or higher-stress days and less on rest days &mdash; not a fixed number applied blindly every day</li>
+      </ul>
+
+      <h2>Letting go of the fear</h2>
+      <p>For a lot of women, the hardest part isn't logistical, it's psychological &mdash; years of diet culture have made carbohydrates feel like something to earn or apologize for. Reframing them as fuel for the strength training and hormone support your body needs right now is often the bigger shift than any specific meal plan.</p>
+
+      <p>Strategic Carbs works because it doesn't ask you to fear an entire food group &mdash; it asks you to place your energy where your body will actually use it well.</p>
+    </div>
+
+    <div style="margin-top:48px;padding:28px;border-radius:14px;background:var(--bg-alt);display:flex;flex-direction:column;gap:12px;">
+      <h3 style="font-size:19px;color:var(--ink);">Want a fueling strategy that supports your training, not fights it?</h3>
+      <p style="font-size:14px;color:var(--ink-soft);">The M Program builds carb and protein strategy around your actual training schedule, not a one-size-fits-all macro split.</p>
+      <div class="btn btn-primary" style="align-self:flex-start;cursor:pointer;" onclick="goPage('mprogram')">Learn About The M Program</div>
+    </div>
+  </div>
+
+  <footer>
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;">
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div class="logo" style="color:var(--bg);">Paty Straffon</div>
+        <p style="font-size:13px;opacity:.7;max-width:280px;">Certified Menopause Coach &amp; IIN Integrative Nutrition Health Coach.</p>
+      </div>
+      <div style="display:flex;gap:64px;font-size:13px;">
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="opacity:.55;letter-spacing:.08em;text-transform:uppercase;font-size:11px;margin-bottom:4px;">Explore</div>
+          <a href="#" onclick="return goPage('mprogram')">The M Program</a><a href="#" onclick="return goPage('thrive')">Thrive</a><a href="#" onclick="return goPage('retreats')">Retreats &amp; Events</a><a href="#" onclick="return goPage('shop')">Shop</a><a href="#" onclick="return goPage('blog')">Blog</a><a href="#" onclick="return goPage('about')">About</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="opacity:.55;letter-spacing:.08em;text-transform:uppercase;font-size:11px;margin-bottom:4px;">Connect</div>
+          <div style="display:flex;gap:14px;align-items:center;">
+            <a href="#" aria-label="Instagram" style="color:var(--bg);opacity:.8;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor" stroke="none"/></svg></a>
+            <a href="#" aria-label="YouTube" style="color:var(--bg);opacity:.8;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.3" y="5.5" width="19.4" height="13" rx="4"/><path d="M10.4 9.1v5.8l5.2-2.9z" fill="currentColor" stroke="none"/></svg></a>
+            <a href="#" aria-label="Facebook" style="color:var(--bg);opacity:.8;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.3"/><path d="M14 8.6h-1.4c-.85 0-1.4.55-1.4 1.5v2h2.8l-.35 2.4h-2.45V21"/></svg></a>
+          </div>
+          <a href="mailto:[ADD EMAIL]" style="font-size:12.5px;">[ Add Email ]</a>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.15);font-size:12px;opacity:.55;display:flex;gap:20px;flex-wrap:wrap;align-items:center;"><span>&copy; 2026 Paty Straffon. All rights reserved.</span><a href="#" onclick="return goPage('privacy')" style="opacity:1;">Privacy Policy</a></div>
+  </footer>
+</div>
+</section>
+
+<section id="page-post-bone-density" class="page" data-page="post-bone-density" style="display:none;">
+<div style="max-width:1440px;margin:0 auto;background:var(--bg);">
+<div style="max-width:720px;margin:0 auto;padding:80px 56px 40px;">
+    <a href="#" onclick="return goPage('blog')" style="font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;">&larr; Back to Blog</a>
+    <div class="tag" style="margin-top:24px;">Movement</div>
+    <h1 style="font-size:38px;margin-top:12px;color:var(--ink);">What Bone Density Loss Actually Looks Like</h1>
+    <p style="font-size:13px;color:var(--ink-soft);margin-top:12px;">By Paty Straffon</p>
+    <div class="ph" style="height:320px;margin-top:28px;">[ ARTICLE IMAGE ]</div>
+
+    <div class="legal" style="margin-top:36px;font-size:15.5px;color:var(--ink-soft);">
+      <p>Bone density loss is one of the quietest health changes in midlife &mdash; there's no pain, no obvious symptom, until a fracture reveals how much has already changed. Understanding what's actually happening, and how early it starts, is why bone health is built into every phase of The M Program rather than addressed only after a diagnosis.</p>
+
+      <h2>The timeline is earlier than most women expect</h2>
+      <p>Bone loss accelerates sharply in the years immediately around menopause, with some women losing up to 20% of bone density in the five to seven years following their final period, as declining estrogen removes a key protective effect on bone remodeling. This isn't a postmenopausal problem to think about later &mdash; the steepest drop happens during and just after the transition itself, which makes perimenopause the highest-leverage time to act.</p>
+
+      <h2>Why it goes unnoticed until it doesn't</h2>
+      <p>Bone remodels constantly throughout life, breaking down and rebuilding in a normal cycle. When breakdown starts outpacing rebuilding, density declines gradually and invisibly &mdash; there's no ache, no warning sign, unless you're being screened with a bone density scan (DEXA). The first noticeable sign for many women is a fracture from a fall that wouldn't have broken anything a decade earlier, at which point significant density has often already been lost.</p>
+
+      <h2>What actually protects bone</h2>
+      <p>Bone responds to mechanical stress &mdash; specifically, load and impact that's greater than what it's used to. That means:</p>
+      <ul>
+        <li><strong>Progressive resistance training,</strong> particularly for the hips and spine, the two most common fracture sites</li>
+        <li><strong>Some impact,</strong> where appropriate &mdash; jumping, stair climbing, or other higher-impact movement, layered in progressively and safely</li>
+        <li><strong>Adequate protein and calcium,</strong> which supply the raw materials for the bone-building side of the remodeling cycle</li>
+        <li><strong>Managing the cortisol&ndash;sleep relationship,</strong> since chronically elevated cortisol interferes with bone formation</li>
+      </ul>
+
+      <p>None of this needs to be complicated or intimidating to be effective &mdash; it needs to be consistent, and it needs to start now rather than after a diagnosis. That's the entire premise behind building The M Program around bone health from week one.</p>
+    </div>
+
+    <div style="margin-top:48px;padding:28px;border-radius:14px;background:var(--bg-alt);display:flex;flex-direction:column;gap:12px;">
+      <h3 style="font-size:19px;color:var(--ink);">Curious what a bone-health-focused program actually includes?</h3>
+      <p style="font-size:14px;color:var(--ink-soft);">The M Program builds progressive strength and impact training around fracture risk and bone density from day one.</p>
+      <div class="btn btn-primary" style="align-self:flex-start;cursor:pointer;" onclick="goPage('mprogram')">Learn About The M Program</div>
+    </div>
+  </div>
+
+  <footer>
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;">
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div class="logo" style="color:var(--bg);">Paty Straffon</div>
+        <p style="font-size:13px;opacity:.7;max-width:280px;">Certified Menopause Coach &amp; IIN Integrative Nutrition Health Coach.</p>
+      </div>
+      <div style="display:flex;gap:64px;font-size:13px;">
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="opacity:.55;letter-spacing:.08em;text-transform:uppercase;font-size:11px;margin-bottom:4px;">Explore</div>
+          <a href="#" onclick="return goPage('mprogram')">The M Program</a><a href="#" onclick="return goPage('thrive')">Thrive</a><a href="#" onclick="return goPage('retreats')">Retreats &amp; Events</a><a href="#" onclick="return goPage('shop')">Shop</a><a href="#" onclick="return goPage('blog')">Blog</a><a href="#" onclick="return goPage('about')">About</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="opacity:.55;letter-spacing:.08em;text-transform:uppercase;font-size:11px;margin-bottom:4px;">Connect</div>
+          <div style="display:flex;gap:14px;align-items:center;">
+            <a href="#" aria-label="Instagram" style="color:var(--bg);opacity:.8;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor" stroke="none"/></svg></a>
+            <a href="#" aria-label="YouTube" style="color:var(--bg);opacity:.8;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.3" y="5.5" width="19.4" height="13" rx="4"/><path d="M10.4 9.1v5.8l5.2-2.9z" fill="currentColor" stroke="none"/></svg></a>
+            <a href="#" aria-label="Facebook" style="color:var(--bg);opacity:.8;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.3"/><path d="M14 8.6h-1.4c-.85 0-1.4.55-1.4 1.5v2h2.8l-.35 2.4h-2.45V21"/></svg></a>
+          </div>
+          <a href="mailto:[ADD EMAIL]" style="font-size:12.5px;">[ Add Email ]</a>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.15);font-size:12px;opacity:.55;display:flex;gap:20px;flex-wrap:wrap;align-items:center;"><span>&copy; 2026 Paty Straffon. All rights reserved.</span><a href="#" onclick="return goPage('privacy')" style="opacity:1;">Privacy Policy</a></div>
+  </footer>
 </div>
 </section>
 <section id="page-about" class="page" data-page="about" style="display:none;">
@@ -1169,7 +1614,7 @@ a, .eyebrow, .tag { color: var(--accent-text); }
 </div>
 
 <script>
-var PAGE_META = {"home": {"title": "Paty Straffon — Menopause Coaching & Mindful Movement", "description": "Certified Menopause Coach and IIN Integrative Nutrition Health Coach. Mindset, Metabolism and Movement to thrive through menopause and beyond."}, "mprogram": {"title": "The M Program — Paty Straffon", "description": "An 8-week coaching program built on The 5 Levers: Sleep, Protein, Strategic Carbs, Exercise, and Fueling & Recovery. Private cohort opens September 21, 2026."}, "thrive": {"title": "Thrive — Mindful Strength Class | Paty Straffon", "description": "A mindful strength class every Thursday at 9:30am, Ritual Urban Retreat, Vancouver."}, "retreats": {"title": "Retreats & Events — Paty Straffon", "description": "In-person retreats and events to reset, connect, and go deeper — a few times a year."}, "shop": {"title": "Shop — Equipment & Supplements | Paty Straffon", "description": "Shop the equipment and supplements built into The M Program, from resistance bands to essential supplements for midlife health."}, "blog": {"title": "Blog — Notes on the 5 Levers | Paty Straffon", "description": "Science-informed notes on sleep, nutrition, movement, mindset, and recovery for women in perimenopause and beyond."}, "about": {"title": "About Paty Straffon — Certified Menopause Coach", "description": "Meet Paty Straffon, Certified Menopause Coach and IIN Integrative Nutrition Health Coach."}, "privacy": {"title": "Privacy Policy — Paty Straffon", "description": "Privacy policy for Paty Straffon's coaching services and website."}};
+var PAGE_META = {"home": {"title": "Paty Straffon — Menopause Coaching & Mindful Movement", "description": "Certified Menopause Coach and IIN Integrative Nutrition Health Coach. Mindset, Metabolism and Movement to thrive through menopause and beyond."}, "mprogram": {"title": "The M Program — Paty Straffon", "description": "An 8-week coaching program built on The 5 Levers: Sleep, Protein, Strategic Carbs, Exercise, and Fueling & Recovery. Private cohort opens September 21, 2026."}, "thrive": {"title": "Thrive — Mindful Strength Class | Paty Straffon", "description": "A mindful strength class every Thursday at 9:30am, Ritual Urban Retreat, Vancouver."}, "retreats": {"title": "Retreats & Events — Paty Straffon", "description": "In-person retreats and events to reset, connect, and go deeper — a few times a year."}, "shop": {"title": "Shop — Equipment & Supplements | Paty Straffon", "description": "Shop the equipment and supplements built into The M Program, from resistance bands to essential supplements for midlife health."}, "blog": {"title": "Blog — Notes on the 5 Levers | Paty Straffon", "description": "Science-informed notes on sleep, nutrition, movement, mindset, and recovery for women in perimenopause and beyond."}, "about": {"title": "About Paty Straffon — Certified Menopause Coach", "description": "Meet Paty Straffon, Certified Menopause Coach and IIN Integrative Nutrition Health Coach."}, "privacy": {"title": "Privacy Policy — Paty Straffon", "description": "Privacy policy for Paty Straffon's coaching services and website."}, "post-circadian-rhythm": {"title": "Rebuilding Your Circadian Rhythm After 40 — Paty Straffon", "description": "Why sleep changes in perimenopause, and the circadian-rhythm habits that actually help you fall asleep and stay asleep."}, "post-protein-timing": {"title": "Why Protein Timing Matters More Now — Paty Straffon", "description": "How anabolic resistance changes your protein needs in midlife, and how to spread protein across the day for muscle and metabolism."}, "post-strength-training-40s": {"title": "Why Your 40s Are the Best Time to Start Strength Training — Paty Straffon", "description": "Why strength training is one of the highest-leverage things you can do for bone density, muscle, and metabolism starting in your 40s."}, "post-cortisol-sleep": {"title": "The Cortisol–Sleep Connection, Explained — Paty Straffon", "description": "How a disrupted cortisol rhythm drives 3am wake-ups, and the daily habits that help restore it."}, "post-consistency": {"title": "Consistency Over Perfection — Paty Straffon", "description": "Why an identity-based, consistency-first approach works better through perimenopause than an all-or-nothing plan."}, "post-strategic-carbs": {"title": "Strategic Carbs: Fueling Without Fear — Paty Straffon", "description": "Why cutting carbs too hard backfires in midlife, and how to place carbohydrates strategically around training and stress."}, "post-bone-density": {"title": "What Bone Density Loss Actually Looks Like — Paty Straffon", "description": "How early bone loss actually starts around menopause, why it goes unnoticed, and what actually protects bone density."}};
 var PAGE_SCHEMA = {"thrive": {"@context": "https://schema.org", "@type": "ExerciseGym", "name": "Thrive with Paty Straffon", "description": "A mindful strength class every Thursday at 9:30am.", "address": {"@type": "PostalAddress", "streetAddress": "[ADD STREET ADDRESS]", "addressLocality": "Vancouver", "addressRegion": "BC", "addressCountry": "CA"}, "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": "Thursday", "opens": "09:30"}]}, "mprogram": {"@context": "https://schema.org", "@type": "Course", "name": "The M Program", "description": "An 8-week menopause coaching program built on The 5 Levers: Sleep, Protein, Strategic Carbs, Exercise, and Fueling & Recovery.", "provider": {"@type": "Person", "name": "Paty Straffon"}}};
 
 function toggleMenu() {
@@ -1214,7 +1659,14 @@ function goPage(id) {
     'shop': 'shop',
     'blog': 'blog',
     'about': 'about',
-    'privacy': 'privacy'
+    'privacy': 'privacy',
+    'blog/rebuilding-your-circadian-rhythm-after-40': 'post-circadian-rhythm',
+    'blog/why-protein-timing-matters-more-now': 'post-protein-timing',
+    'blog/why-your-40s-are-the-best-time-to-start-strength-training': 'post-strength-training-40s',
+    'blog/the-cortisol-sleep-connection-explained': 'post-cortisol-sleep',
+    'blog/consistency-over-perfection': 'post-consistency',
+    'blog/strategic-carbs-fueling-without-fear': 'post-strategic-carbs',
+    'blog/what-bone-density-loss-actually-looks-like': 'post-bone-density'
   };
   var page = routes[slug];
   if (page && page !== 'home') {
