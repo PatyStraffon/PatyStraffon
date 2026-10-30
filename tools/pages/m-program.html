@@ -106,7 +106,7 @@ nav: m-program
           <li>Workouts, recipes and check-ins in the app</li>
           <li>A small, supportive group</li>
         </ul>
-        <a class="btn btn-bronze" href="#">Join The M Program</a>
+        <a class="btn btn-bronze" href="#waitlist">Join the waitlist</a>
         <p style="font-size:.95rem">Full refund up to 7 days before your group starts. After that, you can move once to the next group.</p>
       </div>
       <div class="price">
@@ -118,7 +118,7 @@ nav: m-program
           <li>New sessions to keep progressing</li>
           <li>Monthly group check-ins</li>
         </ul>
-        <a class="btn btn-line" href="#">Learn more</a>
+        <a class="btn btn-line" href="#waitlist">Join the waitlist</a>
       </div>
     </div>
   </div>
@@ -136,11 +136,17 @@ nav: m-program
   </div>
 </section>
 
-<section class="cta">
+<section class="cta" id="waitlist">
   <div class="wrap">
-    <span class="label">Your strongest chapter starts here</span>
-    <h2>Ready when <em class="b">you are</em></h2>
-    <p>Join the next group, or start with the free 5 Levers mini course.</p>
-    <div class="ctas"><a class="btn btn-bronze" href="#join">Join The M Program</a><a class="btn btn-line" href="/#guide">Get the free guide</a></div>
+    <span class="label">Opening soon</span>
+    <h2>Join the <em class="b">waitlist</em></h2>
+    <p>The next group of The M Program opens soon. Join the list to hear first and save your spot.</p>
+    <form name="m-program-waitlist" method="POST" data-netlify="true" netlify-honeypot="company" data-ok="mok" novalidate style="width:min(100%,520px)">
+      <input type="hidden" name="form-name" value="m-program-waitlist"><p hidden><label>Company <input name="company"></label></p>
+      <label for="moke" class="label" style="position:absolute;left:-9999px">Email</label>
+      <input id="moke" name="email" type="email" placeholder="Your email" required autocomplete="email">
+      <button class="btn btn-bronze" type="submit">Join the waitlist</button>
+    </form>
+    <p class="ok" id="mok" hidden>Thank you, you're on the list. You'll hear first when doors open.</p>
   </div>
 </section>

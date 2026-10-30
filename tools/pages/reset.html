@@ -10,7 +10,7 @@ nav: programs
       <h1>The 21-Day <em class="b">Reset</em></h1>
       <p class="lede">A gentle three-week start to strength, protein and better sleep. For women starting fresh, coming back after time away, or ready to turn random workouts into real structure.</p>
       <div class="facts"><span>3 weeks</span><span>25 to 35 minutes a day</span><span>Start any day</span></div>
-      <div class="ctas"><a class="btn btn-bronze" href="#">Start the Reset</a><a class="btn btn-line" href="#guarantee">Our guarantee</a></div>
+      <div class="ctas"><a class="btn btn-bronze" href="#waitlist">Join the waitlist</a><a class="btn btn-line" href="#guarantee">Our guarantee</a></div>
     </div>
     <img src="/images/reset-smoothie.jpg" alt="A strawberry smoothie in a glass jar beside a plate of fresh strawberries">
   </div>
@@ -80,11 +80,17 @@ nav: programs
   </div>
 </section>
 
-<section class="cta">
+<section class="cta" id="waitlist">
   <div class="wrap">
-    <span class="label">21 days · in the app</span>
+    <span class="label">21 days · opening soon</span>
     <h2>Start your <em class="b">Reset</em></h2>
-    <p>Three gentle weeks to feel stronger, sleep better and know what to eat.</p>
-    <div class="ctas"><a class="btn btn-bronze" href="#">Start the Reset</a></div>
+    <p>Three gentle weeks to feel stronger, sleep better and know what to eat. Join the list to hear first when it opens.</p>
+    <form name="reset-waitlist" method="POST" data-netlify="true" netlify-honeypot="company" data-ok="rsok" novalidate style="width:min(100%,520px)">
+      <input type="hidden" name="form-name" value="reset-waitlist"><p hidden><label>Company <input name="company"></label></p>
+      <label for="rsoke" class="label" style="position:absolute;left:-9999px">Email</label>
+      <input id="rsoke" name="email" type="email" placeholder="Your email" required autocomplete="email">
+      <button class="btn btn-bronze" type="submit">Join the waitlist</button>
+    </form>
+    <p class="ok" id="rsok" hidden>Thank you, you're on the list. You'll hear first when doors open.</p>
   </div>
 </section>
