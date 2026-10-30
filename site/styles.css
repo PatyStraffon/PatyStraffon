@@ -4,7 +4,8 @@
   --onyx:#222222; --bronze:#8F6540; --bronze-deep:#7A5434; --taupe:#9E8368;
   --ivory:#F1E8DE; --porcelain:#FAF6F1; --stone:#E3D8CB; --smoke:#6E625A; --mist:#D9CFC4;
   --mauve-deep:#87605B; --blush:#F4E1DA;
-  --display:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
+  --display:"Lora",Georgia,"Times New Roman",serif;
+  --logo:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
   --body:"Jost","Futura","Avenir Next","Helvetica Neue",Arial,sans-serif;
   --label:"Montserrat","Avenir Next","Helvetica Neue",Arial,sans-serif;
   --gut:max(16px,env(safe-area-inset-left,0px));
@@ -13,7 +14,7 @@
 *{box-sizing:border-box}
 body{background:var(--porcelain);color:var(--onyx);font-family:var(--body);font-weight:300;font-size:18px;line-height:1.7;margin:0}
 img{display:block;max-width:100%}
-h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.12;text-wrap:balance;margin:0}
+h1,h2,h3{font-family:var(--display);font-weight:500;line-height:1.12;text-wrap:balance;margin:0}
 h2{font-size:clamp(2rem,4.4vw,3rem)}
 h3{font-size:1.45rem}
 p{margin:0;max-width:60ch}
@@ -41,7 +42,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .nav ul a:hover{color:var(--bronze)}
 .nav .btn{padding:12px 20px}
 .wordmark{display:grid;justify-items:center;gap:5px;text-decoration:none;color:var(--onyx);line-height:1}
-.wm-name{font-family:var(--display);font-weight:400;font-size:1.45rem;letter-spacing:.06em;text-transform:uppercase}
+.wm-name{font-family:var(--logo);font-weight:400;font-size:1.45rem;letter-spacing:.06em;text-transform:uppercase}
 .wm-sub{font-family:var(--label);font-weight:500;font-size:.62rem;letter-spacing:.62em;margin-right:-.62em;text-transform:uppercase;color:var(--bronze-deep)}
 .burger{display:none;width:44px;height:44px;padding:12px 10px;background:none;border:0;cursor:pointer;flex-direction:column;justify-content:space-between}
 .burger span{display:block;height:1px;background:var(--onyx)}
@@ -87,7 +88,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .mhead .l img{height:22px;width:auto}
 .pillars{display:grid;grid-template-columns:repeat(5,1fr);gap:28px}
 .pillar{display:grid;gap:12px;padding-top:22px;border-top:1px solid var(--taupe);align-content:start}
-.pillar .n{font-family:var(--display);font-weight:400;color:var(--bronze);font-size:1.35rem;letter-spacing:.12em;line-height:1}
+.pillar .n{font-family:var(--display);font-weight:500;color:var(--bronze);font-size:1.35rem;letter-spacing:.12em;line-height:1}
 .pillar p{font-size:1rem;font-weight:400;color:#4A413B}
 .mfoot{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(32px,6vw,90px);margin-top:64px;align-items:center}
 .mfoot img{width:100%;aspect-ratio:3/2;object-fit:cover}
@@ -197,7 +198,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .picks{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .pick{display:grid;gap:10px;align-content:start;padding:24px 20px;background:var(--porcelain);text-decoration:none;color:inherit;transition:background .3s}
 .pick:hover{background:#fff}
-.pick h4{margin:0;font-family:var(--display);font-weight:400;font-size:1.3rem;line-height:1.2}
+.pick h4{margin:0;font-family:var(--display);font-weight:500;font-size:1.3rem;line-height:1.2}
 .disc{margin-top:20px;font-size:.9rem;color:var(--smoke)}
 @media (max-width:900px){.books{grid-template-columns:1fr}.book{grid-template-columns:minmax(120px,180px) 1fr;align-items:center}.picks{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:480px){.book{grid-template-columns:120px 1fr;gap:18px}.c-t{font-size:1.15rem}.b-txt h3{font-size:1.4rem}}
