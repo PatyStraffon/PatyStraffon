@@ -79,7 +79,7 @@ FOOTER = """</main>
       <div><h4>Explore</h4><ul><li><a href="/thrive">THRIVE</a></li><li><a href="/retreats">Retreats</a></li><li><a href="/#journal">Journal</a></li><li><a href="/about">About</a></li></ul></div>
       <div><h4>Connect</h4><ul><li><a href="/#guide">Newsletter</a></li><li><a href="#">Instagram</a></li><li><a href="#">Substack</a></li><li><a href="#">Contact</a></li></ul></div>
     </div>
-    <div class="fine"><span>© 2026 Paty Straffon Wellness</span><span>Privacy · Terms</span></div>
+    <div class="fine"><span>© 2026 Paty Straffon Wellness</span><span><a href="/privacy" style="color:inherit">Privacy</a> · <a href="/terms" style="color:inherit">Terms &amp; refunds</a></span></div>
   </div>
 </footer>
 <script src="/site.js"></script>

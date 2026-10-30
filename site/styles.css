@@ -357,3 +357,9 @@ textarea{font:inherit;font-size:1rem;padding:14px 16px;border:1px solid var(--st
 button.btn{cursor:pointer}
 .page main>section+section{border-top:1px solid var(--stone)}
 .page main>section.dark+section.dark{border-top:0}
+.prose{max-width:780px;margin-left:0;display:grid;gap:16px}
+.prose h2{font-size:clamp(1.6rem,3vw,2rem);margin-top:28px}
+.prose h2:first-child{margin-top:0}
+.prose h3{font-size:1.25rem;margin-top:8px}
+.prose p{font-size:1.06rem;max-width:68ch}
+.prose a,.faq a{color:var(--bronze-deep)}
