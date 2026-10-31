@@ -51,6 +51,7 @@
 <link rel="stylesheet" href="/styles.css">
 </head>
 <body class="page">
+<a class="skip" href="#main">Skip to content</a>
 <header>
   <div class="wrap nav">
     <a class="wordmark" href="/" aria-label="Paty Straffon Wellness, home"><span class="wm-name">Paty Straffon</span><span class="wm-sub">Wellness</span></a>
@@ -64,9 +65,9 @@
       <li><a href="/about">About</a></li>
     </ul>
     <a class="btn btn-bronze" href="/#guide">Free guide</a>
-    <button class="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="mnav"><span class="bars" aria-hidden="true"><span></span><span></span><span></span></span><span class="btxt">Menu</span></button>
   </div>
-  <nav class="mnav" id="mnav" hidden>
+  <nav class="mnav" id="mnav" aria-label="Menu" hidden>
     <a href="/m-program">The M Program</a>
     <a href="/#programs">Programs</a>
     <a href="/thrive">THRIVE</a>
@@ -77,7 +78,7 @@
     <a class="btn btn-bronze" href="/#guide">Free guide</a>
   </nav>
 </header>
-<main>
+<main id="main">
 <section class="shop" id="books">
   <div class="wrap">
     <div class="shead"><span class="label">Shop</span><h1 style="font-size:clamp(2.6rem,5.6vw,4.3rem)">Books &amp; <em class="b">Paty's picks</em></h1><p class="lede" style="font-size:1.2rem">Everything to support the 5 Levers: Paty's books and the same gear and supplements built into The M Program.</p></div>
