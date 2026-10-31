@@ -11,9 +11,10 @@
     f.addEventListener('submit',function(e){
       e.preventDefault();
       if(!f.checkValidity()){f.reportValidity();return}
-      fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(f)).toString()}).catch(function(){});
-      var ok=document.getElementById(f.dataset.ok);if(ok)ok.hidden=false;
-      f.reset();
+      var ok=document.getElementById(f.dataset.ok);
+      fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(f)).toString()})
+        .then(function(r){if(!r.ok)throw r;if(ok){ok.hidden=false;ok.classList.remove('err')}f.reset()})
+        .catch(function(){if(ok){ok.hidden=false;ok.classList.add('err');ok.textContent='Sorry, that didn\'t go through. Please try again, or email paty@patystraffon.com.'}});
     });
   });
 })();
