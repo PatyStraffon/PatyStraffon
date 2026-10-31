@@ -232,11 +232,10 @@
 </head>
 <body>
 
-
-
+<a class="skip" href="#main">Skip to content</a>
 <header>
   <div class="wrap nav">
-    <a class="wordmark" href="#top" aria-label="Paty Straffon Wellness"><span class="wm-name">Paty Straffon</span><span class="wm-sub">Wellness</span></a>
+    <a class="wordmark" href="/" aria-label="Paty Straffon Wellness, home"><span class="wm-name">Paty Straffon</span><span class="wm-sub">Wellness</span></a>
     <ul>
       <li><a href="/m-program">The M Program</a></li>
       <li><a href="#programs">Programs</a></li>
@@ -247,9 +246,9 @@
       <li><a href="/about">About</a></li>
     </ul>
     <a class="btn btn-bronze" href="#guide">Free guide</a>
-    <button class="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="mnav"><span class="bars" aria-hidden="true"><span></span><span></span><span></span></span><span class="btxt">Menu</span></button>
   </div>
-  <nav class="mnav" id="mnav" hidden>
+  <nav class="mnav" id="mnav" aria-label="Menu" hidden>
     <a href="/m-program">The M Program</a>
     <a href="#programs">Programs</a>
     <a href="/thrive">THRIVE</a>
@@ -260,12 +259,7 @@
     <a class="btn btn-bronze" href="#guide">Free guide</a>
   </nav>
 </header>
-<script>
-(function(){var b=document.querySelector('.burger'),m=document.getElementById('mnav');
-function set(o){m.hidden=!o;b.setAttribute('aria-expanded',o)}
-b.addEventListener('click',function(){set(m.hidden)});
-m.addEventListener('click',function(e){if(e.target.closest('a'))set(false)});})();
-</script>
+<main id="main">
 
 <section class="hero" aria-label="Welcome">
   <div class="hero-img" role="img" aria-label="Paty Straffon seated on a linen sofa"></div>
@@ -327,8 +321,8 @@ m.addEventListener('click',function(e){if(e.target.closest('a'))set(false)});})(
     <div class="shead"><span class="label">Programs</span><h2>Start where you are</h2></div>
     <div class="cards">
       <a class="card" href="/reset"><div class="im"><img loading="lazy" decoding="async" src="/images/ball-front.jpg" alt=""></div><span class="k">21 days · in the app</span><h3>The 21-Day Reset</h3><p>A gentle three-week start to strength, protein and better sleep. Backed by a feel-the-difference guarantee.</p><span class="go">Start the Reset</span></a>
-      <a class="card" href="#programs"><div class="im"><img loading="lazy" decoding="async" src="/images/leg-lift-all-fours.jpg" alt=""></div><span class="k">Video program</span><h3>Deep Core &amp; Pelvic Health</h3><p>Rebuild your centre from the inside, at your own pace.</p><span class="go">Learn more</span></a>
-      <a class="card" href="#programs"><div class="im"><img loading="lazy" decoding="async" src="/images/meditation-floor.jpg" alt=""></div><span class="k">Video program</span><h3>Mindfulness for Weight Loss</h3><p>Calm the stress that keeps weight on, one breath at a time.</p><span class="go">Learn more</span></a>
+      <div class="card soon"><div class="im"><img loading="lazy" decoding="async" src="/images/leg-lift-all-fours.jpg" alt=""></div><span class="k">Video program</span><h3>Deep Core &amp; Pelvic Health</h3><p>Rebuild your centre from the inside, at your own pace.</p><span class="go">Coming soon</span></div>
+      <div class="card soon"><div class="im"><img loading="lazy" decoding="async" src="/images/meditation-floor.jpg" alt=""></div><span class="k">Video program</span><h3>Mindfulness for Weight Loss</h3><p>Calm the stress that keeps weight on, one breath at a time.</p><span class="go">Coming soon</span></div>
     </div>
   </div>
 </section>
@@ -386,11 +380,11 @@ m.addEventListener('click',function(e){if(e.target.closest('a'))set(false)});})(
         <img class="cover cover-img" src="/images/protein-beautifully-cover.jpg" alt="Protein, Beautifully ebook cover" loading="lazy">
         <div class="b-txt"><span class="k">Ebook · Available now</span><h3>Protein, Beautifully</h3><p>52 simple, satisfying recipes plus meal plans to help you reach your protein goals in peri and post menopause.</p><span class="go">Buy the ebook</span></div>
       </a>
-      <a class="book" href="#shop">
+      <a class="book" href="/shop#book-waitlist">
         <div class="cover cover-dark"><span class="c-k">Paty Straffon</span><span class="c-t">The M<br><em>Program</em></span><span class="c-s">Mind · Metabolism · Movement</span></div>
         <div class="b-txt"><span class="k">Book · Coming spring 2027</span><h3>The M Program Book</h3><p>The full method behind the program, in one book you can keep coming back to.</p><span class="go">Join the waitlist</span></div>
       </a>
-      <a class="book" href="#shop">
+      <a class="book" href="/shop#book-waitlist">
         <div class="cover cover-blush"><span class="c-k">Paty Straffon</span><span class="c-t">Supplements<br><em>for Midlife</em></span><span class="c-s">What really moves the needle</span></div>
         <div class="b-txt"><span class="k">Ebook · Coming soon</span><h3>Supplements for Women in Midlife</h3><p>Cut through the noise and focus on the few supplements that really move the needle.</p><span class="go">Join the waitlist</span></div>
       </a>
@@ -446,6 +440,7 @@ m.addEventListener('click',function(e){if(e.target.closest('a'))set(false)});})(
   </div>
 </section>
 
+</main>
 <footer>
   <div class="wrap">
     <div class="fgrid">
@@ -481,9 +476,7 @@ p.addEventListener('click',function(e){if(e.target===p)close()});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!p.hidden)close()});
 })();
 </script>
-<script>
-document.querySelectorAll('a[href="#"]').forEach(a=>a.addEventListener('click',e=>e.preventDefault()));
-</script>
+<script src="/site.js"></script>
 
 </body>
 </html>

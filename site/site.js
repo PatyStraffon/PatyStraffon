@@ -1,10 +1,15 @@
-// Shared behaviour for the inner pages: mobile menu and Netlify form posts.
+// Shared behaviour for every page: mobile menu and Netlify form posts.
 (function(){
   var b=document.querySelector('.burger'),m=document.getElementById('mnav');
   if(b&&m){
-    var set=function(o){m.hidden=!o;b.setAttribute('aria-expanded',o)};
+    var t=b.querySelector('.btxt');
+    var set=function(o){m.hidden=!o;b.setAttribute('aria-expanded',o);if(t)t.textContent=o?'Close':'Menu'};
     b.addEventListener('click',function(){set(m.hidden)});
     m.addEventListener('click',function(e){if(e.target.closest('a'))set(false)});
+    // Close with the Escape key, a tap outside the menu, or when the screen gets wide.
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){set(false);b.focus()}});
+    document.addEventListener('click',function(e){if(!m.hidden&&!e.target.closest('header'))set(false)});
+    window.addEventListener('resize',function(){if(!m.hidden&&getComputedStyle(b).display==='none')set(false)});
   }
   document.querySelectorAll('a[href="#"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault()})});
   document.querySelectorAll('form[data-netlify]').forEach(function(f){

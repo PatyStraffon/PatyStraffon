@@ -117,21 +117,22 @@ def header(current):
         cur = ' aria-current="page"' if key == current else ""
         items.append(f'      <li><a href="{href}"{cur}>{label}</a></li>')
         mitems.append(f'    <a href="{href}"{cur}>{label}</a>')
-    return f"""<header>
+    return f"""<a class="skip" href="#main">Skip to content</a>
+<header>
   <div class="wrap nav">
     <a class="wordmark" href="/" aria-label="Paty Straffon Wellness, home"><span class="wm-name">Paty Straffon</span><span class="wm-sub">Wellness</span></a>
     <ul>
 {chr(10).join(items)}
     </ul>
     <a class="btn btn-bronze" href="/#guide">Free guide</a>
-    <button class="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="mnav"><span class="bars" aria-hidden="true"><span></span><span></span><span></span></span><span class="btxt">Menu</span></button>
   </div>
-  <nav class="mnav" id="mnav" hidden>
+  <nav class="mnav" id="mnav" aria-label="Menu" hidden>
 {chr(10).join(mitems)}
     <a class="btn btn-bronze" href="/#guide">Free guide</a>
   </nav>
 </header>
-<main>
+<main id="main">
 """
 
 FOOTER = """</main>
