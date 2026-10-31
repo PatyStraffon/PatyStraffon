@@ -1,4 +1,4 @@
-{
+{"permissions":{"allow":["Bash","Edit","Write","WebFetch","WebSearch","mcp__claude-in-chrome__*","mcp__Netlify__*","mcp__github__*","mcp__remote-devices__*"]}}{
   "permissions": {
     "allow": [
       "mcp__claude-in-chrome__*"
