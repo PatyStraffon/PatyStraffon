@@ -35,6 +35,17 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&family=Lora:ital,wght@0,400..600;1,400..600&family=Nunito+Sans:opsz,wght@6..12,400..700&family=Montserrat:wght@400;500&display=swap">
 <link rel="stylesheet" href="/styles.css">
+<script>
+(function(w, d, t, h, s, n) {
+  w.FlodeskObject = n;
+  var fn = function() { (w[n].q = w[n].q || []).push(arguments); };
+  w[n] = w[n] || fn;
+  var f = d.getElementsByTagName(t)[0];
+  var v = '?v=' + Math.floor(new Date().getTime() / (120 * 1000)) * 60;
+  var sm = d.createElement(t); sm.async = true; sm.type = 'module'; sm.src = h + s + '.mjs' + v; f.parentNode.insertBefore(sm, f);
+  var sn = d.createElement(t); sn.async = true; sn.noModule = true; sn.src = h + s + '.js' + v; f.parentNode.insertBefore(sn, f);
+})(window, document, 'script', 'https://assets.flodesk.com', '/universal', 'fd');
+</script>
 </head>
 <body>
 
@@ -230,13 +241,8 @@ m.addEventListener('click',function(e){if(e.target.closest('a'))set(false)});})(
       <span class="label">Free guide</span>
       <h2>The 5 Levers of <em class="b">midlife strength</em></h2>
       <p>Sleep, protein, strategic carbs, exercise, and fueling &amp; recovery. The five things that matter most in peri and post menopause, in a free mini course from Paty, delivered to your inbox daily.</p>
-      <form id="f" name="free-course" method="POST" data-netlify="true" netlify-honeypot="company" novalidate>
-        <input type="hidden" name="form-name" value="free-course"><p hidden><label>Company <input name="company"></label></p>
-        <label for="email" class="label" style="position:absolute;left:-9999px">Email</label>
-        <input id="email" name="email" type="email" placeholder="Your email" required>
-        <button class="btn btn-bronze" type="submit">Start the free course</button>
-      </form>
-      <p class="ok" id="ok" hidden>Thank you, you are on the list. Day 1 of the course is on its way soon.</p>
+      <div class="fdf" id="fd-form-6ae545c53752434004b02998"></div>
+      <script>window.fd('form',{formId:'6ae545c53752434004b02998',containerEl:'#fd-form-6ae545c53752434004b02998'});</script>
     </div>
   </div>
 </section>
@@ -277,20 +283,11 @@ m.addEventListener('click',function(e){if(e.target.closest('a'))set(false)});})(
     <h2 id="pop-h">The 5 Levers of <em class="b">midlife strength</em></h2>
     <ol class="pop-list"><li>Sleep</li><li>Protein</li><li>Strategic carbs</li><li>Exercise</li><li>Fueling &amp; recovery</li></ol>
     <p>The five things that matter most in peri and post menopause, delivered to your inbox daily.</p>
-    <form id="pf" name="free-course-popup" method="POST" data-netlify="true" netlify-honeypot="company" novalidate>
-      <input type="hidden" name="form-name" value="free-course-popup"><p hidden><label>Company <input name="company"></label></p>
-      <label for="pemail" class="label" style="position:absolute;left:-9999px">Email</label>
-      <input id="pemail" name="email" type="email" placeholder="Your email" required>
-      <button class="btn btn-bronze" type="submit">Start the free course</button>
-    </form>
-    <p class="ok" id="pok" hidden>Thank you, you are on the list. Day 1 of the course is on its way soon.</p>
+    <div class="fdf" id="fd-form-6ae545c53752434004b02998-pop"></div>
+    <script>window.fd('form',{formId:'6ae545c53752434004b02998',containerEl:'#fd-form-6ae545c53752434004b02998-pop'});</script>
     <button class="pop-no" type="button">No thanks</button>
   </div>
 </div>
-<script>
-function sendForm(f){var em=f.querySelector('input[type=email]');if(!em.checkValidity()){em.reportValidity();return false}
-fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(f)).toString()}).catch(function(){});return true}
-</script>
 <script>
 (function(){var p=document.getElementById('pop');
 function close(){p.hidden=true;try{sessionStorage.setItem('popSeen','1')}catch(e){}}
@@ -299,12 +296,10 @@ if(!seen)setTimeout(function(){p.hidden=false},5000);
 p.querySelector('.pop-x').onclick=close;p.querySelector('.pop-no').onclick=close;
 p.addEventListener('click',function(e){if(e.target===p)close()});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!p.hidden)close()});
-document.getElementById('pf').addEventListener('submit',function(e){e.preventDefault();if(!sendForm(this))return;document.getElementById('pok').hidden=false;setTimeout(close,1800)});
 })();
 </script>
 <script>
 document.querySelectorAll('a[href="#"]').forEach(a=>a.addEventListener('click',e=>e.preventDefault()));
-document.getElementById('f').addEventListener('submit',function(e){e.preventDefault();if(!sendForm(this))return;document.getElementById('ok').hidden=false;});
 </script>
 
 </body>

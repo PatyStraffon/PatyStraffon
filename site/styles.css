@@ -364,3 +364,16 @@ button.btn{cursor:pointer}
 .prose h3{font-size:1.25rem;margin-top:8px}
 .prose p{font-size:1.06rem;max-width:68ch}
 .prose a,.faq a{color:var(--bronze-deep)}
+
+/* Flodesk free-course form, restyled to match the site */
+.fdf [class^="ff-"],.fdf [class*="__container"],.fdf [class*="__form"]{background:transparent!important;padding:0!important;margin:0!important;max-width:none!important;width:100%!important;box-shadow:none!important;border:0!important}
+.fdf [class*="__title"],.fdf [class*="__subtitle"]{display:none!important}
+.fdf [class*="__content"]{display:flex!important;width:100%!important;justify-content:flex-start!important;flex-wrap:wrap!important;gap:10px!important;align-items:stretch!important;margin:0!important;padding:0!important}
+.fdf [class*="__fields"]{flex:1 1 220px!important;display:block!important;margin:0!important;padding:0!important;min-width:0!important}
+.fdf [class*="__field"]{margin:0!important;padding:0!important}
+.fdf [class*="__control"]{font-family:var(--body,inherit)!important;font-size:1rem!important;color:var(--onyx)!important;background:#fff!important;border:1px solid var(--stone)!important;border-radius:0!important;padding:14px 16px!important;height:auto!important;line-height:1.5!important;width:100%!important;box-shadow:none!important;text-align:left!important}
+.fdf [class*="__label"]{font-family:var(--body,inherit)!important;font-size:1rem!important;color:#5c534d!important;left:0!important;padding:15px 17px!important;text-align:left!important;justify-content:flex-start!important}
+.fdf [class*="__footer"]{margin:0!important;padding:0!important;flex:0 0 auto!important;width:auto!important}
+.fdf [class*="__button"]{font-family:var(--label)!important;font-weight:500!important;font-size:.72rem!important;letter-spacing:.26em!important;text-transform:uppercase!important;padding:16px 28px!important;background:var(--bronze)!important;color:var(--porcelain)!important;border:0!important;border-radius:0!important;height:100%!important;width:auto!important;min-width:0!important;cursor:pointer}
+.fdf [class*="__button"]:hover{background:var(--bronze-deep)!important}
+.fdf [class*="__success"],.fdf [class*="__success"] *{font-family:var(--body,inherit)!important;color:var(--bronze-deep)!important;text-align:left!important;background:transparent!important;padding:0!important}
