@@ -22,6 +22,7 @@ NAV = [
     ("thrive", "/thrive", "THRIVE"),
     ("retreats", "/retreats", "Retreats"),
     ("journal", "/#journal", "Journal"),
+    ("shop", "/shop", "Shop"),
     ("about", "/about", "About"),
 ]
 

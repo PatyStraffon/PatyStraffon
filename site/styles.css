@@ -38,9 +38,9 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-block:16px}
 .nav .logo{height:34px;width:auto}
 .nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0}
-.nav ul a{font-family:var(--label);font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--onyx);text-decoration:none}
+.nav ul a{font-family:var(--label);font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--onyx);text-decoration:none;white-space:nowrap}
 .nav ul a:hover{color:var(--bronze)}
-.nav .btn{padding:12px 20px}
+.nav .btn{padding:12px 20px;white-space:nowrap}
 .wordmark{display:grid;justify-items:center;gap:5px;text-decoration:none;color:var(--onyx);line-height:1}
 .wm-name{font-family:var(--logo);font-weight:400;font-size:1.45rem;letter-spacing:.06em;text-transform:uppercase}
 .wm-sub{font-family:var(--label);font-weight:500;font-size:.62rem;letter-spacing:.62em;margin-right:-.62em;text-transform:uppercase;color:var(--bronze-deep)}
@@ -50,7 +50,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .mnav[hidden]{display:none}
 .mnav a:not(.btn){font-family:var(--label);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--onyx);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--stone)}
 .mnav .btn{margin-top:16px;justify-self:start}
-@media (max-width:980px){.nav ul{display:none}.burger{display:flex}}
+@media (max-width:1120px){.nav ul{display:none}.burger{display:flex}.nav .btn{margin-left:auto;margin-right:12px}}
 @media (min-width:981px){.mnav{display:none!important}}
 @media (max-width:520px){.nav .btn{display:none}.wm-name{font-size:1.2rem}.wm-sub{font-size:.56rem}}
 
