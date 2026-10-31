@@ -377,3 +377,8 @@ button.btn{cursor:pointer}
 .fdf [class*="__button"]{font-family:var(--label)!important;font-weight:500!important;font-size:.72rem!important;letter-spacing:.26em!important;text-transform:uppercase!important;padding:16px 28px!important;background:var(--bronze)!important;color:var(--porcelain)!important;border:0!important;border-radius:0!important;height:100%!important;width:auto!important;min-width:0!important;cursor:pointer}
 .fdf [class*="__button"]:hover{background:var(--bronze-deep)!important}
 .fdf [class*="__success"],.fdf [class*="__success"] *{font-family:var(--body,inherit)!important;color:var(--bronze-deep)!important;text-align:left!important;background:transparent!important;padding:0!important}
+
+/* Consent line under sign-up forms (CASL) */
+.consent{font-size:1rem;line-height:1.5;margin-top:12px}
+.consent a{color:inherit;text-decoration:underline}
+.err{color:#8a2f1f}
