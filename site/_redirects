@@ -1,1 +1,14 @@
-/*    /index.html   200
+# Old or guessed addresses go to the closest page (301 = moved for good).
+# Anything else that doesn't exist shows /404.html with a real 404 status,
+# so Google doesn't index copies of the homepage.
+/home          /             301
+/index.html    /             301
+/contact       /about        301
+/blog          /#journal     301
+/journal       /#journal     301
+/programs      /#programs    301
+/m-reset       /reset        301
+/21-day-reset  /reset        301
+/retreat       /retreats     301
+/events        /retreats     301
+/books         /shop         301
