@@ -218,17 +218,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&family=Lora:ital,wght@0,400..600;1,400..600&family=Nunito+Sans:opsz,wght@6..12,400..700&family=Montserrat:wght@400;500&display=swap">
 <link rel="stylesheet" href="/styles.css">
-<script>
-(function(w, d, t, h, s, n) {
-  w.FlodeskObject = n;
-  var fn = function() { (w[n].q = w[n].q || []).push(arguments); };
-  w[n] = w[n] || fn;
-  var f = d.getElementsByTagName(t)[0];
-  var v = '?v=' + Math.floor(new Date().getTime() / (120 * 1000)) * 60;
-  var sm = d.createElement(t); sm.async = true; sm.type = 'module'; sm.src = h + s + '.mjs' + v; f.parentNode.insertBefore(sm, f);
-  var sn = d.createElement(t); sn.async = true; sn.noModule = true; sn.src = h + s + '.js' + v; f.parentNode.insertBefore(sn, f);
-})(window, document, 'script', 'https://assets.flodesk.com', '/universal', 'fd');
-</script>
 </head>
 <body>
 
@@ -425,9 +414,14 @@
     <div class="txt">
       <span class="label">Free guide</span>
       <h2>The 5 Levers of <em class="b">midlife strength</em></h2>
-      <p>Sleep, protein, strategic carbs, exercise, and fueling &amp; recovery. The five things that matter most in peri and post menopause, in a free mini course from Paty, delivered to your inbox daily.</p>
-      <div class="fdf" id="fd-form-6ae545c53752434004b02998"></div>
-      <script>window.fd('form',{formId:'6ae545c53752434004b02998',containerEl:'#fd-form-6ae545c53752434004b02998'});</script>
+      <p>Sleep, protein, strategic carbs, exercise, and fueling &amp; recovery. The five things that matter most in peri and post menopause. In about four minutes you'll get a short lesson on each lever, answer a few honest questions, and see your personal results, on screen and in your inbox.</p>
+      <form class="lv-start" novalidate>
+        <label for="gn" class="sr">First name</label><input id="gn" name="first_name" type="text" placeholder="First name" required autocomplete="given-name">
+        <label for="ge" class="sr">Email</label><input id="ge" name="email" type="email" placeholder="Your email" required autocomplete="email">
+        <p hidden><label>Company <input name="company" tabindex="-1" autocomplete="off"></label></p>
+        <button class="btn btn-bronze" type="submit">Start the free course</button>
+      </form>
+      <p class="consent">By starting, you agree to get emails from Paty Straffon Wellness, including your results and the free course. Unsubscribe anytime. <a href="/privacy">Privacy policy</a></p>
     </div>
   </div>
 </section>
@@ -468,9 +462,14 @@
     <span class="label">Free mini course</span>
     <h2 id="pop-h">The 5 Levers of <em class="b">midlife strength</em></h2>
     <ol class="pop-list"><li>Sleep</li><li>Protein</li><li>Strategic carbs</li><li>Exercise</li><li>Fueling &amp; recovery</li></ol>
-    <p>The five things that matter most in peri and post menopause, delivered to your inbox daily.</p>
-    <div class="fdf" id="fd-form-6ae545c53752434004b02998-pop"></div>
-    <script>window.fd('form',{formId:'6ae545c53752434004b02998',containerEl:'#fd-form-6ae545c53752434004b02998-pop'});</script>
+    <p>About four minutes: a short lesson on each lever, then your personal results, on screen and by email.</p>
+    <form class="lv-start" novalidate>
+      <label for="pn" class="sr">First name</label><input id="pn" name="first_name" type="text" placeholder="First name" required autocomplete="given-name">
+      <label for="pe" class="sr">Email</label><input id="pe" name="email" type="email" placeholder="Your email" required autocomplete="email">
+      <p hidden><label>Company <input name="company" tabindex="-1" autocomplete="off"></label></p>
+      <button class="btn btn-bronze" type="submit">Start the free course</button>
+    </form>
+    <p class="consent">By starting, you agree to get emails from Paty Straffon Wellness, including your results and the free course. Unsubscribe anytime. <a href="/privacy">Privacy policy</a></p>
     <button class="pop-no" type="button">No thanks</button>
   </div>
 </div>
@@ -489,7 +488,10 @@ p.addEventListener('click',function(e){if(e.target===p)close()});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!p.hidden)close()});
 })();
 </script>
+<!-- Lets Netlify Forms keep a copy of each course sign-up (filled in by /levers.js). -->
+<form name="levers-course" data-netlify="true" netlify-honeypot="company" hidden><input name="first_name"><input name="email"><input name="company"></form>
 <script src="/site.js"></script>
+<script type="module" src="/levers.js"></script>
 
 </body>
 </html>
