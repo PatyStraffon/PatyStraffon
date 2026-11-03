@@ -129,6 +129,11 @@ export const LEVERS = [
   },
 ];
 
+// The thank-you offer shown on the results page and in the results email.
+// Paty honours it by hand when she enrols someone, so change it here and in
+// the Flodesk email together.
+export const OFFER = { code: "LEVERS10", percent: 10, days: 7 };
+
 export function levelOf(score) {
   return score >= 3 ? "Strong" : score === 2 ? "Building" : "Start here";
 }

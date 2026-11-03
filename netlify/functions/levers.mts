@@ -21,6 +21,7 @@ const FIELDS: Record<string, string> = {
   summary: "Levers: summary",
   closing: "Levers: personal note",
   results_link: "Levers: results link",
+  offer_link: "Levers: offer link",
   stage: "Levers: life stage",
   goal: "Levers: eight-week goal",
 }
@@ -97,6 +98,7 @@ export default async (req: Request, context: Context) => {
     summary: res.band,
     closing: res.closing,
     results_link: `https://patystraffon.com/my-levers#r=${code}`,
+    offer_link: `https://patystraffon.com/my-levers#r=${code}&o=1`,
     stage: res.stage,
     goal: res.goal,
   }
