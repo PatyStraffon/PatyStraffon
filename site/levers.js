@@ -1,7 +1,7 @@
 // The free 5 Levers course. On the homepage, the sign-up forms (pop-up and the
 // "Free guide" section) start the course inside the pop-up. On /my-levers the
 // same results are drawn from the link, so she can come back to them.
-import { STAGES, GOALS, LEVERS, OFFER, encode, decode, results } from "/levers-data.js";
+import { STAGES, GOALS, LEVERS, OFFER, FOUNDING, START, encode, decode, results } from "/levers-data.js";
 
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 const store = {
@@ -124,6 +124,14 @@ if (out) {
   } else {
     const res = results(r);
     const name = store.get("lvName");
+    const founding = Date.now() < Date.parse(FOUNDING.until);
+    const offer = founding ? {
+      code: FOUNDING.code, head: "Founding price: " + FOUNDING.price,
+      body: "The next group starts " + START + ". The founding price is for the first 10 women, until December 15. Save your spot and it's held for you.",
+      button: "Save my founding spot", claimed: "Your founding spot is saved. I'll be in touch before the group opens. Paty" } : {
+      code: OFFER.code, head: OFFER.percent + "% off The M Program",
+      body: "The next group starts " + START + ". Spots are limited so the group stays small. Save your spot within " + OFFER.days + " days and your " + OFFER.percent + "% is reserved. Your code: <strong>" + OFFER.code + "</strong>",
+      button: "Save my spot with " + OFFER.percent + "% off", claimed: "Your spot and your " + OFFER.percent + "% are saved. I'll be in touch before the group opens. Paty" };
     out.innerHTML = `
       <div class="lv-head">
         <span class="label">Your 5 Levers results</span>
@@ -156,15 +164,15 @@ if (out) {
         <blockquote class="lv-quote"><p>“Paty customized the program around my busy work travel schedule, and shared so much knowledge in a simple way. It was great to be part of a group, in a very fun and supportive environment. I feel much better prepared for the perimenopause and menopause journey ahead.”</p><span>Agi · The M Program</span></blockquote>
         <div class="lv-offer">
           <span class="label">A thank-you for taking the course</span>
-          <p class="lv-offer-h">${OFFER.percent}% off The M Program</p>
-          <p>Next group: January 2027. Spots are limited so the group stays small. Save your spot within ${OFFER.days} days and your ${OFFER.percent}% is reserved. Your code: <strong>${OFFER.code}</strong></p>
+          <p class="lv-offer-h">${offer.head}</p>
+          <p>${offer.body}</p>
           <form class="lv-claim" novalidate>
             <label for="lvce" class="sr">Email</label><input id="lvce" name="email" type="email" placeholder="Your email" required autocomplete="email" value="${esc(store.get("lvEmail"))}">
             <p hidden><label>Company <input name="company" tabindex="-1" autocomplete="off"></label></p>
-            <button class="btn btn-bronze" type="submit">Save my spot with ${OFFER.percent}% off</button>
+            <button class="btn btn-bronze" type="submit">${offer.button}</button>
           </form>
-          <p class="lv-small">No payment today. I'll email you the details and your discounted price before the group opens.</p>
-          <p class="lv-claimed" hidden>Your spot and your ${OFFER.percent}% are saved. I'll be in touch before the group opens. Paty</p>
+          <p class="lv-small">No payment today. I'll email you the details and your price before the group opens.</p>
+          <p class="lv-claimed" hidden>${offer.claimed}</p>
         </div>
         <div class="ctas"><a class="btn btn-line" href="/m-program">See the full program</a><button type="button" class="btn btn-line lv-print">Save or print my results</button></div>
       </div>
@@ -180,9 +188,9 @@ if (out) {
       btn.disabled = true;
       fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams({ "form-name": "levers-offer", first_name: name, email: String(d.get("email") || ""), company: String(d.get("company") || ""),
-          code: OFFER.code, lever: res.top.name, results: location.origin + "/my-levers#r=" + h.get("r") }).toString() })
+          code: offer.code, lever: res.top.name, results: location.origin + "/my-levers#r=" + h.get("r") }).toString() })
         .then((r) => { if (!r.ok) throw r; claim.hidden = true; out.querySelector(".lv-claimed").hidden = false; })
-        .catch(() => { btn.disabled = false; const m = out.querySelector(".lv-claimed"); m.hidden = false; m.textContent = "Sorry, that didn't go through. Please try again, or email paty@patystraffon.com with the code " + OFFER.code + "."; });
+        .catch(() => { btn.disabled = false; const m = out.querySelector(".lv-claimed"); m.hidden = false; m.textContent = "Sorry, that didn't go through. Please try again, or email paty@patystraffon.com with the code " + offer.code + "."; });
     });
     if (h.get("o")) setTimeout(() => document.getElementById("offer").scrollIntoView(), 50);
   }

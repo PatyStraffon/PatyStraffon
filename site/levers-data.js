@@ -133,6 +133,10 @@ export const LEVERS = [
 // Paty honours it by hand when she enrols someone, so change it here and in
 // the Flodesk email together.
 export const OFFER = { code: "LEVERS10", percent: 10, days: 7 };
+// Until the founding price closes, the results page offers it instead of the
+// 10%, which would cost more (CAD $1,347 vs $1,197).
+export const FOUNDING = { code: "FOUNDING", price: "CAD $1,197", until: "2026-12-16T00:00:00-08:00" };
+export const START = "Monday, January 18, 2027";
 
 export function levelOf(score) {
   return score >= 3 ? "Strong" : score === 2 ? "Building" : "Start here";
