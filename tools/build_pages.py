@@ -23,8 +23,8 @@ NAV = [
     ("programs", "/#programs", "Programs"),
     ("thrive", "/thrive", "THRIVE"),
     ("retreats", "/retreats", "Retreats"),
-    ("journal", "/#journal", "Journal"),
     ("shop", "/shop", "Shop"),
+    ("journal", "/#journal", "Journal"),
     ("about", "/about", "About"),
 ]
 
@@ -87,7 +87,7 @@ SCHEMA = {
     },
     "retreats": {
         "@type": "Event", "name": "Move. Breathe. Restore. Day Retreat", "url": BASE + "/retreats",
-        "startDate": "2026-11-27", "eventStatus": "https://schema.org/EventScheduled",
+        "startDate": "2027-01-23", "previousStartDate": "2026-11-27", "eventStatus": "https://schema.org/EventRescheduled",
         "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
         "description": "A day retreat for women in midlife with THRIVE movement, breathwork and a nourishing meal.",
         "image": BASE + "/images/og/retreats.jpg",
@@ -142,7 +142,7 @@ FOOTER = """</main>
       <div style="display:grid;gap:16px;align-content:start"><img loading="lazy" decoding="async" src="/images/dfe5c3f6f0.png" alt="PSW monogram"><p style="font-size:.95rem;color:var(--mist)">Mind. Metabolism. Movement.<br>Grounded in science, rooted in calm. Wellness for midlife.</p></div>
       <div><h4>Programs</h4><ul><li><a href="/m-program">The M Program</a></li><li><a href="/reset">21-Day Reset</a></li><li><a href="/#programs">All programs</a></li><li><a href="/shop">Shop</a></li></ul></div>
       <div><h4>Explore</h4><ul><li><a href="/thrive">THRIVE</a></li><li><a href="/retreats">Retreats</a></li><li><a href="/#journal">Journal</a></li><li><a href="/about">About</a></li></ul></div>
-      <div><h4>Connect</h4><ul><li><a href="/#guide">Newsletter</a></li><li><a href="https://www.instagram.com/thrivewithpaty/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://patystraffonwellness.substack.com/" target="_blank" rel="noopener">Substack</a></li><li><a href="mailto:paty@patystraffon.com">Contact</a></li></ul></div>
+      <div><h4>Connect</h4><ul><li><a href="/#guide">Free 5 Levers course</a></li><li><a href="https://www.instagram.com/thrivewithpaty/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://patystraffonwellness.substack.com/" target="_blank" rel="noopener">Substack</a></li><li><a href="mailto:paty@patystraffon.com">Contact</a></li></ul></div>
     </div>
     <div class="fine"><span>© 2026 Paty Straffon Wellness</span><span><a href="/privacy" style="color:inherit">Privacy</a> · <a href="/terms" style="color:inherit">Terms &amp; refunds</a></span></div>
   </div>
