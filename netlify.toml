@@ -1,0 +1,8 @@
+# The website lives in site/. The free 5 Levers course sends results to Flodesk
+# through the function in netlify/functions/ (it needs FLODESK_API_KEY, set in
+# Netlify > Project configuration > Environment variables).
+[build]
+  publish = "site"
+
+[functions]
+  directory = "netlify/functions"
