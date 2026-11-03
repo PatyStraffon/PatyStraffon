@@ -75,6 +75,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .intro img{width:100%;aspect-ratio:5/4;object-fit:cover}
 .intro .txt{display:grid;gap:22px}
 .badges{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:-4px}
+.badges>img,.badges>a{flex:none}
+.badges img{aspect-ratio:auto!important;object-fit:contain!important;max-width:none}
 .intro .badges img{height:40px;width:auto;aspect-ratio:auto;object-fit:contain;filter:grayscale(1) sepia(.25);opacity:.7;transition:filter .3s,opacity .3s}
 .intro .badges img.tall{height:56px}
 .intro .badges img:hover{filter:none;opacity:1}
