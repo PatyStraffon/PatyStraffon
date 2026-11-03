@@ -12,3 +12,7 @@
 
 /favicon.ico
   Cache-Control: public, max-age=2592000
+
+/clases-virtuales
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store
