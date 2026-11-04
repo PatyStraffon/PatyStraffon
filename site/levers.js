@@ -9,6 +9,52 @@ const store = {
   set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} },
 };
 
+// ---------- Flodesk sign-up ----------
+// The free Flodesk plan has no API, so finished courses are signed up through
+// Paty's own Flodesk form ("Ribbon banner", adds to the "5 Levers free course"
+// segment). The form is drawn off-screen and filled in for her.
+const FD_FORM = "6ae545c53752434004b02998";
+function flodeskForm() {
+  if (flodeskForm.box) return flodeskForm.box;
+  (function (w, d, t, h, s, n) {
+    w.FlodeskObject = n;
+    const fn = function () { (w[n].q = w[n].q || []).push(arguments); };
+    w[n] = w[n] || fn;
+    const f = d.getElementsByTagName(t)[0];
+    const v = "?v=" + Math.floor(new Date().getTime() / (120 * 1000)) * 60;
+    const sm = d.createElement(t); sm.async = true; sm.type = "module"; sm.src = h + s + ".mjs" + v; f.parentNode.insertBefore(sm, f);
+  })(window, document, "script", "https://assets.flodesk.com", "/universal", "fd");
+  const box = document.createElement("div");
+  box.id = "fd-form-" + FD_FORM + "-course";
+  box.setAttribute("aria-hidden", "true");
+  box.style.cssText = "position:fixed;left:-10000px;top:0;width:420px";
+  document.body.appendChild(box);
+  window.fd("form", { formId: FD_FORM, containerEl: "#" + box.id });
+  return (flodeskForm.box = box);
+}
+// Resolves true once Flodesk shows its "thank you" state, false after 7 seconds.
+function flodeskSignup(email) {
+  const box = flodeskForm();
+  return new Promise((done) => {
+    const until = Date.now() + 7000;
+    let sent = false;
+    (function tick() {
+      const input = [...box.querySelectorAll("input")].find((i) => i.type !== "hidden" && i.offsetWidth > 0 && getComputedStyle(i).visibility !== "hidden");
+      const ok = box.querySelector(".fd-form-success");
+      if (sent && ok && getComputedStyle(ok).display !== "none") return done(true);
+      if (!sent && input) {
+        Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value").set.call(input, email);
+        input.dispatchEvent(new Event("input", { bubbles: true }));
+        input.dispatchEvent(new Event("change", { bubbles: true }));
+        const btn = box.querySelector("button[type=submit],button");
+        if (btn) { btn.click(); sent = true; }
+      }
+      if (Date.now() > until) return done(false);
+      setTimeout(tick, 200);
+    })();
+  });
+}
+
 // ---------- the course (homepage) ----------
 const pop = document.getElementById("pop");
 if (pop) {
@@ -27,7 +73,7 @@ if (pop) {
         <li><strong>Better sleep, calmer days.</strong> A routine built around your real life.</li>
         <li><strong>A coach beside you.</strong> Weekly check-ins with me and a small group of women.</li>
       </ul>
-      <p>In the next four minutes you'll get a taste of the program: a short note from me on each lever, and one honest question about your week. At the end you'll see your results and your first small step, and I'll email you a copy with a thank-you gift.</p>`,
+      <p>In the next four minutes you'll get a taste of the program: a short note from me on each lever, and one honest question about your week. At the end you'll see your results and your first small step, and I'll email you a thank-you gift.</p>`,
       key: "intro",
     },
     { label: "Before we begin", title: `First, where are <em class="b">you</em> right now?`, lesson: [], q: "Choose the one that fits best.", options: STAGES.map((s) => [s]), key: "stage" },
@@ -72,14 +118,11 @@ if (pop) {
     const code = encode(answers);
     store.set("lvName", who.first_name);
     store.set("lvEmail", who.email);
+    store.set("lvCode", code);
     card.innerHTML = '<div class="lv-wait"><span class="label">One moment</span><h2 id="pop-h">Preparing your <em class="b">results</em></h2></div>';
     const go = (sent) => { location.href = `/my-levers#r=${code}${sent ? "&sent=1" : ""}`; };
-    const timer = setTimeout(() => go(false), 8000);
-    fetch("/api/levers", {
-      method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ first_name: who.first_name, email: who.email, company: who.company, code }),
-    }).then((r) => r.json()).then((d) => { clearTimeout(timer); go(!!(d && d.ok)); })
-      .catch(() => { clearTimeout(timer); go(false); });
+    if (who.company) return go(false); // honeypot: a bot filled the hidden field
+    flodeskSignup(who.email).then(go);
   }
 
   function closePop() {
@@ -100,6 +143,7 @@ if (pop) {
     fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams({ "form-name": "levers-course", first_name: who.first_name, email: who.email, company: who.company }).toString() }).catch(() => {});
     pop.hidden = false;
+    flodeskForm(); // load it now so it's ready when she finishes
     draw();
   }
 
@@ -118,7 +162,9 @@ if (pop) {
 const out = document.getElementById("lv-results");
 if (out) {
   const h = new URLSearchParams(location.hash.slice(1));
-  const r = decode(h.get("r"));
+  // The results email links to /my-levers with no answers in it, so fall back
+  // to the last results saved on this device.
+  const r = decode(h.get("r") || store.get("lvCode"));
   if (!r) {
     out.innerHTML = `<div class="lv-empty"><span class="label">Your 5 Levers results</span><h1>Take the free <em class="b">5 Levers course</em></h1><p class="lede">This link doesn't hold any results yet. The course takes about four minutes, and your results appear right here.</p><div><a class="btn btn-bronze" href="/#guide">Start the free course</a></div></div>`;
   } else {
@@ -137,7 +183,7 @@ if (out) {
         <span class="label">Your 5 Levers results</span>
         <h1>${name ? esc(name) + ", your" : "Your"} lever to start with is <em class="b">${res.top.name.toLowerCase()}</em></h1>
         <p class="lede">${res.band}</p>
-        ${h.get("sent") ? '<p class="lv-sent">A copy is on its way to your inbox. If you don\'t see it in a few minutes, check your promotions or spam folder.</p>' : ""}
+        ${h.get("sent") ? '<p class="lv-sent">Check your inbox: your thank-you gift is on its way, with a link back to these results. If you don\'t see it in a few minutes, check your promotions or spam folder.</p>' : ""}
       </div>
       <div class="lv-first"><span class="label">Your first small step</span><p>${res.top.step}</p></div>
       <ol class="lv-list">
@@ -188,7 +234,7 @@ if (out) {
       btn.disabled = true;
       fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams({ "form-name": "levers-offer", first_name: name, email: String(d.get("email") || ""), company: String(d.get("company") || ""),
-          code: offer.code, lever: res.top.name, results: location.origin + "/my-levers#r=" + h.get("r") }).toString() })
+          code: offer.code, lever: res.top.name, results: location.origin + "/my-levers#r=" + encode(r) }).toString() })
         .then((r) => { if (!r.ok) throw r; claim.hidden = true; out.querySelector(".lv-claimed").hidden = false; })
         .catch(() => { btn.disabled = false; const m = out.querySelector(".lv-claimed"); m.hidden = false; m.textContent = "Sorry, that didn't go through. Please try again, or email paty@patystraffon.com with the code " + offer.code + "."; });
     });
