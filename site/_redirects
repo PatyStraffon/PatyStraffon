@@ -7,8 +7,9 @@
 /blog          /#journal     301
 /journal       /#journal     301
 /programs      /#programs    301
-/m-reset       /reset        301
-/21-day-reset  /reset        301
+/reset         /m-program    302
+/m-reset       /m-program    302
+/21-day-reset  /m-program    302
 /retreat       /retreats     301
 /events        /retreats     301
 /books         /shop         301
