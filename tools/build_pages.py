@@ -26,7 +26,7 @@ NAV = [
     ("videos", "/videos", "Videos"),
     ("retreats", "/retreats", "Retreats"),
     ("shop", "/shop", "Shop"),
-    ("journal", "/#journal", "Journal"),
+    ("journal", "/journal", "Journal"),
     ("about", "/about", "About"),
 ]
 
@@ -154,7 +154,7 @@ def videos_schema():
             "publisher": ORG, "hasPart": items}
 
 CRUMB = {"about": "About", "m-program": "The M Program", "thrive": "THRIVE", "retreats": "Retreats",
-         "shop": "Shop", "videos": "Free videos", "privacy": "Privacy policy", "terms": "Terms & refunds"}
+         "shop": "Shop", "videos": "Free videos", "journal": "Journal", "privacy": "Privacy policy", "terms": "Terms & refunds"}
 
 def breadcrumb_tag(name, path):
     """Home > Page breadcrumb for Google results (indexable pages only)."""
@@ -164,6 +164,80 @@ def breadcrumb_tag(name, path):
         {"@type": "ListItem", "position": 1, "name": "Home", "item": BASE + "/"},
         {"@type": "ListItem", "position": 2, "name": CRUMB[name], "item": BASE + path}]}
     return '<script type="application/ld+json">\n' + json.dumps(data, ensure_ascii=False) + "\n</script>\n"
+
+JOURNAL = ROOT / "tools" / "journal"
+
+def read_page(src):
+    meta_txt, body = src.read_text().split("\n---\n", 1)
+    return dict(line.split(": ", 1) for line in meta_txt.strip().splitlines()), body
+
+def articles():
+    """On-site journal articles, newest first. Each file in tools/journal/ has a header like the pages."""
+    out = []
+    for src in JOURNAL.glob("*.html"):
+        meta, body = read_page(src)
+        out.append({**meta, "slug": src.stem, "body": body})
+    return sorted(out, key=lambda a: a["date"], reverse=True)
+
+def nice_date(iso):
+    import datetime
+    d = datetime.date.fromisoformat(iso)
+    return f"{d.strftime('%B')} {d.day}, {d.year}"
+
+def journal_cards():
+    cards = []
+    for i, a in enumerate(articles()):
+        k = f"{html.escape(a['kicker'])} · {nice_date(a['date'])}"
+        img = f'<img loading="lazy" decoding="async" src="{a["image"]}" alt="">'
+        if i == 0:
+            cards.append(f"""      <a class="post feat" href="/journal/{a['slug']}">{img}<div class="ft"><span class="k">{k}</span><h3>{html.escape(a['heading'])}</h3><p>{html.escape(a['excerpt'])}</p><span class="go">Read the article</span></div></a>""")
+        else:
+            cards.append(f"""      <a class="post" href="/journal/{a['slug']}">{img}<span class="k">{k}</span><h3>{html.escape(a['heading'])}</h3><p>{html.escape(a['excerpt'])}</p></a>""")
+    return "\n".join(cards)
+
+def build_article(a):
+    path = "/journal/" + a["slug"]
+    schema = {"@context": "https://schema.org", "@type": "BlogPosting", "headline": a["heading"],
+              "description": a["description"], "image": BASE + a["image"], "datePublished": a["date"],
+              "dateModified": a.get("updated", a["date"]), "author": PATY, "publisher": ORG,
+              "mainEntityOfPage": BASE + path, "inLanguage": "en"}
+    crumbs = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": BASE + "/"},
+        {"@type": "ListItem", "position": 2, "name": "Journal", "item": BASE + "/journal"},
+        {"@type": "ListItem", "position": 3, "name": a["heading"], "item": BASE + path}]}
+    tags = "".join('<script type="application/ld+json">\n' + json.dumps(x, ensure_ascii=False) + "\n</script>\n" for x in (schema, crumbs))
+    page = HEAD.format(title=html.escape(a["title"]), desc=html.escape(a["description"]), url=BASE + path, base=BASE,
+                       image=a.get("og", "home"), robots="", schema=tags, lang="en", locale="en_CA")
+    page = page.replace('<meta property="og:type" content="website">', '<meta property="og:type" content="article">')
+    if "og" not in a:
+        page = page.replace(f'{BASE}/images/og/home.jpg', BASE + a["image"])
+    body = f"""<article class="post-page">
+  <div class="wrap post-head">
+    <a class="back" href="/journal">&larr; The Journal</a>
+    <span class="label">{html.escape(a['kicker'])}</span>
+    <h1>{html.escape(a['heading'])}</h1>
+    <p class="byline">By <a href="/about">Paty Straffon</a> · Menopause coach · <time datetime="{a['date']}">{nice_date(a['date'])}</time></p>
+  </div>
+  <figure class="wrap post-hero"><img src="{a['image']}" alt="{html.escape(a['alt'])}" decoding="async"></figure>
+  <div class="wrap"><div class="prose">
+{a['body'].strip()}
+  </div></div>
+</article>
+
+<section class="cta">
+  <div class="wrap">
+    <span class="label">Free mini course</span>
+    <h2>The 5 Levers of <em class="b">midlife strength</em></h2>
+    <p>Four minutes a lesson, then your personal results. The same levers that power The M Program.</p>
+    <div class="ctas"><a class="btn btn-bronze" href="/#guide">Start the free course</a><a class="btn btn-line" href="/m-program">See The M Program</a></div>
+  </div>
+</section>
+<script src="/video-cards.js"></script>
+"""
+    out = SITE / "journal" / (a["slug"] + ".html")
+    out.parent.mkdir(exist_ok=True)
+    out.write_text(page + header("journal") + body + FOOTER)
+    return out
 
 def schema_tag(name):
     data = videos_schema() if name == "videos" else SCHEMA.get(name)
@@ -203,7 +277,7 @@ FOOTER = """</main>
     <div class="fgrid">
       <div style="display:grid;gap:16px;align-content:start"><img loading="lazy" decoding="async" src="/images/dfe5c3f6f0.png" alt="PSW monogram"><p style="font-size:.95rem;color:var(--mist)">Mind. Metabolism. Movement.<br>Grounded in science, rooted in calm. Wellness for midlife.</p></div>
       <div><h4>Programs</h4><ul><li><a href="/m-program">The M Program</a></li><li><a href="/#programs">All programs</a></li><li><a href="/shop">Shop</a></li></ul></div>
-      <div><h4>Explore</h4><ul><li><a href="/thrive">THRIVE</a></li><li><a href="/videos">Free videos</a></li><li><a href="/retreats">Retreats</a></li><li><a href="/#journal">Journal</a></li><li><a href="/about">About</a></li></ul></div>
+      <div><h4>Explore</h4><ul><li><a href="/thrive">THRIVE</a></li><li><a href="/videos">Free videos</a></li><li><a href="/retreats">Retreats</a></li><li><a href="/journal">Journal</a></li><li><a href="/about">About</a></li></ul></div>
       <div><h4>Connect</h4><ul><li><a href="/#guide">Free 5 Levers course</a></li><li><a href="https://www.instagram.com/thrivewithpaty/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.youtube.com/channel/UCFrUJPf12CYtRzeG0rYekVg" target="_blank" rel="noopener">YouTube</a></li><li><a href="https://patystraffonwellness.substack.com/" target="_blank" rel="noopener">Substack</a></li><li><a href="mailto:paty@patystraffon.com">Contact</a></li></ul></div>
     </div>
     <div class="fine"><span>© 2026 Paty Straffon Wellness</span><span><a href="/privacy" style="color:inherit">Privacy</a> · <a href="/terms" style="color:inherit">Terms &amp; refunds</a></span></div>
@@ -222,6 +296,8 @@ def build(src):
                        url=BASE + meta["path"], base=BASE, image=meta.get("image", "home"),
                        robots=robots, schema=schema_tag(src.stem) + breadcrumb_tag(src.stem, meta["path"]),
                        lang=meta.get("lang", "en"), locale="es_MX" if meta.get("lang") == "es" else "en_CA")
+    if "{{journal}}" in body:
+        body = body.replace("{{journal}}", journal_cards())
     if "{{videos}}" in body:
         body = body.replace("{{videos}}", videos_html())
     page += header(meta.get("nav", "")) + body.strip() + "\n" + FOOTER
@@ -232,3 +308,5 @@ def build(src):
 if __name__ == "__main__":
     for src in sorted(PAGES.glob("*.html")):
         print("built", build(src).relative_to(ROOT))
+    for a in articles():
+        print("built", build_article(a).relative_to(ROOT))
