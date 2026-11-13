@@ -7,6 +7,7 @@ Each file in tools/pages/ holds one page body, preceded by a small header:
     nav: m-program
     image: m-program        (optional; a 1200x630 file in site/images/og/, default home)
     robots: noindex         (optional)
+    lang: es                (optional; default en)
     ---
 The script wraps every body in the shared head, header and footer and writes
 site/<name>.html. Run it from the repository root:  python3 tools/build_pages.py
@@ -29,7 +30,7 @@ NAV = [
 ]
 
 HEAD = """<!DOCTYPE html>
-<html lang="en">
+<html lang="{lang}">
 <head>
 <meta charset="utf-8">
 <title>{title}</title>
@@ -45,7 +46,7 @@ HEAD = """<!DOCTYPE html>
 <meta property="og:image" content="{base}/images/og/{image}.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:locale" content="en_CA">
+<meta property="og:locale" content="{locale}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{title}">
 <meta name="twitter:description" content="{desc}">
@@ -158,7 +159,8 @@ def build(src):
     robots = f'<meta name="robots" content="{meta["robots"]}">\n' if "robots" in meta else ""
     page = HEAD.format(title=html.escape(meta["title"]), desc=html.escape(meta["description"]),
                        url=BASE + meta["path"], base=BASE, image=meta.get("image", "home"),
-                       robots=robots, schema=schema_tag(src.stem))
+                       robots=robots, schema=schema_tag(src.stem),
+                       lang=meta.get("lang", "en"), locale="es_MX" if meta.get("lang") == "es" else "en_CA")
     page += header(meta.get("nav", "")) + body.strip() + "\n" + FOOTER
     out = SITE / (src.stem + ".html")
     out.write_text(page)
