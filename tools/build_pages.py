@@ -134,7 +134,7 @@ def videos_html():
         parts.append(f"""<section{alt}>
   <div class="wrap">
     <div class="shead"><span class="label">{html.escape(sec['label'])}</span><h2>{html.escape(sec['title'])}</h2><p>{html.escape(sec['intro'])}</p></div>
-    <div class="vgrid">
+    <div class="vidgrid">
 {chr(10).join(cards)}
     </div>
   </div>
@@ -152,6 +152,18 @@ def videos_schema():
                           **({"inLanguage": "es"} if v.get("lang") == "es" else {"inLanguage": "en"})})
     return {"@type": "CollectionPage", "url": BASE + "/videos", "name": "Free videos",
             "publisher": ORG, "hasPart": items}
+
+CRUMB = {"about": "About", "m-program": "The M Program", "thrive": "THRIVE", "retreats": "Retreats",
+         "shop": "Shop", "videos": "Free videos", "privacy": "Privacy policy", "terms": "Terms & refunds"}
+
+def breadcrumb_tag(name, path):
+    """Home > Page breadcrumb for Google results (indexable pages only)."""
+    if name not in CRUMB:
+        return ""
+    data = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": BASE + "/"},
+        {"@type": "ListItem", "position": 2, "name": CRUMB[name], "item": BASE + path}]}
+    return '<script type="application/ld+json">\n' + json.dumps(data, ensure_ascii=False) + "\n</script>\n"
 
 def schema_tag(name):
     data = videos_schema() if name == "videos" else SCHEMA.get(name)
@@ -208,7 +220,7 @@ def build(src):
     robots = f'<meta name="robots" content="{meta["robots"]}">\n' if "robots" in meta else ""
     page = HEAD.format(title=html.escape(meta["title"]), desc=html.escape(meta["description"]),
                        url=BASE + meta["path"], base=BASE, image=meta.get("image", "home"),
-                       robots=robots, schema=schema_tag(src.stem),
+                       robots=robots, schema=schema_tag(src.stem) + breadcrumb_tag(src.stem, meta["path"]),
                        lang=meta.get("lang", "en"), locale="es_MX" if meta.get("lang") == "es" else "en_CA")
     if "{{videos}}" in body:
         body = body.replace("{{videos}}", videos_html())

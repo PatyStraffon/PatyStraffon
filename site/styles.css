@@ -192,9 +192,9 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .shop{background:var(--ivory)}
 .books{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,56px);margin-bottom:72px}
 .book{display:grid;grid-template-columns:1fr;gap:24px;align-content:start;text-decoration:none;color:inherit}
-.cover{width:min(100%,220px);aspect-ratio:2/3;display:grid;grid-template-rows:auto 1fr auto;justify-items:center;text-align:center;padding:18px 14px;box-shadow:0 18px 30px -18px rgba(34,34,34,.45);transition:transform .4s}
+.cover{width:min(100%,220px);aspect-ratio:17/22;display:grid;grid-template-rows:auto 1fr auto;justify-items:center;text-align:center;padding:18px 14px;box-shadow:0 18px 30px -18px rgba(34,34,34,.45);transition:transform .4s}
 .book:hover .cover{transform:translateY(-4px)}
-.cover-img{aspect-ratio:17/22;padding:0;display:block;object-fit:cover;height:auto}
+.cover-img{aspect-ratio:17/22;padding:0;display:block;object-fit:cover;height:auto;outline:1px solid var(--stone);outline-offset:-1px}
 .cover-light{background:var(--porcelain);color:var(--onyx);outline:1px solid var(--taupe);outline-offset:-8px}
 .cover-dark{background:var(--onyx);color:var(--porcelain);outline:1px solid var(--bronze);outline-offset:-8px}
 .c-k{font-family:var(--label);font-weight:500;font-size:.56rem;letter-spacing:.3em;text-transform:uppercase;color:var(--bronze)}
@@ -359,15 +359,23 @@ textarea{font:inherit;font-size:1rem;padding:14px 16px;border:1px solid var(--st
 /* shop products */
 .cat{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin:64px 0 24px;padding-top:36px;border-top:1px solid var(--taupe)}
 .cat h2{font-size:clamp(1.7rem,3vw,2.2rem)}
-.products{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.product{display:grid;gap:10px;align-content:start;padding:18px;background:var(--porcelain);text-decoration:none;color:inherit;transition:background .3s}
-.product:hover{background:#fff}
-.product .im{aspect-ratio:1;display:grid;place-items:center;background:#fff;padding:12px}
-.product .im img{max-height:100%;object-fit:contain}
-.product h3{font-size:1.2rem}
-.product .go{font-family:var(--label);font-weight:500;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--bronze-deep)}
-@media (max-width:900px){.products{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:420px){.products{grid-template-columns:1fr}}
+/* Shop products: every item in the same framed window, in the brand palette.
+   mix-blend-mode turns Amazon's white photo backgrounds into the ivory of the window. */
+.products{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.product{display:flex;flex-direction:column;background:var(--porcelain);border:1px solid var(--stone);text-decoration:none;color:inherit;transition:border-color .3s,box-shadow .3s,transform .3s}
+.product:hover{border-color:var(--taupe);box-shadow:0 18px 30px -22px rgba(34,34,34,.35);transform:translateY(-2px)}
+.product .im{aspect-ratio:1/1;display:grid;place-items:center;background:var(--ivory);padding:clamp(22px,3vw,40px);overflow:hidden}
+.product .im img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;transition:transform .5s ease}
+.product:hover .im img{transform:scale(1.04)}
+.product .ptxt{display:flex;flex-direction:column;gap:8px;flex:1;padding:20px 22px 22px;border-top:1px solid var(--stone)}
+.product .pk{font-family:var(--label);font-weight:500;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--taupe)}
+.product h3{font-size:1.3rem}
+.product .go{margin-top:auto;padding-top:10px;font-family:var(--label);font-weight:500;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--bronze-deep)}
+.product .go::after{content:" \2192";transition:margin .3s}
+.product:hover .go{color:var(--bronze)}
+.product:focus-visible{outline:2px solid var(--bronze);outline-offset:3px}
+@media (max-width:900px){.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.product .ptxt{padding:16px}.product h3{font-size:1.1rem}.product .go{font-size:.66rem;letter-spacing:.12em}}
+@media (max-width:360px){.products{grid-template-columns:1fr}}
 .shop.page-shop{background:var(--porcelain)}
 .page .dark p,.page .dark .lede{color:var(--mist)}
 .phero img.ring{width:96px;height:96px;aspect-ratio:1;object-fit:contain;order:0}
@@ -479,9 +487,9 @@ section.doors{padding-block:clamp(40px,6vw,72px);border-bottom:1px solid var(--s
 @media (max-width:420px){.cv-grid{grid-template-columns:1fr}}
 
 /* /videos: free YouTube videos in rows of 3, each loads the player only when tapped */
-.vgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 32px}
-@media (max-width:960px){.vgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:600px){.vgrid{grid-template-columns:1fr}}
+.vidgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 32px}
+@media (max-width:960px){.vidgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.vidgrid{grid-template-columns:1fr}}
 .vcard{margin:0;display:grid;gap:14px;align-content:start}
 .vplay,.vcard iframe{display:block;width:100%;aspect-ratio:16/9;border:0;padding:0;background:var(--stone)}
 .vplay{position:relative;cursor:pointer;overflow:hidden}
@@ -498,3 +506,11 @@ section.doors{padding-block:clamp(40px,6vw,72px);border-bottom:1px solid var(--s
 .vsoon{display:grid;place-items:center;width:100%;aspect-ratio:16/9;border:1px solid var(--stone);background:var(--porcelain);font-family:var(--label);font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--smoke)}
 .fp-form{max-width:420px;margin-bottom:8px}
 form[data-fitpass][hidden]{display:none}
+/* Homepage "Free videos" teaser: links to /videos, same card look */
+.freevids{background:var(--porcelain)}
+.fv-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
+.vcard.fv{text-decoration:none;color:inherit}
+.vcard.fv .vplay{display:block}
+.vcard.fv h3{font-size:1.25rem}
+.vcard.fv:hover img{transform:scale(1.03)}
+.vcard.fv:focus-visible{outline:2px solid var(--bronze);outline-offset:4px}
