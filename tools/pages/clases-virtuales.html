@@ -10,11 +10,11 @@ lang: es
       <span class="label">Clases virtuales · Fitpass</span>
       <h1>Tu clase, cuando tú puedas</h1>
       <p class="lede">Escribe el código que viene en las instrucciones de tu reserva en Fitpass y elige tu clase.</p>
-      <form id="cv-form" class="fstack" autocomplete="off">
+      <form id="cv-form" data-fitpass="cv-clases" class="fstack" autocomplete="off">
         <label for="cv-code" class="label" style="color:var(--bronze-deep)">Código de acceso</label>
         <input id="cv-code" name="code" type="text" required inputmode="text" autocapitalize="none" spellcheck="false" placeholder="Tu código">
         <button class="btn btn-bronze" type="submit">Entrar</button>
-        <p id="cv-msg" class="ok" role="status" aria-live="polite"></p>
+        <p class="ok" role="status" aria-live="polite"></p>
       </form>
     </div>
   </div>
@@ -23,7 +23,7 @@ lang: es
 <section class="alt" id="cv-clases" hidden>
   <div class="wrap">
     <div class="shead"><span class="label">Elige tu clase</span><h2>Clases de hoy</h2></div>
-    <div class="cv-grid" id="cv-grid"></div>
+    <div class="vgrid"></div>
     <p class="disc">Tu asistencia cuenta cuando reservas en Fitpass. Escucha a tu cuerpo y adapta cualquier ejercicio; si tienes alguna condición médica, consulta antes con tu médico.</p>
   </div>
 </section>
@@ -37,46 +37,4 @@ lang: es
   </div>
 </section>
 
-<script>
-(function () {
-  var form = document.getElementById("cv-form"), msg = document.getElementById("cv-msg"),
-      box = document.getElementById("cv-clases"), grid = document.getElementById("cv-grid");
-  function show(videos) {
-    grid.innerHTML = "";
-    videos.forEach(function (v) {
-      var card = document.createElement("div"); card.className = "cv-card";
-      if (v.youtube) {
-        var f = document.createElement("iframe");
-        f.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(v.youtube) + "?rel=0&modestbranding=1";
-        f.title = v.title; f.loading = "lazy"; f.allowFullscreen = true;
-        f.allow = "accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen";
-        card.appendChild(f);
-      } else {
-        var s = document.createElement("div"); s.className = "cv-soon"; s.textContent = "Próximamente";
-        card.appendChild(s);
-      }
-      var h = document.createElement("h3"); h.textContent = v.title; card.appendChild(h);
-      var p = document.createElement("p"); p.textContent = v.minutes + " min"; card.appendChild(p);
-      grid.appendChild(card);
-    });
-    box.hidden = false;
-  }
-  function unlock(code, quiet) {
-    msg.textContent = quiet ? "" : "Revisando…";
-    return fetch("/api/clases", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ code: code }) })
-      .then(function (r) { return r.json(); })
-      .then(function (d) {
-        if (!d.ok) throw new Error("no");
-        try { sessionStorage.setItem("cv-code", code); } catch (e) {}
-        msg.textContent = ""; form.hidden = true; show(d.videos);
-        box.scrollIntoView({ behavior: "smooth" });
-      })
-      .catch(function () {
-        try { sessionStorage.removeItem("cv-code"); } catch (e) {}
-        if (!quiet) msg.textContent = "Ese código no es. Revisa las instrucciones de tu reserva en Fitpass o escríbeme a paty@patystraffon.com.";
-      });
-  }
-  form.addEventListener("submit", function (e) { e.preventDefault(); unlock(document.getElementById("cv-code").value, false); });
-  try { var saved = sessionStorage.getItem("cv-code"); if (saved) unlock(saved, true); } catch (e) {}
-})();
-</script>
+<script src="/fitpass.js"></script>

@@ -13,3 +13,6 @@
 /retreat       /retreats     301
 /events        /retreats     301
 /books         /shop         301
+/youtube       /videos       301
+/watch         /videos       301
+/free-videos   /videos       301
