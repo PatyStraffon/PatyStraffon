@@ -5,7 +5,7 @@
   var form = document.querySelector("form[data-fitpass]");
   if (!form) return;
   var input = form.querySelector("input"), msg = form.querySelector("[role=status]"),
-      box = document.getElementById(form.dataset.fitpass), grid = box.querySelector(".vgrid");
+      box = document.getElementById(form.dataset.fitpass), grid = box.querySelector(".vidgrid");
   function card(v) {
     var fig = document.createElement("figure"); fig.className = "vcard"; fig.lang = "es";
     if (v.youtube) {

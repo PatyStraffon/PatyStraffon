@@ -487,9 +487,9 @@ section.doors{padding-block:clamp(40px,6vw,72px);border-bottom:1px solid var(--s
 @media (max-width:420px){.cv-grid{grid-template-columns:1fr}}
 
 /* /videos: free YouTube videos in rows of 3, each loads the player only when tapped */
-.vgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 32px}
-@media (max-width:960px){.vgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:600px){.vgrid{grid-template-columns:1fr}}
+.vidgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 32px}
+@media (max-width:960px){.vidgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.vidgrid{grid-template-columns:1fr}}
 .vcard{margin:0;display:grid;gap:14px;align-content:start}
 .vplay,.vcard iframe{display:block;width:100%;aspect-ratio:16/9;border:0;padding:0;background:var(--stone)}
 .vplay{position:relative;cursor:pointer;overflow:hidden}
@@ -506,3 +506,11 @@ section.doors{padding-block:clamp(40px,6vw,72px);border-bottom:1px solid var(--s
 .vsoon{display:grid;place-items:center;width:100%;aspect-ratio:16/9;border:1px solid var(--stone);background:var(--porcelain);font-family:var(--label);font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--smoke)}
 .fp-form{max-width:420px;margin-bottom:8px}
 form[data-fitpass][hidden]{display:none}
+/* Homepage "Free videos" teaser: links to /videos, same card look */
+.freevids{background:var(--porcelain)}
+.fv-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
+.vcard.fv{text-decoration:none;color:inherit}
+.vcard.fv .vplay{display:block}
+.vcard.fv h3{font-size:1.25rem}
+.vcard.fv:hover img{transform:scale(1.03)}
+.vcard.fv:focus-visible{outline:2px solid var(--bronze);outline-offset:4px}
