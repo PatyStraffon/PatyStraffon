@@ -9,9 +9,9 @@ import type { Config } from "@netlify/functions"
 // (UCFrUJPf12CYtRzeG0rYekVg). Paste each ID (the part after watch?v=) into
 // `youtube`; an empty ID shows "Próximamente". `thumb` is site/images/videos/<thumb>.jpg.
 const VIDEOS = [
-  { title: "Dance cardio y core", minutes: 55, thumb: "fp1", youtube: "" },
-  { title: "Dance cardio para principiantes", minutes: 55, thumb: "fp2", youtube: "" },
-  { title: "Core esencial", minutes: 22, thumb: "fp3", youtube: "" },
+  { title: "Dance cardio y core", minutes: 55, thumb: "fp1", youtube: "JetISFO7kgE" },
+  { title: "Dance cardio para principiantes", minutes: 55, thumb: "fp2", youtube: "sQv7naRA4is" },
+  { title: "Core esencial", minutes: 22, thumb: "fp3", youtube: "jm7S0Y1z22g" },
   { title: "Brazos y espalda", minutes: 28, thumb: "10", youtube: "zqe8XKVans8" },
 ]
 
