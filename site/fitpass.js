@@ -1,6 +1,6 @@
-/* FitPass classes: a form with data-fitpass sends the code from the FitPass booking to
-   /api/clases. Only a correct code returns the unlisted videos, which are drawn in rows
-   of 3 like the rest of /videos. Used on /videos and /clases-virtuales. */
+/* FitPass classes on /clases-virtuales (the only page with videos): the form sends the code
+   from the FitPass booking to /api/clases. Only a correct code returns the unlisted videos,
+   drawn in rows of 3. */
 (function () {
   var form = document.querySelector("form[data-fitpass]");
   if (!form) return;

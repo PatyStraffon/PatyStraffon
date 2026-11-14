@@ -23,7 +23,6 @@ NAV = [
     ("m-program", "/m-program", "The M Program"),
     ("programs", "/#programs", "Programs"),
     ("thrive", "/thrive", "THRIVE"),
-    ("videos", "/videos", "Videos"),
     ("retreats", "/retreats", "Retreats"),
     ("shop", "/shop", "Shop"),
     ("journal", "/journal", "Journal"),
@@ -105,56 +104,8 @@ SCHEMA = {
     },
 }
 
-VIDEOS = ROOT / "tools" / "videos.json"
-UPLOADED = "2026-11-13"
-
-def video_list():
-    """Sections of public videos that have a YouTube ID (cards without one are skipped)."""
-    out = []
-    for sec in json.loads(VIDEOS.read_text())["sections"]:
-        vids = [v for v in sec["videos"] if v.get("youtube")]
-        if vids:
-            out.append({**sec, "videos": vids})
-    return out
-
-def videos_html():
-    parts = []
-    for i, sec in enumerate(video_list()):
-        cards = []
-        for v in sec["videos"]:
-            lang = ' lang="es"' if v.get("lang") == "es" else ""
-            t = html.escape(v["title"])
-            cards.append(f"""      <figure class="vcard"{lang}>
-        <button class="vplay" type="button" data-yt="{html.escape(v['youtube'])}" data-title="{t}" aria-label="Play video: {t}">
-          <img src="/images/videos/{v['n']}.jpg" alt="" width="960" height="540" loading="lazy" decoding="async"><span class="vicon" aria-hidden="true"></span>
-        </button>
-        <figcaption><h3>{t}</h3><p class="vmeta">{html.escape(v['meta'])}</p><p>{html.escape(v['desc'])}</p></figcaption>
-      </figure>""")
-        alt = ' class="alt"' if i % 2 == 0 else ""
-        parts.append(f"""<section{alt}>
-  <div class="wrap">
-    <div class="shead"><span class="label">{html.escape(sec['label'])}</span><h2>{html.escape(sec['title'])}</h2><p>{html.escape(sec['intro'])}</p></div>
-    <div class="vidgrid">
-{chr(10).join(cards)}
-    </div>
-  </div>
-</section>""")
-    return "\n\n".join(parts)
-
-def videos_schema():
-    items = []
-    for sec in video_list():
-        for v in sec["videos"]:
-            items.append({"@type": "VideoObject", "name": v["title"], "description": v["desc"],
-                          "thumbnailUrl": f"{BASE}/images/videos/{v['n']}.jpg", "uploadDate": UPLOADED,
-                          "embedUrl": f"https://www.youtube-nocookie.com/embed/{v['youtube']}",
-                          "contentUrl": f"https://www.youtube.com/watch?v={v['youtube']}",
-                          **({"inLanguage": "es"} if v.get("lang") == "es" else {"inLanguage": "en"})})
-    return {"@type": "CollectionPage", "url": BASE + "/videos", "name": "Free videos",
-            "publisher": ORG, "hasPart": items}
-
 CRUMB = {"about": "About", "m-program": "The M Program", "thrive": "THRIVE", "retreats": "Retreats",
-         "shop": "Shop", "videos": "Free videos", "journal": "Journal", "privacy": "Privacy policy", "terms": "Terms & refunds"}
+         "shop": "Shop", "journal": "Journal", "privacy": "Privacy policy", "terms": "Terms & refunds"}
 
 def breadcrumb_tag(name, path):
     """Home > Page breadcrumb for Google results (indexable pages only)."""
@@ -232,7 +183,6 @@ def build_article(a):
     <div class="ctas"><a class="btn btn-bronze" href="/#guide">Start the free course</a><a class="btn btn-line" href="/m-program">See The M Program</a></div>
   </div>
 </section>
-<script src="/video-cards.js"></script>
 """
     out = SITE / "journal" / (a["slug"] + ".html")
     out.parent.mkdir(exist_ok=True)
@@ -240,7 +190,7 @@ def build_article(a):
     return out
 
 def schema_tag(name):
-    data = videos_schema() if name == "videos" else SCHEMA.get(name)
+    data = SCHEMA.get(name)
     if not data:
         return ""
     return ('<script type="application/ld+json">\n'
@@ -277,7 +227,7 @@ FOOTER = """</main>
     <div class="fgrid">
       <div style="display:grid;gap:16px;align-content:start"><img loading="lazy" decoding="async" src="/images/dfe5c3f6f0.png" alt="PSW monogram"><p style="font-size:.95rem;color:var(--mist)">Mind. Metabolism. Movement.<br>Grounded in science, rooted in calm. Wellness for midlife.</p></div>
       <div><h4>Programs</h4><ul><li><a href="/m-program">The M Program</a></li><li><a href="/#programs">All programs</a></li><li><a href="/shop">Shop</a></li></ul></div>
-      <div><h4>Explore</h4><ul><li><a href="/thrive">THRIVE</a></li><li><a href="/videos">Free videos</a></li><li><a href="/retreats">Retreats</a></li><li><a href="/journal">Journal</a></li><li><a href="/about">About</a></li></ul></div>
+      <div><h4>Explore</h4><ul><li><a href="/thrive">THRIVE</a></li><li><a href="/retreats">Retreats</a></li><li><a href="/journal">Journal</a></li><li><a href="/about">About</a></li></ul></div>
       <div><h4>Connect</h4><ul><li><a href="/#guide">Free 5 Levers course</a></li><li><a href="https://www.instagram.com/thrivewithpaty/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.youtube.com/channel/UCFrUJPf12CYtRzeG0rYekVg" target="_blank" rel="noopener">YouTube</a></li><li><a href="https://patystraffonwellness.substack.com/" target="_blank" rel="noopener">Substack</a></li><li><a href="mailto:paty@patystraffon.com">Contact</a></li></ul></div>
     </div>
     <div class="fine"><span>© 2026 Paty Straffon Wellness</span><span><a href="/privacy" style="color:inherit">Privacy</a> · <a href="/terms" style="color:inherit">Terms &amp; refunds</a></span></div>
@@ -298,8 +248,6 @@ def build(src):
                        lang=meta.get("lang", "en"), locale="es_MX" if meta.get("lang") == "es" else "en_CA")
     if "{{journal}}" in body:
         body = body.replace("{{journal}}", journal_cards())
-    if "{{videos}}" in body:
-        body = body.replace("{{videos}}", videos_html())
     page += header(meta.get("nav", "")) + body.strip() + "\n" + FOOTER
     out = SITE / (src.stem + ".html")
     out.write_text(page)

@@ -507,13 +507,6 @@ section.doors{padding-block:clamp(40px,6vw,72px);border-bottom:1px solid var(--s
 .fp-form{max-width:420px;margin-bottom:8px}
 form[data-fitpass][hidden]{display:none}
 /* Homepage "Free videos" teaser: links to /videos, same card look */
-.freevids{background:var(--porcelain)}
-.fv-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
-.vcard.fv{text-decoration:none;color:inherit}
-.vcard.fv .vplay{display:block}
-.vcard.fv h3{font-size:1.25rem}
-.vcard.fv:hover img{transform:scale(1.03)}
-.vcard.fv:focus-visible{outline:2px solid var(--bronze);outline-offset:4px}
 
 /* Journal articles */
 .post p{font-size:.98rem;color:var(--smoke)}
@@ -536,8 +529,6 @@ form[data-fitpass][hidden]{display:none}
 .prose strong{font-weight:700;color:var(--onyx)}
 .prose em{color:var(--bronze-deep)}
 .prose .note{font-size:.92rem;color:var(--smoke);border-top:1px solid var(--stone);padding-top:18px;margin-top:2.2em}
-.vembed .vplay,.vembed iframe{display:block;width:100%;aspect-ratio:16/9;border:0;padding:0;background:var(--stone);position:relative;cursor:pointer;overflow:hidden}
-.vembed .vplay img{width:100%;height:100%;object-fit:cover}
 .post.feat{grid-column:1/-1;grid-template-columns:1.25fr 1fr;gap:clamp(24px,4vw,56px);align-items:center}
 .post.feat img{aspect-ratio:16/10}
 .post.feat .ft{display:grid;gap:14px}
