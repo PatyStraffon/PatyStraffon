@@ -14,7 +14,7 @@ const ALL = [
   { title: "Dance cardio para principiantes", minutes: 55, thumb: "fp2", file: "Newbie mali 2 ESP", youtube: "sQv7naRA4is" },
   { title: "Core esencial", minutes: 22, thumb: "fp3", file: "The Core ESP", youtube: "jm7S0Y1z22g" },
   { title: "Brazos y espalda", minutes: 28, thumb: "fp4", file: "Upper Body Sculpt 30min ESP", youtube: "zqe8XKVans8" },
-  { title: "Dance sculpt", minutes: 55, thumb: "fp5", file: "Dance Sculpt ESP", youtube: "" },
+  { title: "Dance sculpt", minutes: 55, thumb: "fp5", file: "Dance Sculpt ESP", youtube: "4KHx8tEw9LQ" },
 ]
 const VIDEOS = ALL.filter(v => v.youtube).map(({ file, ...v }) => v)
 
