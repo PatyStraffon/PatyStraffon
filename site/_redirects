@@ -4,8 +4,7 @@
 /home          /             301
 /index.html    /             301
 /contact       /about        301
-/blog          /#journal     301
-/journal       /#journal     301
+/blog          /journal      301
 /programs      /#programs    301
 /reset         /m-program    302
 /m-reset       /m-program    302
