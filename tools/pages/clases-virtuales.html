@@ -4,29 +4,47 @@ path: /clases-virtuales
 robots: noindex, nofollow
 lang: es
 ---
-<section class="phero">
-  <div class="wrap" style="grid-template-columns:1fr">
-    <div class="txt" style="max-width:680px">
+<section class="cv-hero">
+  <div class="wrap">
+    <div class="cv-intro">
       <span class="label">Clases virtuales · Fitpass</span>
-      <h1>Tu clase, cuando tú puedas</h1>
-      <p class="lede">Escribe el código que viene en las instrucciones de tu reserva en Fitpass para ver tus clases.</p>
-      <form id="cv-form" data-fitpass="cv-clases" class="fstack" autocomplete="off">
-        <label for="cv-code" class="label" style="color:var(--bronze-deep)">Código de acceso</label>
-        <input id="cv-code" name="code" type="text" required inputmode="text" autocapitalize="none" spellcheck="false" placeholder="Tu código">
-        <button class="btn btn-bronze" type="submit">Entrar</button>
-        <p class="ok" role="status" aria-live="polite"></p>
-      </form>
+      <h1>Tu clase, <em>cuando tú puedas</em></h1>
+      <p class="lede cv-locked">Escribe el código de tu reserva en Fitpass y elige tu clase. Fuerza, cardio de baile y respiración, guiadas por Paty.</p>
+      <p class="lede cv-open-only">¡Bienvenida! Elige tu clase, dale play y muévete a tu ritmo.</p>
+      <div class="cv-card cv-locked">
+        <img class="cv-mono" src="/images/dfe5c3f6f0.png" alt="" width="240" height="89">
+        <form id="cv-form" data-fitpass="cv-clases" autocomplete="off">
+          <label for="cv-code">Código de acceso</label>
+          <div class="cv-row">
+            <input id="cv-code" name="code" type="text" required inputmode="text" autocapitalize="none" spellcheck="false" placeholder="Tu código de Fitpass">
+            <button class="btn btn-bronze" type="submit">Entrar</button>
+          </div>
+          <p class="ok" role="status" aria-live="polite"></p>
+        </form>
+        <p class="cv-help">¿No encuentras tu código? Viene en las instrucciones de tu reserva. Si no lo ves, escríbeme a <a href="mailto:paty@patystraffon.com">paty@patystraffon.com</a>.</p>
+      </div>
+      <ol class="cv-steps cv-locked">
+        <li><span>1</span>Reserva tu clase en Fitpass</li>
+        <li><span>2</span>Escribe tu código aquí</li>
+        <li><span>3</span>Elige tu clase y dale play</li>
+      </ol>
     </div>
+    <figure class="cv-photo"><img src="/images/clases-hero.jpg" alt="Paty Straffon dando una clase de brazos y espalda" width="800" height="1000" decoding="async"></figure>
   </div>
 </section>
 
-<section class="alt" id="cv-clases" hidden>
+<section class="cv-classes" id="cv-clases" hidden>
   <div class="wrap">
-    <div class="shead"><span class="label">Elige tu clase</span><h2>Tus clases</h2></div>
-    <div class="vidgrid"></div>
+    <div class="cv-group" data-lang="es">
+      <div class="cv-ghead"><span class="label">Clases en español</span><h2>Muévete con Paty</h2></div>
+      <div class="vidgrid" data-lang="es"></div>
+    </div>
+    <div class="cv-group" data-lang="en">
+      <div class="cv-ghead"><span class="label">Clases en inglés</span><h2>In English</h2><p>Las mismas clases de Paty, guiadas en inglés. Sigue el movimiento: no necesitas entender cada palabra.</p></div>
+      <div class="vidgrid" data-lang="en"></div>
+    </div>
     <p class="disc">Tu asistencia cuenta cuando reservas en Fitpass. Escucha a tu cuerpo y adapta cualquier ejercicio; si tienes alguna condición médica, consulta antes con tu médico.</p>
   </div>
 </section>
-
 
 <script src="/fitpass.js"></script>

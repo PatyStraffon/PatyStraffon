@@ -1,34 +1,32 @@
 /* FitPass classes on /clases-virtuales (the only page with videos): the form sends the code
    from the FitPass booking to /api/clases. Only a correct code returns the unlisted videos,
-   drawn in rows of 3. */
+   drawn in rows of 3, grouped by language (Spanish first, then English). */
 (function () {
   var form = document.querySelector("form[data-fitpass]");
   if (!form) return;
   var input = form.querySelector("input"), msg = form.querySelector("[role=status]"),
-      box = document.getElementById(form.dataset.fitpass), grid = box.querySelector(".vidgrid");
+      box = document.getElementById(form.dataset.fitpass);
   function card(v) {
-    var fig = document.createElement("figure"); fig.className = "vcard"; fig.lang = "es";
-    if (v.youtube) {
-      var b = document.createElement("button"); b.type = "button"; b.className = "vplay";
-      b.setAttribute("aria-label", "Ver la clase: " + v.title);
-      var img = document.createElement("img"); img.alt = ""; img.width = 960; img.height = 540; img.loading = "lazy";
-      img.src = "/images/videos/" + (v.thumb || "fp1") + ".jpg";
-      var ic = document.createElement("span"); ic.className = "vicon"; ic.setAttribute("aria-hidden", "true");
-      b.appendChild(img); b.appendChild(ic);
-      b.addEventListener("click", function () {
-        var f = document.createElement("iframe");
-        f.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(v.youtube) + "?autoplay=1&rel=0&modestbranding=1&playsinline=1";
-        f.title = v.title; f.allowFullscreen = true;
-        f.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen";
-        b.replaceWith(f);
-      });
-      fig.appendChild(b);
-    } else {
-      var s = document.createElement("div"); s.className = "vsoon"; s.textContent = "Próximamente"; fig.appendChild(s);
-    }
+    var lang = v.lang || "es";
+    var fig = document.createElement("figure"); fig.className = "vcard"; fig.lang = lang;
+    var b = document.createElement("button"); b.type = "button"; b.className = "vplay";
+    b.setAttribute("aria-label", (lang === "en" ? "Ver la clase en inglés: " : "Ver la clase: ") + v.title);
+    var img = document.createElement("img"); img.alt = ""; img.width = 960; img.height = 540; img.loading = "lazy";
+    img.src = "/images/videos/" + (v.thumb || "fp1") + ".jpg";
+    var ic = document.createElement("span"); ic.className = "vicon"; ic.setAttribute("aria-hidden", "true");
+    b.appendChild(img); b.appendChild(ic);
+    b.addEventListener("click", function () {
+      var f = document.createElement("iframe");
+      f.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(v.youtube) + "?autoplay=1&rel=0&modestbranding=1&playsinline=1";
+      f.title = v.title; f.allowFullscreen = true;
+      f.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen";
+      b.replaceWith(f);
+    });
+    fig.appendChild(b);
     var cap = document.createElement("figcaption");
     var h = document.createElement("h3"); h.textContent = v.title;
-    var m = document.createElement("p"); m.className = "vmeta"; m.textContent = v.minutes + " min · en español";
+    var m = document.createElement("p"); m.className = "vmeta";
+    m.textContent = v.minutes + " min · " + (lang === "en" ? "en inglés" : "en español");
     cap.appendChild(h); cap.appendChild(m); fig.appendChild(cap);
     return fig;
   }
@@ -39,8 +37,14 @@
       .then(function (d) {
         if (!d.ok) throw new Error("no");
         try { sessionStorage.setItem("cv-code", code); } catch (e) {}
-        msg.textContent = ""; form.hidden = true;
-        grid.innerHTML = ""; d.videos.forEach(function (v) { grid.appendChild(card(v)); });
+        msg.textContent = "";
+        box.querySelectorAll(".vidgrid").forEach(function (g) { g.innerHTML = ""; });
+        d.videos.forEach(function (v) {
+          var g = box.querySelector('.vidgrid[data-lang="' + (v.lang || "es") + '"]') || box.querySelector(".vidgrid");
+          g.appendChild(card(v));
+        });
+        box.querySelectorAll(".cv-group").forEach(function (grp) { grp.hidden = !grp.querySelector(".vcard"); });
+        document.body.classList.add("cv-open");
         box.hidden = false;
         if (!quiet) box.scrollIntoView({ behavior: "smooth" });
       })
