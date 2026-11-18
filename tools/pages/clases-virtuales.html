@@ -13,19 +13,29 @@ lang: es
       <p class="lede cv-open-only">¡Bienvenida! Elige tu clase, dale play y muévete a tu ritmo.</p>
       <div class="cv-card cv-locked">
         <img class="cv-mono" src="/images/dfe5c3f6f0.png" alt="" width="240" height="89">
-        <form id="cv-form" data-fitpass="cv-clases" autocomplete="off">
+        <form id="cv-form" data-fitpass="cv-clases" novalidate>
+          <div class="cv-me">
+            <div><label for="cv-name">Tu nombre</label><input id="cv-name" name="name" type="text" autocomplete="name" required maxlength="80" placeholder="Nombre y apellido"></div>
+            <div><label for="cv-email">Tu correo</label><input id="cv-email" name="email" type="email" autocomplete="email" required maxlength="200" placeholder="tu@correo.com"></div>
+          </div>
+          <p class="cv-hello" hidden>Hola, <b></b> · <button type="button" class="cv-notme">¿No eres tú?</button></p>
           <label for="cv-code">Código de acceso</label>
           <div class="cv-row">
-            <input id="cv-code" name="code" type="text" required inputmode="text" autocapitalize="none" spellcheck="false" placeholder="Tu código de Fitpass">
+            <input id="cv-code" name="code" type="text" required autocomplete="off" inputmode="text" autocapitalize="none" spellcheck="false" placeholder="Tu código de Fitpass">
             <button class="btn btn-bronze" type="submit">Entrar</button>
           </div>
+          <label class="cv-check"><input id="cv-optin" name="optin" type="checkbox"> <span>Quiero recibir ideas y novedades de Paty por correo.</span></label>
           <p class="ok" role="status" aria-live="polite"></p>
+          <p class="cv-privacy">Usamos tu nombre y correo para registrar tu acceso a las clases. Solo te escribiremos si marcas la casilla, y puedes darte de baja cuando quieras. <a href="/privacy#fitpass">Aviso de privacidad</a>.</p>
+        </form>
+        <form name="fitpass-miembros" data-netlify="true" netlify-honeypot="company" hidden style="display:none" aria-hidden="true">
+          <input name="nombre"><input name="correo"><input name="acepta_correos"><input name="company">
         </form>
         <p class="cv-help">¿No encuentras tu código? Viene en las instrucciones de tu reserva. Si no lo ves, escríbeme a <a href="mailto:paty@patystraffon.com">paty@patystraffon.com</a>.</p>
       </div>
       <ol class="cv-steps cv-locked">
         <li><span>1</span>Reserva tu clase en Fitpass</li>
-        <li><span>2</span>Escribe tu código aquí</li>
+        <li><span>2</span>Escribe tus datos y tu código</li>
         <li><span>3</span>Elige tu clase y dale play</li>
       </ol>
     </div>

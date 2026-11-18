@@ -556,6 +556,18 @@ form[data-fitpass][hidden]{display:none}
 .cv-row .btn{cursor:pointer}
 .cv-card .ok:empty{display:none}
 .cv-help{margin:0;font-size:.9rem;color:var(--smoke)}
+.cv-me{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 12px}
+.cv-me[hidden],.cv-card label.cv-check[hidden]{display:none}
+.cv-me div{display:grid;gap:8px;min-width:0}
+.cv-me input{width:100%;border-color:var(--mist);background:var(--porcelain)}
+.cv-me input:focus{border-color:var(--bronze);background:#fff}
+.cv-hello{margin:0;font-size:.98rem;color:#4A413B}
+.cv-notme{background:none;border:0;padding:0;font:inherit;font-size:.9rem;color:var(--bronze-deep);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.cv-card label.cv-check{display:flex;gap:10px;align-items:flex-start;font-family:var(--body);font-weight:400;font-size:.95rem;letter-spacing:0;text-transform:none;color:#4A413B;cursor:pointer}
+.cv-check input{width:18px;height:18px;margin:2px 0 0;flex:none;accent-color:var(--bronze)}
+.cv-privacy{margin:0;font-size:.8rem;line-height:1.5;color:var(--smoke)}
+.cv-privacy a{color:var(--bronze-deep)}
+@media (max-width:520px){.cv-me{grid-template-columns:1fr}}
 .cv-help a{color:var(--bronze-deep)}
 .cv-steps{list-style:none;margin:8px 0 0;padding:16px 0 0;border-top:1px solid var(--stone);display:flex;flex-wrap:wrap;gap:10px 28px;font-family:var(--label);font-weight:500;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--smoke)}
 .cv-steps li{display:flex;align-items:center;gap:10px}
