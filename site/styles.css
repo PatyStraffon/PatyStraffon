@@ -592,3 +592,27 @@ body.cv-open .cv-photo{max-width:340px}
   .cv-photo{order:-1;justify-self:center;max-width:300px}
   body.cv-open .cv-photo{display:none}
 }
+
+/* ---------- branded app (App Store + Google Play) ---------- */
+.app-icon{border-radius:22%;box-shadow:0 1px 3px rgba(0,0,0,.18);flex:none}
+.badges{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.badges a{display:inline-block;line-height:0;border-radius:8px}
+.badges a:focus-visible{outline:2px solid var(--bronze);outline-offset:3px}
+.badges img{height:48px;width:auto}
+.fapp{margin-top:48px;padding-top:32px;border-top:1px solid rgba(217,207,196,.2);display:flex;align-items:center;gap:20px 24px;flex-wrap:wrap}
+.fapp-txt{flex:1 1 260px}
+.fapp-txt h4{font-family:var(--label);font-weight:500;font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;color:var(--taupe);margin:0 0 8px}
+.fapp-txt p{margin:0;font-size:1.02rem;color:var(--mist)}
+.fapp .badges img{box-shadow:0 0 0 1px rgba(217,207,196,.35);border-radius:8px}
+.app-get{margin-top:32px;padding:24px;background:var(--porcelain);border:1px solid var(--stone);display:flex;gap:20px;align-items:flex-start}
+.app-get p{margin:0 0 16px;font-size:1.08rem;color:var(--onyx)}
+@media (max-width:520px){.app-get{flex-direction:column}.fapp .app-icon{width:56px;height:56px}}
+.split .app-get img{aspect-ratio:auto;object-fit:contain}
+.split .app-get .app-icon{width:72px;height:72px}
+.split .app-get .badges img{width:auto;height:48px}
+.app-note{margin:12px 0 0;font-size:.98rem;line-height:1.5}
+.fapp .app-note{flex-basis:100%;color:var(--mist)}
+.app-get .app-note{color:#4A413B}
+.app-get p.app-note{margin:14px 0 0;font-size:.98rem}
+.fapp .app-note{margin-top:-4px;padding-left:88px}
+@media (max-width:720px){.fapp .app-note{padding-left:0}}
