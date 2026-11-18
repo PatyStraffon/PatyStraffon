@@ -598,3 +598,9 @@ body.cv-open .cv-photo{max-width:340px}
 .split .app-get img{aspect-ratio:auto;object-fit:contain}
 .split .app-get .app-icon{width:72px;height:72px}
 .split .app-get .badges img{width:auto;height:48px}
+.app-note{margin:12px 0 0;font-size:.98rem;line-height:1.5}
+.fapp .app-note{flex-basis:100%;color:var(--mist)}
+.app-get .app-note{color:#4A413B}
+.app-get p.app-note{margin:14px 0 0;font-size:.98rem}
+.fapp .app-note{margin-top:-4px;padding-left:88px}
+@media (max-width:720px){.fapp .app-note{padding-left:0}}
