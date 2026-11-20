@@ -47,6 +47,7 @@ HEAD = """<!DOCTYPE html>
 <meta property="og:image" content="{base}/images/og/{image}.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{image_alt}">
 <meta property="og:locale" content="{locale}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{title}">
@@ -63,6 +64,16 @@ HEAD = """<!DOCTYPE html>
 </head>
 <body class="page">
 """
+
+# What each share image shows (og:image:alt).
+OG_ALT = {
+    'home': 'Paty Straffon smiling on a sofa in a calm living room',
+    'about': 'Paty Straffon sitting on the floor of a bright living room',
+    'm-program': 'Paty Straffon balancing in a strength move with a weighted ball',
+    'retreats': 'Women on yoga mats beside a pool at a THRIVE wellness morning',
+    'shop': 'Paty Straffon at home with a bowl of strawberries',
+    'thrive': 'Paty Straffon mid-jump in a THRIVE dance cardio move',
+}
 
 PATY = {"@type": "Person", "@id": BASE + "/#paty", "name": "Paty Straffon", "url": BASE + "/about"}
 ORG = {"@type": "Organization", "@id": BASE + "/#business", "name": "Paty Straffon Wellness", "url": BASE + "/"}
@@ -167,7 +178,7 @@ def build_article(a):
         {"@type": "ListItem", "position": 3, "name": a["heading"], "item": BASE + path}]}
     tags = "".join('<script type="application/ld+json">\n' + json.dumps(x, ensure_ascii=False) + "\n</script>\n" for x in (schema, crumbs))
     page = HEAD.format(title=html.escape(a["title"]), desc=html.escape(a["description"]), url=BASE + path, base=BASE,
-                       image=a.get("og", "home"), robots="", schema=tags, lang="en", locale="en_CA")
+                       image=a.get("og", "home"), image_alt=html.escape(OG_ALT[a["og"]] if "og" in a else a["alt"]), robots="", schema=tags, lang="en", locale="en_CA")
     page = page.replace('<meta property="og:type" content="website">', '<meta property="og:type" content="article">')
     if "og" not in a:
         page = page.replace(f'{BASE}/images/og/home.jpg', BASE + a["image"])
@@ -234,7 +245,7 @@ FOOTER = """</main>
 <footer>
   <div class="wrap">
     <div class="fgrid">
-      <div style="display:grid;gap:16px;align-content:start"><img loading="lazy" decoding="async" src="/images/dfe5c3f6f0.png" alt="PSW monogram"><p style="font-size:.95rem;color:var(--mist)">Mind. Metabolism. Movement.<br>Grounded in science, rooted in calm. Wellness for midlife.</p></div>
+      <div style="display:grid;gap:16px;align-content:start"><img width="240" height="89" loading="lazy" decoding="async" src="/images/dfe5c3f6f0.png" alt="PSW monogram"><p style="font-size:.95rem;color:var(--mist)">Mind. Metabolism. Movement.<br>Grounded in science, rooted in calm. Wellness for midlife.</p></div>
       <div><h4>Programs</h4><ul><li><a href="/m-program">The M Program</a></li><li><a href="/#programs">All programs</a></li><li><a href="/shop">Shop</a></li></ul></div>
       <div><h4>Explore</h4><ul><li><a href="/thrive">THRIVE</a></li><li><a href="/retreats">Retreats</a></li><li><a href="/journal">Journal</a></li><li><a href="/about">About</a></li></ul></div>
       <div><h4>Connect</h4><ul><li><a href="/#guide">Free 5 Levers course</a></li><li><a href="https://www.instagram.com/thrivewithpaty/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.youtube.com/channel/UCFrUJPf12CYtRzeG0rYekVg" target="_blank" rel="noopener">YouTube</a></li><li><a href="https://patystraffonwellness.substack.com/" target="_blank" rel="noopener">Substack</a></li><li><a href="mailto:paty@patystraffon.com">Contact</a></li></ul></div>
@@ -253,7 +264,7 @@ def build(src):
     meta = dict(line.split(": ", 1) for line in meta_txt.strip().splitlines())
     robots = f'<meta name="robots" content="{meta["robots"]}">\n' if "robots" in meta else ""
     page = HEAD.format(title=html.escape(meta["title"]), desc=html.escape(meta["description"]),
-                       url=BASE + meta["path"], base=BASE, image=meta.get("image", "home"),
+                       url=BASE + meta["path"], base=BASE, image=meta.get("image", "home"), image_alt=html.escape(OG_ALT[meta.get("image", "home")]),
                        robots=robots, schema=schema_tag(src.stem) + breadcrumb_tag(src.stem, meta["path"]),
                        lang=meta.get("lang", "en"), locale="es_MX" if meta.get("lang") == "es" else "en_CA")
     if "{{journal}}" in body:
