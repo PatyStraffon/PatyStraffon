@@ -46,7 +46,7 @@
       <li><a href="/journal">Journal</a></li>
       <li><a href="/about">About</a></li>
     </ul>
-    <a class="btn btn-bronze" href="/#guide">Free guide</a>
+    <a data-goal="free-guide" class="btn btn-bronze" href="/#guide">Free guide</a>
     <button class="burger" type="button" aria-expanded="false" aria-controls="mnav"><span class="bars" aria-hidden="true"><span></span><span></span><span></span></span><span class="btxt">Menu</span></button>
   </div>
   <nav class="mnav" id="mnav" aria-label="Menu" hidden>
@@ -57,7 +57,7 @@
     <a href="/shop">Shop</a>
     <a href="/journal">Journal</a>
     <a href="/about">About</a>
-    <a class="btn btn-bronze" href="/#guide">Free guide</a>
+    <a data-goal="free-guide" class="btn btn-bronze" href="/#guide">Free guide</a>
   </nav>
 </header>
 <main id="main">
@@ -65,7 +65,7 @@
   <div class="wrap shead" style="margin:0 auto 0 0">
     <span class="label">Policies</span>
     <h1 style="font-size:clamp(2.4rem,5vw,3.6rem)">Privacy <em class="b">policy</em></h1>
-    <p class="lede" style="font-size:1.15rem">Last updated November 18, 2026. Your privacy matters. This page explains what we collect, why, and the choices you have.</p>
+    <p class="lede" style="font-size:1.15rem">Last updated November 20, 2026. Your privacy matters. This page explains what we collect, why, and the choices you have.</p>
   </div>
 </section>
 
@@ -76,6 +76,12 @@
     <p><strong>When you buy:</strong> your name, email and order details. Card payments are handled by our payment providers; we never see your full card number.</p>
     <p><strong>In the programs:</strong> the details you share in the Paty Straffon app, such as goals, check-ins and progress, so Paty can coach you.</p>
     <p><strong>When you browse:</strong> basic technical information, such as your browser and the pages you visit, which our hosting provider uses to keep the site running and secure.</p>
+
+    <h2 id="visits">How we count visits</h2>
+    <p>To learn which pages help and where readers lose interest, the site counts visits itself. No cookies, no outside analytics company, no advertising tracker.</p>
+    <p><strong>What is counted:</strong> the pages you open, how far down you read, the parts of a page you reach, how long the page is on your screen, which buttons you click, when you send a form, the site or campaign link that brought you here, and whether you use a phone, tablet or computer.</p>
+    <p><strong>What is not:</strong> your name, email or IP address, and no browser fingerprint. Nothing is sold or shared. These counts are never linked to the email you give us in a form.</p>
+    <p><strong>How it works:</strong> your browser keeps two random numbers, one for this visit and one to recognize a return visit. Clearing your browser's site data removes them. The counts are stored with our hosting provider, Netlify.</p>
 
     <h2 id="fitpass">Clases virtuales para Fitpass</h2>
     <p lang="es">Cuando entras a las clases virtuales con tu código de Fitpass, te pedimos tu nombre y tu correo. Los usamos para registrar tu acceso a las clases y para saber quién las usa. Solo te enviaremos correos con ideas y novedades si marcas la casilla, y puedes darte de baja en cualquier momento con el enlace de cada correo. Tu navegador recuerda tus datos para que la próxima vez solo escribas el código. Guardamos estos datos en Netlify (formularios del sitio) y, si aceptas recibir correos, en Flodesk. Para ver, corregir o borrar tus datos, o retirar tu consentimiento, escríbenos a <a href="mailto:paty@patystraffon.com">paty@patystraffon.com</a>.</p>
@@ -88,7 +94,7 @@
     <h2>Who helps us</h2>
     <p>We use trusted services to run the business, and they process your information only for that purpose:</p>
     <ul class="incl" style="grid-template-columns:1fr">
-      <li><span><strong>Netlify</strong>: website hosting and sign-up forms</span></li>
+      <li><span><strong>Netlify</strong>: website hosting, sign-up forms and our visit counts</span></li>
       <li><span><strong>Flodesk</strong>: our email list and newsletter</span></li>
       <li><span><strong>Trainerize</strong>: the Paty Straffon coaching app and program checkout</span></li>
       <li><span><strong>Stripe</strong> and <strong>Payhip</strong>: payments and ebook delivery</span></li>
@@ -124,5 +130,6 @@
   </div>
 </footer>
 <script src="/site.js"></script>
+<script src="/funnel.js" defer></script>
 </body>
 </html>

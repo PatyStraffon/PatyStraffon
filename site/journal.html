@@ -46,7 +46,7 @@
       <li><a href="/journal" aria-current="page">Journal</a></li>
       <li><a href="/about">About</a></li>
     </ul>
-    <a class="btn btn-bronze" href="/#guide">Free guide</a>
+    <a data-goal="free-guide" class="btn btn-bronze" href="/#guide">Free guide</a>
     <button class="burger" type="button" aria-expanded="false" aria-controls="mnav"><span class="bars" aria-hidden="true"><span></span><span></span><span></span></span><span class="btxt">Menu</span></button>
   </div>
   <nav class="mnav" id="mnav" aria-label="Menu" hidden>
@@ -57,11 +57,11 @@
     <a href="/shop">Shop</a>
     <a href="/journal" aria-current="page">Journal</a>
     <a href="/about">About</a>
-    <a class="btn btn-bronze" href="/#guide">Free guide</a>
+    <a data-goal="free-guide" class="btn btn-bronze" href="/#guide">Free guide</a>
   </nav>
 </header>
 <main id="main">
-<section class="phero">
+<section data-section="hero" class="phero">
   <div class="wrap" style="grid-template-columns:1fr">
     <div class="txt" style="max-width:720px">
       <span class="label">The Journal</span>
@@ -71,7 +71,7 @@
   </div>
 </section>
 
-<section class="alt" style="padding-top:clamp(48px,6vw,80px)">
+<section data-section="articles" class="alt" style="padding-top:clamp(48px,6vw,80px)">
   <div class="wrap">
     <div class="jgrid">
       <a class="post feat" href="/journal/perimenopause-weight-gain"><img loading="lazy" decoding="async" src="/images/m-program-hero.jpg" alt=""><div class="ft"><span class="k">Metabolism · November 13, 2026</span><h3>Why am I gaining weight in perimenopause when I&#x27;m doing everything right?</h3><p>You eat well, you move, you&#x27;re disciplined, and the scale still creeps up. It isn&#x27;t a willpower problem. It&#x27;s a strategy problem.</p><span class="go">Read the article</span></div></a>
@@ -79,9 +79,9 @@
   </div>
 </section>
 
-<section>
+<section data-section="substack">
   <div class="wrap">
-    <div class="jtop"><div class="shead" style="margin:0"><span class="label">Also on Substack</span><h2>More from the journal</h2></div><a class="btn btn-line" href="https://patystraffonwellness.substack.com/" target="_blank" rel="noopener">Subscribe on Substack</a></div>
+    <div class="jtop"><div class="shead" style="margin:0"><span class="label">Also on Substack</span><h2>More from the journal</h2></div><a data-goal="substack" class="btn btn-line" href="https://patystraffonwellness.substack.com/" target="_blank" rel="noopener">Subscribe on Substack</a></div>
     <div class="jgrid">
       <a class="post" href="https://patystraffonwellness.substack.com/p/the-nervous-system-nobody-mentions" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="/images/breath-floor.jpg" alt=""><span class="k">Nervous system</span><h3>The Nervous System Nobody Mentions in Fitness Advice</h3></a>
       <a class="post" href="https://patystraffonwellness.substack.com/p/the-m-method-of-eating-protein-first" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="/images/strawberries-living-room.jpg" alt=""><span class="k">Nutrition</span><h3>The M Method of Eating: Protein First, Calories Last</h3></a>
@@ -90,12 +90,12 @@
   </div>
 </section>
 
-<section class="cta">
+<section data-section="cta" class="cta">
   <div class="wrap">
     <span class="label">Free mini course</span>
     <h2>The 5 Levers of <em class="b">midlife strength</em></h2>
     <p>Four minutes a lesson: sleep, protein, strategic carbs, exercise, and fueling and recovery. Then your personal results.</p>
-    <div class="ctas"><a class="btn btn-bronze" href="/#guide">Start the free course</a></div>
+    <div class="ctas"><a data-goal="free-guide" class="btn btn-bronze" href="/#guide">Start the free course</a></div>
   </div>
 </section>
 </main>
@@ -116,5 +116,6 @@
   </div>
 </footer>
 <script src="/site.js"></script>
+<script src="/funnel.js" defer></script>
 </body>
 </html>

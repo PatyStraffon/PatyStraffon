@@ -67,7 +67,7 @@
       <li><a href="/journal">Journal</a></li>
       <li><a href="/about">About</a></li>
     </ul>
-    <a class="btn btn-bronze" href="/#guide">Free guide</a>
+    <a data-goal="free-guide" class="btn btn-bronze" href="/#guide">Free guide</a>
     <button class="burger" type="button" aria-expanded="false" aria-controls="mnav"><span class="bars" aria-hidden="true"><span></span><span></span><span></span></span><span class="btxt">Menu</span></button>
   </div>
   <nav class="mnav" id="mnav" aria-label="Menu" hidden>
@@ -78,11 +78,11 @@
     <a href="/shop" aria-current="page">Shop</a>
     <a href="/journal">Journal</a>
     <a href="/about">About</a>
-    <a class="btn btn-bronze" href="/#guide">Free guide</a>
+    <a data-goal="free-guide" class="btn btn-bronze" href="/#guide">Free guide</a>
   </nav>
 </header>
 <main id="main">
-<section class="shop" id="books">
+<section data-section="books" class="shop" id="books">
   <div class="wrap">
     <div class="shead"><span class="label">Shop</span><h1 style="font-size:clamp(2.6rem,5.6vw,4.3rem)">Books &amp; <em class="b">Paty's picks</em></h1><p class="lede" style="font-size:1.2rem">Everything to support the 5 Levers: Paty's books and the same gear and supplements built into The M Program.</p></div>
     <div class="books">
@@ -102,7 +102,7 @@
   </div>
 </section>
 
-<section class="page-shop" style="padding-top:0">
+<section data-section="picks" class="page-shop" style="padding-top:0">
   <div class="wrap">
     <div class="cat" id="equipment"><div style="display:grid;gap:10px"><span class="label">Equipment</span><h2>Equipment</h2></div><p>The same simple gear used in The M Program.</p></div>
     <div class="products">
@@ -130,12 +130,12 @@
   </div>
 </section>
 
-<section class="cta" id="book-waitlist">
+<section data-section="book-waitlist" class="cta" id="book-waitlist">
   <div class="wrap">
     <span class="label">Coming soon</span>
     <h2>Be first to get the <em class="b">new books</em></h2>
     <p>Join the list for The M Program Book and the Supplements ebook.</p>
-    <form name="book-waitlist" method="POST" data-netlify="true" netlify-honeypot="company" data-ok="bok" novalidate style="width:min(100%,520px)">
+    <form name="book-waitlist" data-goal-form="book-list" method="POST" data-netlify="true" netlify-honeypot="company" data-ok="bok" novalidate style="width:min(100%,520px)">
       <input type="hidden" name="form-name" value="book-waitlist"><p hidden><label>Company <input name="company"></label></p>
       <label for="bemail" class="label" style="position:absolute;left:-9999px">Email</label>
       <input id="bemail" name="email" type="email" placeholder="Your email" required autocomplete="email">
@@ -163,5 +163,6 @@
   </div>
 </footer>
 <script src="/site.js"></script>
+<script src="/funnel.js" defer></script>
 </body>
 </html>

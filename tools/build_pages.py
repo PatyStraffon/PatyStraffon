@@ -6,6 +6,7 @@ Each file in tools/pages/ holds one page body, preceded by a small header:
     path: /m-program
     nav: m-program
     image: m-program        (optional; a 1200x630 file in site/images/og/, default home)
+    goal: purchase          (optional; reaching the page counts as this goal in the visit counter)
     robots: noindex         (optional)
     lang: es                (optional; default en)
     ---
@@ -146,6 +147,14 @@ def journal_cards():
             cards.append(f"""      <a class="post" href="/journal/{a['slug']}">{img}<span class="k">{k}</span><h3>{html.escape(a['heading'])}</h3><p>{html.escape(a['excerpt'])}</p></a>""")
     return "\n".join(cards)
 
+def article_sections(body):
+    """Mark the opening and each heading of an article for the visit counter (how far readers get)."""
+    def mark(m):
+        name = re.sub(r"[^a-z0-9]+", "-", re.sub(r"<[^>]+>", "", m.group(1)).lower()).strip("-")[:40]
+        return f'<h2 data-section="{name}">{m.group(1)}</h2>'
+    body = re.sub(r"<h2>(.*?)</h2>", mark, body)
+    return re.sub(r"<p>", '<p data-section="opening">', body, count=1)
+
 def build_article(a):
     path = "/journal/" + a["slug"]
     schema = {"@context": "https://schema.org", "@type": "BlogPosting", "headline": a["heading"],
@@ -171,16 +180,16 @@ def build_article(a):
   </div>
   <figure class="wrap post-hero"><img src="{a['image']}" alt="{html.escape(a['alt'])}" decoding="async"></figure>
   <div class="wrap"><div class="prose">
-{a['body'].strip()}
+{article_sections(a['body'].strip())}
   </div></div>
 </article>
 
-<section class="cta">
+<section data-section="cta" class="cta">
   <div class="wrap">
     <span class="label">Free mini course</span>
     <h2>The 5 Levers of <em class="b">midlife strength</em></h2>
     <p>Four minutes a lesson, then your personal results. The same levers that power The M Program.</p>
-    <div class="ctas"><a class="btn btn-bronze" href="/#guide">Start the free course</a><a class="btn btn-line" href="/m-program">See The M Program</a></div>
+    <div class="ctas"><a data-goal="free-guide" class="btn btn-bronze" href="/#guide">Start the free course</a><a data-goal="explore-m-program" class="btn btn-line" href="/m-program">See The M Program</a></div>
   </div>
 </section>
 """
@@ -210,12 +219,12 @@ def header(current):
     <ul>
 {chr(10).join(items)}
     </ul>
-    <a class="btn btn-bronze" href="/#guide">Free guide</a>
+    <a data-goal="free-guide" class="btn btn-bronze" href="/#guide">Free guide</a>
     <button class="burger" type="button" aria-expanded="false" aria-controls="mnav"><span class="bars" aria-hidden="true"><span></span><span></span><span></span></span><span class="btxt">Menu</span></button>
   </div>
   <nav class="mnav" id="mnav" aria-label="Menu" hidden>
 {chr(10).join(mitems)}
-    <a class="btn btn-bronze" href="/#guide">Free guide</a>
+    <a data-goal="free-guide" class="btn btn-bronze" href="/#guide">Free guide</a>
   </nav>
 </header>
 <main id="main">
@@ -234,6 +243,7 @@ FOOTER = """</main>
   </div>
 </footer>
 <script src="/site.js"></script>
+<script src="/funnel.js" defer></script>
 </body>
 </html>
 """
@@ -248,6 +258,8 @@ def build(src):
                        lang=meta.get("lang", "en"), locale="es_MX" if meta.get("lang") == "es" else "en_CA")
     if "{{journal}}" in body:
         body = body.replace("{{journal}}", journal_cards())
+    if "goal" in meta:  # a page that counts as a conversion when reached, e.g. /thank-you after a payment
+        page = page.replace('<body class="page">', f'<body class="page" data-goal-page="{meta["goal"]}">')
     page += header(meta.get("nav", "")) + body.strip() + "\n" + FOOTER
     out = SITE / (src.stem + ".html")
     out.write_text(page)
