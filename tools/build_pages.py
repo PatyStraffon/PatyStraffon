@@ -130,6 +130,26 @@ def breadcrumb_tag(name, path):
 
 JOURNAL = ROOT / "tools" / "journal"
 
+def img_size(src):
+    """Width and height of a JPEG or PNG under site/, read from the file header (no extra libraries)."""
+    data = (ROOT / "site" / src.lstrip("/")).read_bytes()
+    if data[:8] == b"\x89PNG\r\n\x1a\n":
+        return int.from_bytes(data[16:20], "big"), int.from_bytes(data[20:24], "big")
+    i = 2
+    while i < len(data):
+        if data[i] != 0xFF:
+            i += 1
+            continue
+        marker = data[i + 1]
+        if marker in (0xC0, 0xC1, 0xC2):
+            return int.from_bytes(data[i + 7:i + 9], "big"), int.from_bytes(data[i + 5:i + 7], "big")
+        i += 2 + int.from_bytes(data[i + 2:i + 4], "big")
+    raise ValueError("no size found for " + src)
+
+def wh(src):
+    w, h = img_size(src)
+    return f'width="{w}" height="{h}" '
+
 def read_page(src):
     meta_txt, body = src.read_text().split("\n---\n", 1)
     return dict(line.split(": ", 1) for line in meta_txt.strip().splitlines()), body
@@ -151,7 +171,7 @@ def journal_cards():
     cards = []
     for i, a in enumerate(articles()):
         k = f"{html.escape(a['kicker'])} · {nice_date(a['date'])}"
-        img = f'<img loading="lazy" decoding="async" src="{a["image"]}" alt="">'
+        img = f'<img {wh(a["image"])}loading="lazy" decoding="async" src="{a["image"]}" alt="">'
         if i == 0:
             cards.append(f"""      <a class="post feat" href="/journal/{a['slug']}">{img}<div class="ft"><span class="k">{k}</span><h3>{html.escape(a['heading'])}</h3><p>{html.escape(a['excerpt'])}</p><span class="go">Read the article</span></div></a>""")
         else:
@@ -189,7 +209,7 @@ def build_article(a):
     <h1>{html.escape(a['heading'])}</h1>
     <p class="byline">By <a href="/about">Paty Straffon</a> · Menopause coach · <time datetime="{a['date']}">{nice_date(a['date'])}</time></p>
   </div>
-  <figure class="wrap post-hero"><img src="{a['image']}" alt="{html.escape(a['alt'])}" decoding="async"></figure>
+  <figure class="wrap post-hero"><img {wh(a['image'])}src="{a['image']}" alt="{html.escape(a['alt'])}" decoding="async"></figure>
   <div class="wrap"><div class="prose">
 {article_sections(a['body'].strip())}
   </div></div>
@@ -241,7 +261,7 @@ def header(current):
 <main id="main">
 """
 
-FOOTER = """</main>
+FOOTER_TEMPLATE = """</main>
 <footer>
   <div class="wrap">
     <div class="fgrid">
@@ -250,7 +270,7 @@ FOOTER = """</main>
       <div><h4>Explore</h4><ul><li><a href="/thrive">THRIVE</a></li><li><a href="/retreats">Retreats</a></li><li><a href="/journal">Journal</a></li><li><a href="/about">About</a></li></ul></div>
       <div><h4>Connect</h4><ul><li><a href="/#guide">Free 5 Levers course</a></li><li><a href="https://www.instagram.com/thrivewithpaty/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.youtube.com/channel/UCFrUJPf12CYtRzeG0rYekVg" target="_blank" rel="noopener">YouTube</a></li><li><a href="https://patystraffonwellness.substack.com/" target="_blank" rel="noopener">Substack</a></li><li><a href="mailto:paty@patystraffon.com">Contact</a></li></ul></div>
     </div>
-    <div class="fine"><span>© 2026 Paty Straffon Wellness</span><span><a href="/privacy" style="color:inherit">Privacy</a> · <a href="/terms" style="color:inherit">Terms &amp; refunds</a></span></div>
+{fapp}    <div class="fine"><span>© 2026 Paty Straffon Wellness</span><span><a href="/privacy" style="color:inherit">Privacy</a> · <a href="/terms" style="color:inherit">Terms &amp; refunds</a></span></div>
   </div>
 </footer>
 <script src="/site.js"></script>
@@ -258,6 +278,17 @@ FOOTER = """</main>
 </body>
 </html>
 """
+
+# The app download block in the footer (PR #25), in English and in Spanish for lang: es pages.
+FAPP = {
+    "en": '    <div class="fapp">\n      <img class="app-icon" loading="lazy" decoding="async" src="/images/app/psw-app-icon.png" alt="Paty Straffon Wellness app icon" width="64" height="64">\n      <div class="fapp-txt"><h4>The Paty Straffon Wellness app</h4><p>Your workouts, recipes and coaching with Paty, all in one place.</p></div>\n      <div class="badges"><a href="https://itunes.apple.com/app/id516851502?mt=8" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="/images/app/badge-app-store.svg" alt="Download on the App Store" width="144" height="48"></a><a href="https://play.google.com/store/apps/details?id=com.trainerize.patystraffonwellness" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="/images/app/badge-google-play.svg" alt="Get it on Google Play" width="162" height="48"></a></div><p class="app-note">On iPhone, download the Trainerize app and sign in. It opens straight into your Paty Straffon Wellness app.</p>\n    </div>\n',
+    "es": '    <div class="fapp">\n      <img class="app-icon" loading="lazy" decoding="async" src="/images/app/psw-app-icon.png" alt="Paty Straffon Wellness app icon" width="64" height="64">\n      <div class="fapp-txt"><h4>La app Paty Straffon Wellness</h4><p>Tus entrenamientos, recetas y coaching con Paty, en un solo lugar.</p></div>\n      <div class="badges"><a href="https://itunes.apple.com/app/id516851502?mt=8" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="/images/app/badge-app-store-es.svg" alt="Descárgalo en el App Store" width="144" height="48"></a><a href="https://play.google.com/store/apps/details?id=com.trainerize.patystraffonwellness" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="/images/app/badge-google-play-es.svg" alt="Disponible en Google Play" width="162" height="48"></a></div><p class="app-note">En iPhone, descarga la app Trainerize e inicia sesión. Se abre directamente en tu app Paty Straffon Wellness.</p>\n    </div>\n',
+}
+FOOTER = FOOTER_TEMPLATE.format(fapp=FAPP["en"])
+
+def footer(lang="en"):
+    return FOOTER_TEMPLATE.format(fapp=FAPP.get(lang, FAPP["en"]))
+
 
 def build(src):
     meta_txt, body = src.read_text().split("\n---\n", 1)
@@ -271,7 +302,7 @@ def build(src):
         body = body.replace("{{journal}}", journal_cards())
     if "goal" in meta:  # a page that counts as a conversion when reached, e.g. /thank-you after a payment
         page = page.replace('<body class="page">', f'<body class="page" data-goal-page="{meta["goal"]}">')
-    page += header(meta.get("nav", "")) + body.strip() + "\n" + FOOTER
+    page += header(meta.get("nav", "")) + body.strip() + "\n" + footer(meta.get("lang", "en"))
     out = SITE / (src.stem + ".html")
     out.write_text(page)
     return out
