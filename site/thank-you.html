@@ -63,8 +63,8 @@
 <section class="alt" style="padding-block:clamp(48px,7vw,96px)">
   <div class="wrap shead" style="margin:0 auto 0 0">
     <span class="label">You're in</span>
-    <h1 style="font-size:clamp(2.4rem,5vw,3.6rem)">Thank you, <em class="b">welcome</em></h1>
-    <p class="lede" style="font-size:1.15rem">Your payment went through. A confirmation is on its way to your inbox, and I'll be in touch soon with your next steps. If nothing arrives within an hour, check your spam folder or write to <a href="mailto:paty@patystraffon.com">paty@patystraffon.com</a>.</p>
+    <h1 id="ty-h" style="font-size:clamp(2.4rem,5vw,3.6rem)">Thank you, <em class="b">welcome</em></h1>
+    <p id="ty-p" class="lede" style="font-size:1.15rem">Your payment went through. A confirmation is on its way to your inbox, and I'll be in touch soon with your next steps. If nothing arrives within an hour, check your spam folder or write to <a href="mailto:paty@patystraffon.com">paty@patystraffon.com</a>.</p>
   </div>
 </section>
 
@@ -75,6 +75,26 @@
     <div class="ctas"><a class="btn btn-bronze" href="/journal">Read the journal</a> <a class="btn btn-line" href="/">Home</a></div>
   </div>
 </section>
+
+<script>
+// The Stripe Payment Links send buyers here with ?plan=...; show the message for what they bought.
+(function(){
+  var M={
+    founding:["You're in. Welcome to <em class=\"b\">The M Program</em>","Your founding spot in the group starting Monday, January 25 is saved. In the next 24 hours you'll get an email from me with a short intake form and your invitation to the app. Until then, nothing to do. Maybe a walk."],
+    regular:["You're in. Welcome to <em class=\"b\">The M Program</em>","Your spot in the group starting Monday, January 25 is saved. In the next 24 hours you'll get an email from me with a short intake form and your invitation to the app. Until then, nothing to do. Maybe a walk."],
+    plan3:["You're in. Welcome to <em class=\"b\">The M Program</em>","Your spot in the group starting Monday, January 25 is saved, with three monthly payments; they stop after the third. In the next 24 hours you'll get an email from me with a short intake form and your invitation to the app."],
+    "private":["You're in. Welcome to <em class=\"b\">The M Program + Private</em>","Your spot in the January 25 group and your three private sessions are saved. In the next 24 hours I'll email you the intake form, your app invitation and a link to book our first private session."],
+    deposit:["Your founding spot is <em class=\"b\">held</em>","Thank you. Your deposit holds the founding price for the group starting Monday, January 25. I'll email you the link for the balance of CAD $947 before January 15. Nothing else to do for now."],
+    momentum:["Welcome to <em class=\"b\">M Momentum</em>","Your app stays open and your next workouts are on their way. Watch your inbox for this month's group check-in date."],
+    "momentum-private":["Welcome to <em class=\"b\">M Momentum + Private</em>","Your app stays open and your next workouts are on their way. I'll email you to book this month's private session and share the group check-in date."]
+  };
+  var k=new URLSearchParams(location.search).get("plan"), m=k&&M[k];
+  if(!m)return;
+  document.getElementById("ty-h").innerHTML=m[0];
+  var p=document.getElementById("ty-p");
+  p.innerHTML=m[1]+' If nothing arrives within an hour, check your spam folder or write to <a href="mailto:paty@patystraffon.com">paty@patystraffon.com</a>.';
+})();
+</script>
 </main>
 <footer>
   <div class="wrap">
