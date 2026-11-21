@@ -122,9 +122,17 @@ async function endAfterThree(subscriptionId: string, startedSec: number) {
 
 export default async (req: Request) => {
   if (req.method !== "POST") return new Response("Method not allowed", { status: 405 })
-  const secret = Netlify.env.get("STRIPE_WEBHOOK_SECRET") || ""
+  // Trim: a secret pasted into Netlify often carries a stray space or line break.
+  const secret = (Netlify.env.get("STRIPE_WEBHOOK_SECRET") || "").trim()
   const payload = await req.text()
-  if (!secret || !(await verify(payload, req.headers.get("stripe-signature") || "", secret))) {
+  const header = req.headers.get("stripe-signature") || ""
+  if (!secret) {
+    console.error("STRIPE_WEBHOOK_SECRET is not set for Functions (or the site was not redeployed after setting it)")
+    return new Response("Webhook secret missing on the site", { status: 500 })
+  }
+  if (!secret.startsWith("whsec_")) console.error("STRIPE_WEBHOOK_SECRET does not start with whsec_; it is probably the wrong value")
+  if (!(await verify(payload, header, secret))) {
+    console.error(`Bad signature: header ${header ? "present" : "missing"}, secret length ${secret.length}`)
     return new Response("Bad signature", { status: 400 })
   }
   const event = JSON.parse(payload)
