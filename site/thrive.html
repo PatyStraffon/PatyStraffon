@@ -15,6 +15,7 @@
 <meta property="og:image" content="https://patystraffon.com/images/og/thrive.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Paty Straffon mid-jump in a THRIVE dance cardio move">
 <meta property="og:locale" content="en_CA">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="THRIVE: Somatic Cardio for Women | Paty Straffon">
@@ -65,7 +66,7 @@
       <li><a href="/journal">Journal</a></li>
       <li><a href="/about">About</a></li>
     </ul>
-    <a class="btn btn-bronze" href="/#guide">Free guide</a>
+    <a data-goal="free-guide" class="btn btn-bronze" href="/#guide">Free guide</a>
     <button class="burger" type="button" aria-expanded="false" aria-controls="mnav"><span class="bars" aria-hidden="true"><span></span><span></span><span></span></span><span class="btxt">Menu</span></button>
   </div>
   <nav class="mnav" id="mnav" aria-label="Menu" hidden>
@@ -76,25 +77,25 @@
     <a href="/shop">Shop</a>
     <a href="/journal">Journal</a>
     <a href="/about">About</a>
-    <a class="btn btn-bronze" href="/#guide">Free guide</a>
+    <a data-goal="free-guide" class="btn btn-bronze" href="/#guide">Free guide</a>
   </nav>
 </header>
 <main id="main">
-<section class="phero dark">
+<section data-section="hero" class="phero dark">
   <div class="wrap">
     <div class="txt">
-      <img class="ring" src="/images/3f03bbb7e6.png" alt="THRIVE ring">
+      <img width="300" height="299" class="ring" src="/images/3f03bbb7e6.png" alt="THRIVE ring">
       <span class="label">THRIVE Movement Method</span>
       <h1>Cardio. Strength. Breath.</h1>
       <p class="lede">A music-driven, somatic cardio experience that blends strength, dance and breath with mindful presence. Created by Paty for women.</p>
       <div class="facts"><span>55 minutes</span><span>Live at events &amp; retreats</span><span>All levels</span></div>
-      <div class="ctas"><a class="btn btn-light" href="#experience">Experience THRIVE</a><a class="btn btn-light" href="#teach">Teach THRIVE</a></div>
+      <div class="ctas"><a data-goal="experience" class="btn btn-light" href="#experience">Experience THRIVE</a><a data-goal="apply" class="btn btn-light" href="#teach">Teach THRIVE</a></div>
     </div>
-    <img loading="lazy" decoding="async" src="/images/thrive-breath.jpg" alt="Paty moving with eyes closed, one hand on her chest" style="object-position:62% center">
+    <img width="1400" height="933" loading="lazy" decoding="async" src="/images/thrive-breath.jpg" alt="Paty moving with eyes closed, one hand on her chest" style="object-position:62% center">
   </div>
 </section>
 
-<section class="dark" style="padding-top:0">
+<section data-section="intro" class="dark" style="padding-top:0">
   <div class="wrap">
     <div class="shead"><span class="label">The class</span><h2 style="color:var(--porcelain)">An hour for your body, mind and nervous system</h2></div>
     <div class="trio">
@@ -105,7 +106,7 @@
   </div>
 </section>
 
-<section>
+<section data-section="testimonials">
   <div class="wrap qgrid">
     <div class="pquote"><p>“So much more than a workout. It feels like a one-hour journey for your nervous system, mind and body. Every time I walk out, I feel lighter, calmer, stronger and completely reset.”</p><span>Anonymous · THRIVE client, Google review</span></div>
     <div class="pquote"><p>“A perfect combination of cardio, light strength training and mindfulness. Every time I walked out feeling energized, grounded, and looking forward to the next session.”</p><span>Fernanda · THRIVE</span></div>
@@ -113,19 +114,19 @@
   </div>
 </section>
 
-<section class="alt" id="experience">
+<section data-section="experience" class="alt" id="experience">
   <div class="wrap split">
-    <img loading="lazy" decoding="async" src="/images/thrive-jump.jpg" alt="Paty mid-jump in a bright studio" style="aspect-ratio:4/3">
+    <img width="1400" height="933" loading="lazy" decoding="async" src="/images/thrive-jump.jpg" alt="Paty mid-jump in a bright studio" style="aspect-ratio:4/3">
     <div class="txt">
       <span class="label">Experience THRIVE</span>
       <h2>Join a <em class="b">live class</em></h2>
       <p>THRIVE now happens live at events and retreats. Move together with a small group of women, then stay for breathwork, good food and connection.</p>
-      <div><a class="btn btn-bronze" href="/retreats">See upcoming events</a></div>
+      <div><a data-goal="see-events" class="btn btn-bronze" href="/retreats">See upcoming events</a></div>
     </div>
   </div>
 </section>
 
-<section class="dark" id="teach">
+<section data-section="teach" class="dark" id="teach">
   <div class="wrap split">
     <div class="txt">
       <span class="label">Teach THRIVE</span>
@@ -140,7 +141,7 @@
     </div>
     <div class="txt">
       <h3 style="color:var(--porcelain)">Apply for the next group</h3>
-      <form class="fstack" name="thrive-mentorship" method="POST" data-netlify="true" netlify-honeypot="company" data-ok="tok" novalidate>
+      <form class="fstack" name="thrive-mentorship" data-goal-form="mentorship" method="POST" data-netlify="true" netlify-honeypot="company" data-ok="tok" novalidate>
         <input type="hidden" name="form-name" value="thrive-mentorship"><p hidden><label>Company <input name="company"></label></p>
         <label class="label" for="tname">Your name</label><input id="tname" name="name" required autocomplete="name">
         <label class="label" for="temail">Email</label><input id="temail" name="email" type="email" required autocomplete="email">
@@ -153,19 +154,19 @@
   </div>
 </section>
 
-<section class="cta">
+<section data-section="cta" class="cta">
   <div class="wrap">
     <span class="label">Cardio. Strength. Breath.</span>
     <h2>Come move <em class="b">with us</em></h2>
     <p>The next THRIVE experience is at the January day retreat near Vancouver.</p>
-    <div class="ctas"><a class="btn btn-bronze" href="/retreats">See upcoming events</a></div>
+    <div class="ctas"><a data-goal="see-events" class="btn btn-bronze" href="/retreats">See upcoming events</a></div>
   </div>
 </section>
 </main>
 <footer>
   <div class="wrap">
     <div class="fgrid">
-      <div style="display:grid;gap:16px;align-content:start"><img loading="lazy" decoding="async" src="/images/dfe5c3f6f0.png" alt="PSW monogram"><p style="font-size:.95rem;color:var(--mist)">Mind. Metabolism. Movement.<br>Grounded in science, rooted in calm. Wellness for midlife.</p></div>
+      <div style="display:grid;gap:16px;align-content:start"><img width="240" height="89" loading="lazy" decoding="async" src="/images/dfe5c3f6f0.png" alt="PSW monogram"><p style="font-size:.95rem;color:var(--mist)">Mind. Metabolism. Movement.<br>Grounded in science, rooted in calm. Wellness for midlife.</p></div>
       <div><h4>Programs</h4><ul><li><a href="/m-program">The M Program</a></li><li><a href="/#programs">All programs</a></li><li><a href="/shop">Shop</a></li></ul></div>
       <div><h4>Explore</h4><ul><li><a href="/thrive">THRIVE</a></li><li><a href="/retreats">Retreats</a></li><li><a href="/journal">Journal</a></li><li><a href="/about">About</a></li></ul></div>
       <div><h4>Connect</h4><ul><li><a href="/#guide">Free 5 Levers course</a></li><li><a href="https://www.instagram.com/thrivewithpaty/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.youtube.com/channel/UCFrUJPf12CYtRzeG0rYekVg" target="_blank" rel="noopener">YouTube</a></li><li><a href="https://patystraffonwellness.substack.com/" target="_blank" rel="noopener">Substack</a></li><li><a href="mailto:paty@patystraffon.com">Contact</a></li></ul></div>
@@ -179,5 +180,6 @@
   </div>
 </footer>
 <script src="/site.js"></script>
+<script src="/funnel.js" defer></script>
 </body>
 </html>

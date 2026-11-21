@@ -15,6 +15,7 @@
 <meta property="og:image" content="https://patystraffon.com/images/og/home.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Paty Straffon smiling on a sofa in a calm living room">
 <meta property="og:locale" content="en_CA">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Page not found | Paty Straffon Wellness">
@@ -44,7 +45,7 @@
       <li><a href="/journal">Journal</a></li>
       <li><a href="/about">About</a></li>
     </ul>
-    <a class="btn btn-bronze" href="/#guide">Free guide</a>
+    <a data-goal="free-guide" class="btn btn-bronze" href="/#guide">Free guide</a>
     <button class="burger" type="button" aria-expanded="false" aria-controls="mnav"><span class="bars" aria-hidden="true"><span></span><span></span><span></span></span><span class="btxt">Menu</span></button>
   </div>
   <nav class="mnav" id="mnav" aria-label="Menu" hidden>
@@ -55,7 +56,7 @@
     <a href="/shop">Shop</a>
     <a href="/journal">Journal</a>
     <a href="/about">About</a>
-    <a class="btn btn-bronze" href="/#guide">Free guide</a>
+    <a data-goal="free-guide" class="btn btn-bronze" href="/#guide">Free guide</a>
   </nav>
 </header>
 <main id="main">
@@ -71,14 +72,14 @@
   <div class="wrap">
     <span class="label">Mind. Metabolism. Movement.</span>
     <h2>Where would you like <em class="b">to go?</em></h2>
-    <div class="ctas"><a class="btn btn-bronze" href="/">Home</a> <a class="btn btn-line" href="/m-program">The M Program</a> <a class="btn btn-line" href="/thrive">THRIVE</a> <a class="btn btn-line" href="/retreats">Retreats</a> <a class="btn btn-line" href="/#guide">Free 5 Levers course</a></div>
+    <div class="ctas"><a class="btn btn-bronze" href="/">Home</a> <a data-goal="explore-m-program" class="btn btn-line" href="/m-program">The M Program</a> <a class="btn btn-line" href="/thrive">THRIVE</a> <a data-goal="see-events" class="btn btn-line" href="/retreats">Retreats</a> <a data-goal="free-guide" class="btn btn-line" href="/#guide">Free 5 Levers course</a></div>
   </div>
 </section>
 </main>
 <footer>
   <div class="wrap">
     <div class="fgrid">
-      <div style="display:grid;gap:16px;align-content:start"><img loading="lazy" decoding="async" src="/images/dfe5c3f6f0.png" alt="PSW monogram"><p style="font-size:.95rem;color:var(--mist)">Mind. Metabolism. Movement.<br>Grounded in science, rooted in calm. Wellness for midlife.</p></div>
+      <div style="display:grid;gap:16px;align-content:start"><img width="240" height="89" loading="lazy" decoding="async" src="/images/dfe5c3f6f0.png" alt="PSW monogram"><p style="font-size:.95rem;color:var(--mist)">Mind. Metabolism. Movement.<br>Grounded in science, rooted in calm. Wellness for midlife.</p></div>
       <div><h4>Programs</h4><ul><li><a href="/m-program">The M Program</a></li><li><a href="/#programs">All programs</a></li><li><a href="/shop">Shop</a></li></ul></div>
       <div><h4>Explore</h4><ul><li><a href="/thrive">THRIVE</a></li><li><a href="/retreats">Retreats</a></li><li><a href="/journal">Journal</a></li><li><a href="/about">About</a></li></ul></div>
       <div><h4>Connect</h4><ul><li><a href="/#guide">Free 5 Levers course</a></li><li><a href="https://www.instagram.com/thrivewithpaty/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.youtube.com/channel/UCFrUJPf12CYtRzeG0rYekVg" target="_blank" rel="noopener">YouTube</a></li><li><a href="https://patystraffonwellness.substack.com/" target="_blank" rel="noopener">Substack</a></li><li><a href="mailto:paty@patystraffon.com">Contact</a></li></ul></div>
@@ -92,5 +93,6 @@
   </div>
 </footer>
 <script src="/site.js"></script>
+<script src="/funnel.js" defer></script>
 </body>
 </html>

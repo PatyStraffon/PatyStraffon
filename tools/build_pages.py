@@ -6,6 +6,7 @@ Each file in tools/pages/ holds one page body, preceded by a small header:
     path: /m-program
     nav: m-program
     image: m-program        (optional; a 1200x630 file in site/images/og/, default home)
+    goal: purchase          (optional; reaching the page counts as this goal in the visit counter)
     robots: noindex         (optional)
     lang: es                (optional; default en)
     ---
@@ -46,6 +47,7 @@ HEAD = """<!DOCTYPE html>
 <meta property="og:image" content="{base}/images/og/{image}.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{image_alt}">
 <meta property="og:locale" content="{locale}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{title}">
@@ -62,6 +64,16 @@ HEAD = """<!DOCTYPE html>
 </head>
 <body class="page">
 """
+
+# What each share image shows (og:image:alt).
+OG_ALT = {
+    'home': 'Paty Straffon smiling on a sofa in a calm living room',
+    'about': 'Paty Straffon sitting on the floor of a bright living room',
+    'm-program': 'Paty Straffon balancing in a strength move with a weighted ball',
+    'retreats': 'Women on yoga mats beside a pool at a THRIVE wellness morning',
+    'shop': 'Paty Straffon at home with a bowl of strawberries',
+    'thrive': 'Paty Straffon mid-jump in a THRIVE dance cardio move',
+}
 
 PATY = {"@type": "Person", "@id": BASE + "/#paty", "name": "Paty Straffon", "url": BASE + "/about"}
 ORG = {"@type": "Organization", "@id": BASE + "/#business", "name": "Paty Straffon Wellness", "url": BASE + "/"}
@@ -146,6 +158,14 @@ def journal_cards():
             cards.append(f"""      <a class="post" href="/journal/{a['slug']}">{img}<span class="k">{k}</span><h3>{html.escape(a['heading'])}</h3><p>{html.escape(a['excerpt'])}</p></a>""")
     return "\n".join(cards)
 
+def article_sections(body):
+    """Mark the opening and each heading of an article for the visit counter (how far readers get)."""
+    def mark(m):
+        name = re.sub(r"[^a-z0-9]+", "-", re.sub(r"<[^>]+>", "", m.group(1)).lower()).strip("-")[:40]
+        return f'<h2 data-section="{name}">{m.group(1)}</h2>'
+    body = re.sub(r"<h2>(.*?)</h2>", mark, body)
+    return re.sub(r"<p>", '<p data-section="opening">', body, count=1)
+
 def build_article(a):
     path = "/journal/" + a["slug"]
     schema = {"@context": "https://schema.org", "@type": "BlogPosting", "headline": a["heading"],
@@ -158,7 +178,7 @@ def build_article(a):
         {"@type": "ListItem", "position": 3, "name": a["heading"], "item": BASE + path}]}
     tags = "".join('<script type="application/ld+json">\n' + json.dumps(x, ensure_ascii=False) + "\n</script>\n" for x in (schema, crumbs))
     page = HEAD.format(title=html.escape(a["title"]), desc=html.escape(a["description"]), url=BASE + path, base=BASE,
-                       image=a.get("og", "home"), robots="", schema=tags, lang="en", locale="en_CA")
+                       image=a.get("og", "home"), image_alt=html.escape(OG_ALT[a["og"]] if "og" in a else a["alt"]), robots="", schema=tags, lang="en", locale="en_CA")
     page = page.replace('<meta property="og:type" content="website">', '<meta property="og:type" content="article">')
     if "og" not in a:
         page = page.replace(f'{BASE}/images/og/home.jpg', BASE + a["image"])
@@ -171,16 +191,16 @@ def build_article(a):
   </div>
   <figure class="wrap post-hero"><img src="{a['image']}" alt="{html.escape(a['alt'])}" decoding="async"></figure>
   <div class="wrap"><div class="prose">
-{a['body'].strip()}
+{article_sections(a['body'].strip())}
   </div></div>
 </article>
 
-<section class="cta">
+<section data-section="cta" class="cta">
   <div class="wrap">
     <span class="label">Free mini course</span>
     <h2>The 5 Levers of <em class="b">midlife strength</em></h2>
     <p>Four minutes a lesson, then your personal results. The same levers that power The M Program.</p>
-    <div class="ctas"><a class="btn btn-bronze" href="/#guide">Start the free course</a><a class="btn btn-line" href="/m-program">See The M Program</a></div>
+    <div class="ctas"><a data-goal="free-guide" class="btn btn-bronze" href="/#guide">Start the free course</a><a data-goal="explore-m-program" class="btn btn-line" href="/m-program">See The M Program</a></div>
   </div>
 </section>
 """
@@ -210,12 +230,12 @@ def header(current):
     <ul>
 {chr(10).join(items)}
     </ul>
-    <a class="btn btn-bronze" href="/#guide">Free guide</a>
+    <a data-goal="free-guide" class="btn btn-bronze" href="/#guide">Free guide</a>
     <button class="burger" type="button" aria-expanded="false" aria-controls="mnav"><span class="bars" aria-hidden="true"><span></span><span></span><span></span></span><span class="btxt">Menu</span></button>
   </div>
   <nav class="mnav" id="mnav" aria-label="Menu" hidden>
 {chr(10).join(mitems)}
-    <a class="btn btn-bronze" href="/#guide">Free guide</a>
+    <a data-goal="free-guide" class="btn btn-bronze" href="/#guide">Free guide</a>
   </nav>
 </header>
 <main id="main">
@@ -225,7 +245,7 @@ FOOTER = """</main>
 <footer>
   <div class="wrap">
     <div class="fgrid">
-      <div style="display:grid;gap:16px;align-content:start"><img loading="lazy" decoding="async" src="/images/dfe5c3f6f0.png" alt="PSW monogram"><p style="font-size:.95rem;color:var(--mist)">Mind. Metabolism. Movement.<br>Grounded in science, rooted in calm. Wellness for midlife.</p></div>
+      <div style="display:grid;gap:16px;align-content:start"><img width="240" height="89" loading="lazy" decoding="async" src="/images/dfe5c3f6f0.png" alt="PSW monogram"><p style="font-size:.95rem;color:var(--mist)">Mind. Metabolism. Movement.<br>Grounded in science, rooted in calm. Wellness for midlife.</p></div>
       <div><h4>Programs</h4><ul><li><a href="/m-program">The M Program</a></li><li><a href="/#programs">All programs</a></li><li><a href="/shop">Shop</a></li></ul></div>
       <div><h4>Explore</h4><ul><li><a href="/thrive">THRIVE</a></li><li><a href="/retreats">Retreats</a></li><li><a href="/journal">Journal</a></li><li><a href="/about">About</a></li></ul></div>
       <div><h4>Connect</h4><ul><li><a href="/#guide">Free 5 Levers course</a></li><li><a href="https://www.instagram.com/thrivewithpaty/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.youtube.com/channel/UCFrUJPf12CYtRzeG0rYekVg" target="_blank" rel="noopener">YouTube</a></li><li><a href="https://patystraffonwellness.substack.com/" target="_blank" rel="noopener">Substack</a></li><li><a href="mailto:paty@patystraffon.com">Contact</a></li></ul></div>
@@ -234,6 +254,7 @@ FOOTER = """</main>
   </div>
 </footer>
 <script src="/site.js"></script>
+<script src="/funnel.js" defer></script>
 </body>
 </html>
 """
@@ -243,11 +264,13 @@ def build(src):
     meta = dict(line.split(": ", 1) for line in meta_txt.strip().splitlines())
     robots = f'<meta name="robots" content="{meta["robots"]}">\n' if "robots" in meta else ""
     page = HEAD.format(title=html.escape(meta["title"]), desc=html.escape(meta["description"]),
-                       url=BASE + meta["path"], base=BASE, image=meta.get("image", "home"),
+                       url=BASE + meta["path"], base=BASE, image=meta.get("image", "home"), image_alt=html.escape(OG_ALT[meta.get("image", "home")]),
                        robots=robots, schema=schema_tag(src.stem) + breadcrumb_tag(src.stem, meta["path"]),
                        lang=meta.get("lang", "en"), locale="es_MX" if meta.get("lang") == "es" else "en_CA")
     if "{{journal}}" in body:
         body = body.replace("{{journal}}", journal_cards())
+    if "goal" in meta:  # a page that counts as a conversion when reached, e.g. /thank-you after a payment
+        page = page.replace('<body class="page">', f'<body class="page" data-goal-page="{meta["goal"]}">')
     page += header(meta.get("nav", "")) + body.strip() + "\n" + FOOTER
     out = SITE / (src.stem + ".html")
     out.write_text(page)

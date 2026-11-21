@@ -212,7 +212,7 @@ if (out) {
           <span class="label">A thank-you for taking the course</span>
           <p class="lv-offer-h">${offer.head}</p>
           <p>${offer.body}</p>
-          <form class="lv-claim" novalidate>
+          <form class="lv-claim" data-goal-form="offer" novalidate>
             <label for="lvce" class="sr">Email</label><input id="lvce" name="email" type="email" placeholder="Your email" required autocomplete="email" value="${esc(store.get("lvEmail"))}">
             <p hidden><label>Company <input name="company" tabindex="-1" autocomplete="off"></label></p>
             <button class="btn btn-bronze" type="submit">${offer.button}</button>
@@ -220,7 +220,7 @@ if (out) {
           <p class="lv-small">No payment today. I'll email you the details and your price before the group opens.</p>
           <p class="lv-claimed" hidden>${offer.claimed}</p>
         </div>
-        <div class="ctas"><a class="btn btn-line" href="/m-program">See the full program</a><button type="button" class="btn btn-line lv-print">Save or print my results</button></div>
+        <div class="ctas"><a data-goal="see-program" class="btn btn-line" href="/m-program">See the full program</a><button type="button" class="btn btn-line lv-print">Save or print my results</button></div>
       </div>
       <p class="lv-fine">This check-in is for education, not a diagnosis. Please talk to your doctor about any health concerns.</p>`;
     out.querySelector(".lv-print").onclick = () => window.print();
