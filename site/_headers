@@ -20,3 +20,7 @@
 /thank-you
   X-Robots-Tag: noindex, nofollow
   Cache-Control: no-store
+
+/intake
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store
