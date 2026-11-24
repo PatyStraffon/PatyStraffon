@@ -133,9 +133,10 @@ export const LEVERS = [
 // The code is filled in for her at Stripe checkout (LEVERS10 only works on the
 // regular link), so change it here, in Stripe and in the Flodesk email together.
 export const OFFER = { code: "LEVERS10", percent: 10, days: 7 };
-// Until the founding price closes, the results page offers it instead of the
-// 10%, which would cost more (CAD $1,347 vs $1,197).
-export const FOUNDING = { code: "FOUNDING", price: "CAD $1,197", until: "2026-12-16T00:00:00-08:00" };
+// Until the founding price closes (end of Thu Jan 14, 2027), the results page
+// offers it instead of the 10%, which would cost more (CAD $1,347 vs $1,197).
+// The $250 deposit that holds the founding price is offered until Dec 31.
+export const FOUNDING = { code: "FOUNDING", price: "CAD $1,197", until: "2027-01-15T00:00:00-08:00", depositUntil: "2027-01-01T00:00:00-08:00", ends: "January 14" };
 export const START = "Monday, January 25, 2027";
 // Stripe Payment Links (CAD), the same ones as in
 // "01 The M Program/marketing/07-checkout/stripe-payment-links.md".
