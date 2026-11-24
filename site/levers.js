@@ -171,12 +171,15 @@ if (out) {
     const res = results(r);
     const name = store.get("lvName");
     const founding = Date.now() < Date.parse(FOUNDING.until);
+    const deposit = Date.now() < Date.parse(FOUNDING.depositUntil);
     // Each button opens a Stripe Payment Link (see CHECKOUT in levers-data.js).
     const offer = founding ? {
       code: FOUNDING.code, plan: "founding", head: "Founding price: " + FOUNDING.price,
-      body: "The next group starts " + START + ". The founding price is for the first 10 women, until December 15.",
+      body: "The next group starts " + START + ". The founding price is for the first 10 women, until " + FOUNDING.ends + ".",
       button: "Join at the founding price",
-      alt: { plan: "deposit", text: "Not ready to pay it all today?", button: "Hold your founding spot with a CAD $250 deposit", after: "(the rest is due January 15)." } } : {
+      alt: deposit
+        ? { plan: "deposit", text: "Not ready to pay it all today?", button: "Hold your founding spot with a CAD $250 deposit", after: "(the rest is due January 15)." }
+        : { plan: "plan3", text: "Prefer to spread it out?", button: "Pay in 3 monthly payments of CAD $525", after: "(the regular price, in three parts)." } } : {
       code: OFFER.code, plan: "regular", promo: OFFER.code, head: OFFER.percent + "% off The M Program",
       body: "The next group starts " + START + ". Spots are limited so the group stays small. Join within " + OFFER.days + " days and your " + OFFER.percent + "% is yours: your code <strong>" + OFFER.code + "</strong> is already filled in at checkout.",
       button: "Join with " + OFFER.percent + "% off",
