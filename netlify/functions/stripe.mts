@@ -93,14 +93,19 @@ async function segmentIds(names: string[]) {
 async function addToFlodesk(email: string, name: string, segments: string[]) {
   const [first_name, ...rest] = (name || "").trim().split(/\s+/)
   const ids = await segmentIds(segments)
-  await json(await flodesk("/subscribers", {
+  const sub = await json(await flodesk("/subscribers", {
     method: "POST",
     body: JSON.stringify({ email, first_name: first_name || undefined, last_name: rest.join(" ") || undefined, segment_ids: ids }),
   }), "create or update subscriber")
-  // Make sure she is in the segments even if she was already on the list.
-  await json(await flodesk(`/subscribers/${encodeURIComponent(email)}/segments`, {
+  // Make sure she is in the segments even if she was already on the list. Flodesk answers
+  // 404 when this path names the subscriber by email, so use the id from the reply above.
+  // Not fatal: the call above already carries the segments.
+  const id = sub && sub.id ? String(sub.id) : ""
+  if (!id) { console.error(`no subscriber id in Flodesk's reply for ${email}`); return }
+  const res = await flodesk(`/subscribers/${encodeURIComponent(id)}/segments`, {
     method: "POST", body: JSON.stringify({ segment_ids: ids }),
-  }), "add to segments")
+  })
+  if (!res.ok) console.error(`add ${email} to segments: ${res.status} ${await res.text()}`)
 }
 
 // ---------- 3-payment plan: stop the subscription after the third monthly charge ----------
