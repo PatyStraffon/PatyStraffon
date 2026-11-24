@@ -465,10 +465,12 @@ section.doors{padding-block:clamp(40px,6vw,72px);border-bottom:1px solid var(--s
 .lv-claim{display:flex;flex-wrap:wrap;gap:10px}
 .lv-claim .btn{cursor:pointer}
 .lv-small{font-size:.92rem;color:var(--smoke)}
+.lv-alt{flex-basis:100%;font-size:.95rem;color:var(--smoke)}
+.lv-alt button{background:none;border:0;padding:0;font:inherit;color:var(--bronze-deep);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .lv-claimed{font-family:var(--display);font-size:1.15rem;color:var(--bronze-deep)}
 .lv-fine{font-size:.9rem;color:var(--smoke);margin:0}
 @media print{
-  header,footer,.skip,.lv-next-step .ctas,.lv-sent,.lv-claim,.lv-small{display:none!important}
+  header,footer,.skip,.lv-next-step .ctas,.lv-sent,.lv-claim,.lv-small,.lv-alt{display:none!important}
   body{font-size:12pt;background:#fff}
   section{padding:0!important}
   .lv-list li{break-inside:avoid;padding:12px 0}

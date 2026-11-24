@@ -1,7 +1,7 @@
 // The free 5 Levers course. On the homepage, the sign-up forms (pop-up and the
 // "Free guide" section) start the course inside the pop-up. On /my-levers the
 // same results are drawn from the link, so she can come back to them.
-import { STAGES, GOALS, LEVERS, OFFER, FOUNDING, START, encode, decode, results } from "/levers-data.js";
+import { STAGES, GOALS, LEVERS, OFFER, FOUNDING, START, CHECKOUT, encode, decode, results } from "/levers-data.js";
 
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 const store = {
@@ -171,13 +171,16 @@ if (out) {
     const res = results(r);
     const name = store.get("lvName");
     const founding = Date.now() < Date.parse(FOUNDING.until);
+    // Each button opens a Stripe Payment Link (see CHECKOUT in levers-data.js).
     const offer = founding ? {
-      code: FOUNDING.code, head: "Founding price: " + FOUNDING.price,
-      body: "The next group starts " + START + ". The founding price is for the first 10 women, until December 15. Save your spot and it's held for you.",
-      button: "Save my founding spot", claimed: "Your founding spot is saved. I'll be in touch before the group opens. Paty" } : {
-      code: OFFER.code, head: OFFER.percent + "% off The M Program",
-      body: "The next group starts " + START + ". Spots are limited so the group stays small. Save your spot within " + OFFER.days + " days and your " + OFFER.percent + "% is reserved. Your code: <strong>" + OFFER.code + "</strong>",
-      button: "Save my spot with " + OFFER.percent + "% off", claimed: "Your spot and your " + OFFER.percent + "% are saved. I'll be in touch before the group opens. Paty" };
+      code: FOUNDING.code, plan: "founding", head: "Founding price: " + FOUNDING.price,
+      body: "The next group starts " + START + ". The founding price is for the first 10 women, until December 15.",
+      button: "Join at the founding price",
+      alt: { plan: "deposit", text: "Not ready to pay it all today?", button: "Hold your founding spot with a CAD $250 deposit", after: "(the rest is due January 15)." } } : {
+      code: OFFER.code, plan: "regular", promo: OFFER.code, head: OFFER.percent + "% off The M Program",
+      body: "The next group starts " + START + ". Spots are limited so the group stays small. Join within " + OFFER.days + " days and your " + OFFER.percent + "% is yours: your code <strong>" + OFFER.code + "</strong> is already filled in at checkout.",
+      button: "Join with " + OFFER.percent + "% off",
+      alt: { plan: "plan3", text: "Prefer to spread it out?", button: "Pay in 3 monthly payments of CAD $525", after: "(without the " + OFFER.percent + "%)." } };
     out.innerHTML = `
       <div class="lv-head">
         <span class="label">Your 5 Levers results</span>
@@ -215,29 +218,40 @@ if (out) {
           <form class="lv-claim" data-goal-form="offer" novalidate>
             <label for="lvce" class="sr">Email</label><input id="lvce" name="email" type="email" placeholder="Your email" required autocomplete="email" value="${esc(store.get("lvEmail"))}">
             <p hidden><label>Company <input name="company" tabindex="-1" autocomplete="off"></label></p>
-            <button class="btn btn-bronze" type="submit">${offer.button}</button>
+            <button class="btn btn-bronze" type="submit" name="plan" value="${offer.plan}">${offer.button}</button>
+            <p class="lv-alt">${offer.alt.text} <button type="submit" name="plan" value="${offer.alt.plan}">${offer.alt.button}</button> ${offer.alt.after}</p>
           </form>
-          <p class="lv-small">No payment today. I'll email you the details and your price before the group opens.</p>
-          <p class="lv-claimed" hidden>${offer.claimed}</p>
+          <p class="lv-small">Secure checkout with Stripe. You'll get a receipt right away, and a welcome email from me within 24 hours.</p>
         </div>
         <div class="ctas"><a data-goal="see-program" class="btn btn-line" href="/m-program">See the full program</a><button type="button" class="btn btn-line lv-print">Save or print my results</button></div>
       </div>
       <p class="lv-fine">This check-in is for education, not a diagnosis. Please talk to your doctor about any health concerns.</p>`;
     out.querySelector(".lv-print").onclick = () => window.print();
-    // Saving a spot goes to Netlify Forms ("levers-offer"), with her results and the code.
+    // Joining opens Stripe checkout with her email filled in. On the way, her
+    // email, results and choice are noted in Netlify Forms ("levers-offer"), so
+    // Paty can follow up if she doesn't finish paying. That note never holds up
+    // the checkout for more than 1.5 seconds.
     const claim = out.querySelector(".lv-claim");
+    const buttons = [...claim.querySelectorAll("button")];
     claim.addEventListener("submit", (e) => {
       e.preventDefault();
       if (!claim.checkValidity()) { claim.reportValidity(); return; }
       const d = new FormData(claim);
-      const btn = claim.querySelector("button");
-      btn.disabled = true;
-      fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({ "form-name": "levers-offer", first_name: name, email: String(d.get("email") || ""), company: String(d.get("company") || ""),
-          code: offer.code, lever: res.top.name, results: location.origin + "/my-levers#r=" + encode(r) }).toString() })
-        .then((r) => { if (!r.ok) throw r; claim.hidden = true; out.querySelector(".lv-claimed").hidden = false; })
-        .catch(() => { btn.disabled = false; const m = out.querySelector(".lv-claimed"); m.hidden = false; m.textContent = "Sorry, that didn't go through. Please try again, or email paty@patystraffon.com with the code " + offer.code + "."; });
+      const plan = (e.submitter && e.submitter.value) || offer.plan;
+      const email = String(d.get("email") || "").trim();
+      buttons.forEach((b) => (b.disabled = true));
+      store.set("lvEmail", email);
+      const url = new URL(CHECKOUT[plan] || CHECKOUT[offer.plan]);
+      url.searchParams.set("client_reference_id", plan);
+      url.searchParams.set("prefilled_email", email);
+      if (plan === offer.plan && offer.promo) url.searchParams.set("prefilled_promo_code", offer.promo);
+      const noted = fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({ "form-name": "levers-offer", first_name: name, email, company: String(d.get("company") || ""),
+          code: offer.code, plan, lever: res.top.name, results: location.origin + "/my-levers#r=" + encode(r) }).toString() }).catch(() => {});
+      Promise.race([noted, new Promise((ok) => setTimeout(ok, 1500))]).then(() => { location.href = url.toString(); });
     });
+    // Coming back from checkout with the Back button: make the buttons work again.
+    addEventListener("pageshow", () => buttons.forEach((b) => (b.disabled = false)));
     if (h.get("o")) setTimeout(() => document.getElementById("offer").scrollIntoView(), 50);
   }
 }
