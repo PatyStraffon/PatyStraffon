@@ -111,17 +111,21 @@ export default async (req: Request, context: Context) => {
     const [keys, segment] = await Promise.all([fieldKeys(), segmentId()])
     const custom_fields: Record<string, string> = {}
     for (const [name, value] of Object.entries(values)) custom_fields[keys[name]] = value
-    await json(await flodesk("/subscribers", {
+    const sub = await json(await flodesk("/subscribers", {
       method: "POST",
       body: JSON.stringify({
         email, first_name: firstName, custom_fields, segment_ids: [segment],
         optin_ip: context.ip, optin_timestamp: new Date().toISOString(),
       }),
     }), "save subscriber")
-    // Make sure she is in the segment even if she was already a subscriber.
-    await json(await flodesk(`/subscribers/${encodeURIComponent(email)}/segments`, {
-      method: "POST", body: JSON.stringify({ segment_ids: [segment] }),
-    }), "add to segment")
+    // Make sure she is in the segment even if she was already a subscriber
+    // (by id: Flodesk answers 404 when this path uses the email).
+    if (sub && sub.id) {
+      const res = await flodesk(`/subscribers/${encodeURIComponent(String(sub.id))}/segments`, {
+        method: "POST", body: JSON.stringify({ segment_ids: [segment] }),
+      })
+      if (!res.ok) console.error(`add to segment: ${res.status} ${await res.text()}`)
+    }
     return Response.json({ ok: true })
   } catch (e) {
     console.error(String(e))

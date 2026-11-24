@@ -70,13 +70,14 @@ async function addToFlodesk(name: string, email: string, ip: string) {
   const [first_name, ...rest] = name.split(" ")
   try {
     const segment = await segmentId()
-    await json(await flodesk("/subscribers", {
+    const sub = await json(await flodesk("/subscribers", {
       method: "POST",
       body: JSON.stringify({ email, first_name, last_name: rest.join(" ") || undefined, segment_ids: [segment],
         optin_ip: ip, optin_timestamp: new Date().toISOString() }),
     }), "save subscriber")
-    // Make sure she is in the segment even if she was already a subscriber.
-    await json(await flodesk(`/subscribers/${encodeURIComponent(email)}/segments`, {
+    // Make sure she is in the segment even if she was already a subscriber
+    // (by id: Flodesk answers 404 when this path uses the email).
+    if (sub && sub.id) await json(await flodesk(`/subscribers/${encodeURIComponent(String(sub.id))}/segments`, {
       method: "POST", body: JSON.stringify({ segment_ids: [segment] }),
     }), "add to segment")
   } catch (e) { console.error(String(e)) }
