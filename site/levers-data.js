@@ -130,13 +130,22 @@ export const LEVERS = [
 ];
 
 // The thank-you offer shown on the results page and in the results email.
-// Paty honours it by hand when she enrols someone, so change it here and in
-// the Flodesk email together.
+// The code is filled in for her at Stripe checkout (LEVERS10 only works on the
+// regular link), so change it here, in Stripe and in the Flodesk email together.
 export const OFFER = { code: "LEVERS10", percent: 10, days: 7 };
 // Until the founding price closes, the results page offers it instead of the
 // 10%, which would cost more (CAD $1,347 vs $1,197).
 export const FOUNDING = { code: "FOUNDING", price: "CAD $1,197", until: "2026-12-16T00:00:00-08:00" };
-export const START = "Monday, January 18, 2027";
+export const START = "Monday, January 25, 2027";
+// Stripe Payment Links (CAD), the same ones as in
+// "01 The M Program/marketing/07-checkout/stripe-payment-links.md".
+// The results page adds client_reference_id (which product she chose) and her email.
+export const CHECKOUT = {
+  founding: "https://buy.stripe.com/8x214p88k81i6FDg74asg00",
+  deposit: "https://buy.stripe.com/bJecN7gEQftK1lj6wuasg04",
+  regular: "https://buy.stripe.com/cNi00lcoA6Xe4xvf30asg01",
+  plan3: "https://buy.stripe.com/fZu5kF9co81i9RP5sqasg02",
+};
 
 export function levelOf(score) {
   return score >= 3 ? "Strong" : score === 2 ? "Building" : "Start here";
