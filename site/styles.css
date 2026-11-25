@@ -328,6 +328,8 @@ body.page{font-weight:400}
 .dark .pquote p{color:var(--porcelain)}
 .pquote span{font-family:var(--label);font-weight:500;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--smoke)}
 .dark .pquote span{color:var(--taupe)}
+.pstack{display:grid;gap:clamp(36px,5vw,56px)}
+.pquote.long p{font-size:clamp(1.2rem,2.1vw,1.55rem)}
 .qgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,40px)}
 .qgrid .pquote p{font-size:1.25rem}
 @media (max-width:900px){.qgrid{grid-template-columns:1fr}}
