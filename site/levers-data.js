@@ -143,9 +143,9 @@ export const START = "Monday, January 25, 2027";
 // Each entry shows until its "until" moment (Pacific time).
 export const NEXT_STEPS = [
   { until: "2026-12-11T00:00:00-08:00", label: "Free live class", head: "Move with me, live: Thursday, December 10",
-    body: "25 minutes of strength and calm in the same practice, then 15 minutes on why what used to work stops working after 45, and what to do instead. It's free, on Zoom, at 7pm PT. Your invitation is in your inbox." },
+    body: "25 minutes of strength and calm in the same practice, then 15 minutes on why what used to work stops working after 45, and what to do instead. It's free, on Zoom, at 7am PT. Your invitation is in your inbox." },
   { until: "2027-01-13T00:00:00-08:00", label: "Free live class", head: "Move with me, live: Tuesday, January 12",
-    body: "25 minutes of strength and calm in the same practice, then 15 minutes on what changes after 45. It's free, on Zoom, at 7pm PT. Your invitation, and the replay of my December class, are in your inbox." },
+    body: "25 minutes of strength and calm in the same practice, then 15 minutes on what changes after 45. It's free, on Zoom, at 7am PT. Your invitation, and the replay of my December class, are in your inbox." },
   { until: "2099-01-01T00:00:00-08:00", label: "Coming up", head: "The next M Program group starts " + "Monday, January 25",
     body: "Your course emails will tell you how it works. For now, start with your one small step above." },
 ];
