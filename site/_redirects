@@ -16,3 +16,5 @@
 /youtube       /             301
 /watch         /             301
 /free-videos   /             301
+/free-class    /class        301
+/clase         /class        301
