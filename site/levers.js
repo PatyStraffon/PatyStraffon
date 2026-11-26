@@ -1,7 +1,7 @@
 // The free 5 Levers course. On the homepage, the sign-up forms (pop-up and the
 // "Free guide" section) start the course inside the pop-up. On /my-levers the
 // same results are drawn from the link, so she can come back to them.
-import { STAGES, GOALS, LEVERS, OFFER, FOUNDING, START, CHECKOUT, encode, decode, results } from "/levers-data.js";
+import { STAGES, GOALS, LEVERS, NEXT_STEPS, encode, decode, results } from "/levers-data.js";
 
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 const store = {
@@ -170,26 +170,14 @@ if (out) {
   } else {
     const res = results(r);
     const name = store.get("lvName");
-    const founding = Date.now() < Date.parse(FOUNDING.until);
-    const deposit = Date.now() < Date.parse(FOUNDING.depositUntil);
-    // Each button opens a Stripe Payment Link (see CHECKOUT in levers-data.js).
-    const offer = founding ? {
-      code: FOUNDING.code, plan: "founding", head: "Founding price: " + FOUNDING.price,
-      body: "The next group starts " + START + ". The founding price is for the first 10 women, until " + FOUNDING.ends + ".",
-      button: "Join at the founding price",
-      alt: deposit
-        ? { plan: "deposit", text: "Not ready to pay it all today?", button: "Hold your founding spot with a CAD $250 deposit", after: "(the rest is due January 15)." }
-        : { plan: "plan3", text: "Prefer to spread it out?", button: "Pay in 3 monthly payments of CAD $525", after: "(the regular price, in three parts)." } } : {
-      code: OFFER.code, plan: "regular", promo: OFFER.code, head: OFFER.percent + "% off The M Program",
-      body: "The next group starts " + START + ". Spots are limited so the group stays small. Join within " + OFFER.days + " days and your " + OFFER.percent + "% is yours: your code <strong>" + OFFER.code + "</strong> is already filled in at checkout.",
-      button: "Join with " + OFFER.percent + "% off",
-      alt: { plan: "plan3", text: "Prefer to spread it out?", button: "Pay in 3 monthly payments of CAD $525", after: "(without the " + OFFER.percent + "%)." } };
+    // No price here: the next step is the email course and the next free class (see NEXT_STEPS).
+    const next = NEXT_STEPS.find((n) => Date.now() < Date.parse(n.until)) || NEXT_STEPS[NEXT_STEPS.length - 1];
     out.innerHTML = `
       <div class="lv-head">
         <span class="label">Your 5 Levers results</span>
         <h1>${name ? esc(name) + ", your" : "Your"} lever to start with is <em class="b">${res.top.name.toLowerCase()}</em></h1>
         <p class="lede">${res.band}</p>
-        ${h.get("sent") ? '<p class="lv-sent">Check your inbox: your thank-you gift is on its way, with a link back to these results. If you don\'t see it in a few minutes, check your promotions or spam folder.</p>' : ""}
+        ${h.get("sent") ? '<p class="lv-sent">Check your inbox: your first email is on its way, with a link back to these results. If you don\'t see it in a few minutes, check your promotions or spam folder.</p>' : ""}
       </div>
       <div class="lv-first"><span class="label">Your first small step</span><p>${res.top.step}</p></div>
       <ol class="lv-list">
@@ -205,56 +193,19 @@ if (out) {
       </div>
       <div class="lv-next-step" id="offer">
         <span class="label">Your next step</span>
-        <h2>Now let's work on all five, <em class="b">together</em></h2>
-        <p>Your results show you where to start. The M Program shows you how, week by week, with me as your coach. Over eight weeks we build each lever into your real life, so the changes last after the program ends.</p>
-        <ul class="lv-gains">
-          <li><strong>Extra attention on ${res.top.name.toLowerCase()}</strong>, your lever to start with, from the first week.</li>
-          <li><strong>Eight weeks coached by me</strong>, with a small group of women in the same season of life.</li>
-          <li><strong>Guided 25 to 35 minute workouts</strong> and high-protein recipes, in your own app.</li>
-          <li><strong>Weekly check-ins</strong>, so you're never figuring it out alone.</li>
-        </ul>
-        <blockquote class="lv-quote"><p>“Paty customized the program around my busy work travel schedule, and shared so much knowledge in a simple way. It was great to be part of a group, in a very fun and supportive environment. I feel much better prepared for the perimenopause and menopause journey ahead.”</p><span>Agi · The M Program</span></blockquote>
+        <h2>Your 5 Levers course <em class="b">starts tomorrow</em></h2>
+        <p>Over the next twelve days I'll send you one short email at a time, one lever at a time, each with something simple to try in your real week. Look for it in your inbox, and check promotions or spam if it isn't there.</p>
         <div class="lv-offer">
-          <span class="label">A thank-you for taking the course</span>
-          <p class="lv-offer-h">${offer.head}</p>
-          <p>${offer.body}</p>
-          <form class="lv-claim" data-goal-form="offer" novalidate>
-            <label for="lvce" class="sr">Email</label><input id="lvce" name="email" type="email" placeholder="Your email" required autocomplete="email" value="${esc(store.get("lvEmail"))}">
-            <p hidden><label>Company <input name="company" tabindex="-1" autocomplete="off"></label></p>
-            <button class="btn btn-bronze" type="submit" name="plan" value="${offer.plan}">${offer.button}</button>
-            <p class="lv-alt">${offer.alt.text} <button type="submit" name="plan" value="${offer.alt.plan}">${offer.alt.button}</button> ${offer.alt.after}</p>
-          </form>
-          <p class="lv-small">Secure checkout with Stripe. You'll get a receipt right away, and a welcome email from me within 24 hours.</p>
+          <span class="label">${next.label}</span>
+          <p class="lv-offer-h">${next.head}</p>
+          <p>${next.body}</p>
         </div>
+        <blockquote class="lv-quote"><p>“Everyone says menopause is a natural transition, yet it felt anything but natural to me. Paty’s M Program helped me understand what was happening in my body, from shifts in my metabolism to changes in how I felt physically and emotionally. Working with Paty was life-changing for me.”</p><span>Debra · The M Program</span></blockquote>
+        <p>When you're ready for more, The M Program is where we work on all five levers together: eight weeks, a small group, and me as your coach.</p>
         <div class="ctas"><a data-goal="see-program" class="btn btn-line" href="/m-program">See the full program</a><button type="button" class="btn btn-line lv-print">Save or print my results</button></div>
       </div>
       <p class="lv-fine">This check-in is for education, not a diagnosis. Please talk to your doctor about any health concerns.</p>`;
     out.querySelector(".lv-print").onclick = () => window.print();
-    // Joining opens Stripe checkout with her email filled in. On the way, her
-    // email, results and choice are noted in Netlify Forms ("levers-offer"), so
-    // Paty can follow up if she doesn't finish paying. That note never holds up
-    // the checkout for more than 1.5 seconds.
-    const claim = out.querySelector(".lv-claim");
-    const buttons = [...claim.querySelectorAll("button")];
-    claim.addEventListener("submit", (e) => {
-      e.preventDefault();
-      if (!claim.checkValidity()) { claim.reportValidity(); return; }
-      const d = new FormData(claim);
-      const plan = (e.submitter && e.submitter.value) || offer.plan;
-      const email = String(d.get("email") || "").trim();
-      buttons.forEach((b) => (b.disabled = true));
-      store.set("lvEmail", email);
-      const url = new URL(CHECKOUT[plan] || CHECKOUT[offer.plan]);
-      url.searchParams.set("client_reference_id", plan);
-      url.searchParams.set("prefilled_email", email);
-      if (plan === offer.plan && offer.promo) url.searchParams.set("prefilled_promo_code", offer.promo);
-      const noted = fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({ "form-name": "levers-offer", first_name: name, email, company: String(d.get("company") || ""),
-          code: offer.code, plan, lever: res.top.name, results: location.origin + "/my-levers#r=" + encode(r) }).toString() }).catch(() => {});
-      Promise.race([noted, new Promise((ok) => setTimeout(ok, 1500))]).then(() => { location.href = url.toString(); });
-    });
-    // Coming back from checkout with the Back button: make the buttons work again.
-    addEventListener("pageshow", () => buttons.forEach((b) => (b.disabled = false)));
     if (h.get("o")) setTimeout(() => document.getElementById("offer").scrollIntoView(), 50);
   }
 }
