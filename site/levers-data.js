@@ -138,6 +138,17 @@ export const OFFER = { code: "LEVERS10", percent: 10, days: 7 };
 // The $250 deposit that holds the founding price is offered until Dec 31.
 export const FOUNDING = { code: "FOUNDING", price: "CAD $1,197", until: "2027-01-15T00:00:00-08:00", depositUntil: "2027-01-01T00:00:00-08:00", ends: "January 14" };
 export const START = "Monday, January 25, 2027";
+// The results page never shows a price (Paty, Nov 25: high-ticket needs warming up first).
+// It points to the next free step instead: the email course, then the next free live class.
+// Each entry shows until its "until" moment (Pacific time).
+export const NEXT_STEPS = [
+  { until: "2026-12-11T00:00:00-08:00", label: "Free live class", head: "Move with me, live: Thursday, December 10",
+    body: "25 minutes of strength and calm in the same practice, then 15 minutes on why what used to work stops working after 45, and what to do instead. It's free, on Zoom, at 7pm PT. Your invitation is in your inbox." },
+  { until: "2027-01-13T00:00:00-08:00", label: "Free live class", head: "Move with me, live: Tuesday, January 12",
+    body: "25 minutes of strength and calm in the same practice, then 15 minutes on what changes after 45. It's free, on Zoom, at 7pm PT. Your invitation, and the replay of my December class, are in your inbox." },
+  { until: "2099-01-01T00:00:00-08:00", label: "Coming up", head: "The next M Program group starts " + "Monday, January 25",
+    body: "Your course emails will tell you how it works. For now, start with your one small step above." },
+];
 // Stripe Payment Links (CAD), the same ones as in
 // "01 The M Program/marketing/07-checkout/stripe-payment-links.md".
 // The results page adds client_reference_id (which product she chose) and her email.
