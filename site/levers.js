@@ -194,7 +194,7 @@ if (out) {
       <div class="lv-next-step" id="offer">
         <span class="label">Your next step</span>
         <h2>Your 5 Levers course <em class="b">starts tomorrow</em></h2>
-        <p>Over the next twelve days I'll send you one short email at a time, one lever at a time, each with something simple to try in your real week. Look for it in your inbox, and check promotions or spam if it isn't there.</p>
+        <p>Over the next few days I'll send you short emails, one lever at a time, each with something simple to try in your real week. Look for it in your inbox, and check promotions or spam if it isn't there.</p>
         <div class="lv-offer">
           <span class="label">${next.label}</span>
           <p class="lv-offer-h">${next.head}</p>
